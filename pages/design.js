@@ -71,10 +71,8 @@ const Design = () => {
     }
 
     return (
-        <div>
+        <div className="mb-10">
             <NavigationTab tabs={tabs} currentTab={currentTab} setTabFromNavigation={(key) => setTabFromNavigation(key)} />
-
-
             <div className="flex flex-col justify-center items-center my-10">
                 <Image className="max-w-sm" src={Logo} alt='Logo' width="250" height="100" />
                 <span className="text-2xl font-semibold text-gray-800 mb-3">
