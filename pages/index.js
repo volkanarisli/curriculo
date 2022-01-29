@@ -1,4 +1,4 @@
-import Head from 'next/head'
+
 import Image from 'next/image'
 import axios from 'axios'
 import { useState, useEffect } from 'react';

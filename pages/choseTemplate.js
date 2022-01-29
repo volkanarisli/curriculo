@@ -1,4 +1,4 @@
-const choseTemplate = () => {
+const ChoseTemplate = () => {
     return (
         <div>
             Chose Template
@@ -7,4 +7,4 @@ const choseTemplate = () => {
 }
 
 
-export default choseTemplate
+export default ChoseTemplate

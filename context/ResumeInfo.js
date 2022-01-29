@@ -6,8 +6,22 @@ const Context = createContext();
 
 const ResumeInfo = ({ children }) => {
     const [resume, setResume] = useState({
-
-
+        work: {
+            experiences: []
+        },
+        education: {
+            educationHistory: []
+        },
+        about: {
+            name: '',
+            surname: '',
+            currentTitle: '',
+            location: ''
+        },
+        contact: {
+            email: '',
+            phone: ''
+        }
     })
     const [isLoading, setIsLoading] = useState(true)
     const exposed = {
