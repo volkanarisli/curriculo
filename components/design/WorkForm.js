@@ -36,6 +36,7 @@ const WorkForm = () => {
             value: data.response,
             name: 'desc'
         })
+        setExperiences([...experiences])
 
     }
 
@@ -79,7 +80,7 @@ const WorkForm = () => {
                                     name
                                 })
                             } />
-                            <button onClick={() => getDesc(index)} className="absolute right-1 mt-2 z-10 bg-indigo-100 text-indigo-700 p-2 rounded-lg text-sm">Generate</button>
+                            <button onClick={() => getDesc(index)} className="absolute right-1 mt-2 z-10 bg-indigo-100 text-indigo-700 p-2 rounded-lg text-sm">Save and Generate</button>
                         </div>
                         <span className="text-xs text-gray-500">Start with <b>Responsible for </b>and enter keywords related with your job. Seperate them with commas.</span>
                     </div>

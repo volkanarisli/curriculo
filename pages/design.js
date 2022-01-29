@@ -8,7 +8,7 @@ import Image from "next/image"
 
 
 import { useState } from "react"
-
+import Router from "next/router"
 
 const Design = () => {
     const [tabs, setTabs] = useState([
@@ -56,7 +56,10 @@ const Design = () => {
     }
     const nextTab = (currentTab, nextTabVal) => {
 
-        if (isLastPage(nextTabVal + 1)) return
+        if (isLastPage(nextTabVal + 1)) {
+            Router.push('/choseTemplate')
+            return;
+        }
         let newArr = [...tabs]; // copying the old datas array
         newArr[currentTab].isSuccess = true;
         newArr[currentTab].isActive = false;

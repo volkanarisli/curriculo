@@ -26,7 +26,17 @@ const ResumeInfo = ({ children }) => {
     const [experiences, setExperiences] = useState([])
     const [educationHistory, setEducationHistory] = useState([])
     const [about, setAbout] = useState({})
-    const [contact, setContact] = useState({})
+    const [contact, setContact] = useState({
+        firstName: '',
+        lastName: '',
+        currentTitle: '',
+        location: '',
+        keywords: '',
+        desc: '',
+        email: '',
+        number: ''
+    })
+    const [resumeTemplateId, setResumeTeplateId] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
     const exposed = {
         experiences,
@@ -36,7 +46,16 @@ const ResumeInfo = ({ children }) => {
         about,
         setAbout,
         contact,
-        setContact
+        setContact,
+        resumeTemplateId,
+        setResumeTeplateId,
+        allResumeData: {
+            experiences,
+            educationHistory,
+            about,
+            contact,
+            resumeTemplateId
+        }
     }
 
     return (

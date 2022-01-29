@@ -1,5 +1,7 @@
 import { useState } from "react"
-import Router from 'next/router'
+import Router from "next/router"
+
+
 const NavigationTab = ({ tabs, currentTab, setTabFromNavigation }) => {
     const redirectToMainPage = () => {
         Router.push('/')
