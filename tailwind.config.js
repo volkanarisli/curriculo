@@ -4,7 +4,21 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    minWidth: {
+      'md': '300px',
+      'lg': '400px',
+    },
+
+    container: {
+      center: true,
+    },
+    extend: {
+      screens: {
+        'tablet': '640px',
+        'laptop': '860px',
+        'desktop': '1024px',
+      },
+    },
   },
   plugins: [],
 }

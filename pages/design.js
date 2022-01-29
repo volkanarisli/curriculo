@@ -2,7 +2,7 @@ import NavigationTab from "../components/design/NavigationTab"
 import WorkForm from "../components/design/WorkForm"
 import EducationForm from "../components/design/EducationForm"
 import AboutForm from "../components/design/AboutForm"
-import ContactForm from "../components/design/AboutForm"
+import ContactForm from "../components/design/ContactForm"
 import Logo from "../assets/img/logomark.svg"
 import Image from "next/image"
 
@@ -47,9 +47,21 @@ const Design = () => {
     ])
     const [currentTab, setCurrentTab] = useState(0)
 
+    const isLastPage = nextTabVal => nextTabVal > tabs.length
+
+
     const setTabFromNavigation = (key) => {
         if (!tabs[key].isSuccess && !(currentTab === key)) return
         setCurrentTab(key)
+    }
+    const nextTab = (currentTab, nextTabVal) => {
+
+        if (isLastPage(nextTabVal + 1)) return
+        let newArr = [...tabs]; // copying the old datas array
+        newArr[currentTab].isSuccess = true;
+        newArr[currentTab].isActive = false;
+        setTabs(newArr)
+        setCurrentTab(nextTabVal)
     }
     const currentFormEnum = {
         0: () => <WorkForm />,
@@ -76,7 +88,15 @@ const Design = () => {
                 {
                     currentFormEnum[currentTab]()
                 }
+                <div className="flex justify-center bottom-10 mt-10">
+                    <button onClick={() => nextTab(currentTab, currentTab + 1)}
+                        className="bg-indigo-100 text-indigo-700 py-3 sm:min-w-lg rounded-md">
+                        Next Step
+                    </button>
+                </div>
+
             </div>
+
         </div>
     )
 }
