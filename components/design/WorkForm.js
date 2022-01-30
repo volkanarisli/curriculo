@@ -92,13 +92,16 @@ const WorkForm = () => {
 
     }
     const getDesc = async (index) => {
-        const { data } = await axios.post('/api/generateTextFromKeyword', { keyword: experiences[index].keywords })
+        debugger;
+        const prompt = `Create an employment summary: ${experiences[index].company},${experiences[index].title} I am ${experiences[index].keywords} summary:`
+        console.log(prompt)
+        const { data } = await axios.post('/api/generateTextFromKeyword', { prompt })
         setInput({
             experinceKey: index,
             value: data.response,
             name: 'desc'
         })
-        // setExperiences([...experiences])
+        setExperiences([...experiences])
 
     }
 

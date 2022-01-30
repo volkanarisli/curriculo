@@ -4,13 +4,16 @@ import { useResumeInfo } from "../../context/ResumeInfo";
 import axios from "axios";
 
 const AboutForm = () => {
-    const { contact,setContact } = useResumeInfo()
+    const { contact, setContact } = useResumeInfo()
 
     const updateData = (e, propertyName) => {
         setContact({ ...contact, [propertyName]: e })
     }
     const getDesc = async (index) => {
-        const { data } = await axios.post('/api/generateTextFromKeyword', { keyword: contact.keywords })
+        const prompt = `Create a personal summary from my social and technical skillset ${contact.keywords},${contact.title} summary:`
+        console.log(prompt)
+
+        const { data } = await axios.post('/api/generateTextFromKeyword', { prompt })
         updateData(data.response, 'desc')
 
         setContact({ ...contact, desc: data.response })
@@ -34,7 +37,7 @@ const AboutForm = () => {
                 <div className="flex w-100 mb-3">
                     <div className="flex flex-col w-1/2 pr-3">
                         <span className="mb-2">Current Title</span>
-                        <input className="border rounded h-10 p-3" onChange={(e) => updateData(e.target.value, 'title')} type="text" value={contact.title}  placeholder="Bond... James Bond" name="title" />
+                        <input className="border rounded h-10 p-3" onChange={(e) => updateData(e.target.value, 'title')} type="text" value={contact.title} placeholder="Bond... James Bond" name="title" />
                     </div>
                     <div className="flex flex-col w-1/2 pr-3">
                         <span className="mb-2">Location</span>
