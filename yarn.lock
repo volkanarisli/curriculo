@@ -1208,6 +1208,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+html2pdf@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/html2pdf/-/html2pdf-0.0.11.tgz#1359156fbdeac0ec6fc8a781b05e8747ded19769"
+  integrity sha1-E1kVb73qwOxvyKeBsF6HR97Rl2k=
+
 https-proxy-agent@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-5.0.0.tgz#e2a90542abb68a762e0a0850f6c9edadfd8506b2"
@@ -1580,6 +1585,11 @@ next@12.0.9:
     "@next/swc-win32-arm64-msvc" "12.0.9"
     "@next/swc-win32-ia32-msvc" "12.0.9"
     "@next/swc-win32-x64-msvc" "12.0.9"
+
+node-downloader-helper@^1.0.19:
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/node-downloader-helper/-/node-downloader-helper-1.0.19.tgz#f3313543dfaf6fabc58361886f14dca790f0fb6c"
+  integrity sha512-Bwp8WWDDP5ftg+FmAKU08a9+oiUTPoYzMvXgUqZZPQ7VMo1qKBzW3XdTXHeYnqjGLfkTZ2GPibgAWpApfpeS2g==
 
 node-fetch@2.6.7:
   version "2.6.7"

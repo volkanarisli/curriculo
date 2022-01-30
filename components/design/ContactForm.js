@@ -17,7 +17,7 @@ const ContactForm = () => {
       </div>
       <div className="flex flex-col w-1/2 pr-3">
         <span className="mb-2">Phone Number</span>
-        <input className="border rounded h-10 p-3" onChange={(e) => updateData(e.target.value, 'number')} type="text" placeholder="+999999999" name="lastName" />
+        <input className="border rounded h-10 p-3" onChange={(e) => updateData(e.target.value, 'number')} type="text" placeholder="+999999999" />
 
       </div>
     </div>
