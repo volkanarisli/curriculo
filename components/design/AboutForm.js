@@ -11,7 +11,7 @@ const AboutForm = () => {
     }
     const getDesc = async (index) => {
         const prompt = `Create a personal summary from my social and technical skillset ${contact.keywords},${contact.title} summary:`
-        console.log(prompt)
+
 
         const { data } = await axios.post('/api/generateTextFromKeyword', { prompt })
         updateData(data.response, 'desc')
