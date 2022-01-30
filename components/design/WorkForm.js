@@ -11,7 +11,7 @@ const InputGroup = ({ index, experience, getDescForm, setInputForm }) => {
             <div className="flex w-100 mb-3">
                 <div className="flex flex-col w-1/2 pr-3">
                     <span className="mb-2">Company</span>
-                    <input className="border rounded h-10 p-3" type="text" placeholder="Netflix..." name="company" onChange={({ target: { value, name } }) => setInputForm(
+                    <input className="border rounded h-10 p-3" type="text" placeholder="Facebook..." name="company" onChange={({ target: { value, name } }) => setInputForm(
                         {
                             experinceKey: index,
                             value,
@@ -93,7 +93,7 @@ const WorkForm = () => {
     }
     const getDesc = async (index) => {
 
-        const prompt = `Create an employment summary: ${experiences[index].company},${experiences[index].title} I am ${experiences[index].keywords} summary:`
+        const prompt = `Create an employment history from my company, title and skillset, company:${experiences[index].company} title:${experiences[index].title} my skills:${experiences[index].keywords} summary:`
         console.log(prompt)
         const { data } = await axios.post('/api/generateTextFromKeyword', { prompt })
         setInput({
