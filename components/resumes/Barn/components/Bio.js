@@ -8,7 +8,7 @@ const Bio = ({ contact }) => {
                 <span className="mb-3">{`${contact.location}`}</span>
                 <div className="flex">
                     <span className="mr-5">{`${contact.email}`}</span>
-                    <span>{`${contact.phone}`}</span>
+                    <span>{`${contact.number}`}</span>
 
                 </div>
             </div>

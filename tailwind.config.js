@@ -18,6 +18,9 @@ module.exports = {
         'laptop': '860px',
         'desktop': '1024px',
       },
+      colors: {
+        'barn-background': '#FFFAE7',
+      }
     },
   },
   plugins: [],
