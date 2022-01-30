@@ -2,8 +2,8 @@ import Bio from './components/Bio'
 import Education from './components/Education'
 import Experience from './components/Experience'
 import { useResumeInfo } from "../../../context/ResumeInfo";
-import gradientAlt from "../../../assets/img/gradientAlt.svg"
-import gradientUst from "../../../assets/img/gradientUst.svg"
+import gradientAlt from "../../../assets/img/Gradientalt.svg"
+import gradientUst from "../../../assets/img/gradientust.svg"
 import Image from 'next/image';
 
 
