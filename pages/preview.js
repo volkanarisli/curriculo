@@ -13,7 +13,7 @@ import Head from "next/head";
 
 
 const Preview = () => {
-    const { setResumeTeplateId } = useResumeInfo()
+    const { resumeTemplateId } = useResumeInfo()
 
     const templateConfig = {
         0: <Barn />,
@@ -33,7 +33,7 @@ const Preview = () => {
             <button className="bg-indigo-100 text-indigo-700 py-3 sm:min-w-lg rounded-md my-5" onClick={download}>Download</button>
             <div className="flex justify-center mt-10 mb-10">
                 <div id="design" className="max-w-4xl">
-                    {templateConfig[0]}
+                    {templateConfig[resumeTemplateId]}
                 </div>
 
             </div>

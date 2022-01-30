@@ -4,7 +4,7 @@ import Image from "next/image"
 import Barn from "../assets/img/Barn.jpg"
 import Classic from "../assets/img/Classic.jpg"
 import Modern from "../assets/img/Modern.jpg"
-import  Router  from "next/router";
+import Router from "next/router";
 
 
 const ChoseTemplate = () => {
@@ -28,6 +28,7 @@ const ChoseTemplate = () => {
         },
     ]
     const selectStyle = (item) => {
+        setResumeTeplateId(item.id)
         Router.push('/preview')
 
     }
