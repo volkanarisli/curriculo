@@ -10,7 +10,7 @@ const Barn = () => {
     const { allResumeData: { about, contact, educationHistory, experiences } } = useResumeInfo()
 
     return (
-        <div className="w-4xl border bg-barn-background font-roboto-mono p-10">
+        <div className="w-a4 min-h-a4 border bg-barn-background font-roboto-mono p-10">
             <div className="mb-10">
                 <Bio about={about} contact={contact} />
             </div>

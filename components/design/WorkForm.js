@@ -2,11 +2,73 @@ import { useEffect, useState } from "react";
 import { useResumeInfo } from "../../context/ResumeInfo";
 import axios from "axios";
 
+
+const InputGroup = ({ index, experience, getDescForm, setInputForm }) => {
+
+    return (
+        <div>
+            <span className="text-2xl font-bold mb-4">{index + 1}. Experience</span>
+            <div className="flex w-100 mb-3">
+                <div className="flex flex-col w-1/2 pr-3">
+                    <span className="mb-2">Company</span>
+                    <input className="border rounded h-10 p-3" type="text" placeholder="Netflix..." name="company" onChange={({ target: { value, name } }) => setInputForm(
+                        {
+                            experinceKey: index,
+                            value,
+                            name
+                        })
+                    }
+                    />
+                </div>
+                <div className="flex flex-col w-1/2 pr-3">
+                    <span className="mb-2">Title</span>
+                    <input className="border rounded h-10 p-3" type="text" placeholder="Ceo..." name="title" onChange={({ target: { value, name } }) => setInputForm(
+                        {
+                            experinceKey: index,
+                            value,
+                            name
+                        })
+                    } />
+
+                </div>
+            </div>
+            <div className="flex w-100 mb-14">
+                <div className="flex flex-col w-full pr-3">
+                    <span className="mb-2">Keywords</span>
+                    <div className="relative">
+                        <input className="border rounded h-12 p-3 w-full" type="text" placeholder="Responsible for all things design related, Leadership, Sales, Javascript, CSS..." name="keywords" onChange={({ target: { value, name } }) => setInputForm(
+                            {
+                                experinceKey: index,
+                                value,
+                                name
+                            })
+                        } />
+                        <button onClick={() => getDescForm(index)} className="absolute right-1 mt-2 z-10 bg-indigo-100 text-indigo-700 p-2 rounded-lg text-sm">Save and Generate</button>
+                    </div>
+                    <span className="text-xs text-gray-500">Start with <b>Responsible for </b>and enter keywords related with your job. Seperate them with commas.</span>
+                </div>
+            </div>
+            <div className="flex w-100 mb-16">
+                <div className="flex flex-col w-full pr-3">
+                    <span className="mb-2">Description of a Job</span>
+                    <textarea className="border rounded h-28 px-3 py-1 placeholder:text-sm placeholder:whitespace-normal" rows="4" name="desc" value={experience.desc} placeholder="Responsible for A/B tests - designing and conducting experiments to test the efficacy of different changes/improvements, analyzing the results, and making decisions based on those results." onChange={({ target: { value, name } }) => setInputForm(
+                        {
+                            experinceKey: index,
+                            value,
+                            name
+                        })
+                    } />
+                    <span className="text-xs text-gray-500">You can edit it directly above and head over to next step when you are done! </span>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 const WorkForm = () => {
     const { experiences, setExperiences } = useResumeInfo();
 
     const setInput = (value) => {
-
         const experience = {
             id: value.experinceKey,
             [value.name]: value.value
@@ -16,7 +78,7 @@ const WorkForm = () => {
         if (indexOfExperience > -1) {
             let newArr = experiences
             newArr[indexOfExperience] = { ...newArr[indexOfExperience], ...experience }
-            setExperiences(newArr)
+            setExperiences([...newArr])
         } else {
             setExperiences([experience, ...experiences])
         }
@@ -36,77 +98,16 @@ const WorkForm = () => {
             value: data.response,
             name: 'desc'
         })
-        setExperiences([...experiences])
+        // setExperiences([...experiences])
 
     }
 
-    const InputGroup = ({ index, experience }) => {
-
-        return (
-            <div>
-                <span className="text-2xl font-bold mb-4">{index + 1}. Experience</span>
-                <div className="flex w-100 mb-3">
-                    <div className="flex flex-col w-1/2 pr-3">
-                        <span className="mb-2">Company</span>
-                        <input className="border rounded h-10 p-3" type="text" placeholder="Netflix..." name="company" value={experience.company} onChange={({ target: { value, name } }) => setInput(
-                            {
-                                experinceKey: index,
-                                value,
-                                name
-                            })
-                        }
-                        />
-                    </div>
-                    <div className="flex flex-col w-1/2 pr-3">
-                        <span className="mb-2">Title</span>
-                        <input className="border rounded h-10 p-3" type="text" placeholder="Ceo..." name="title" value={experience.title} onChange={({ target: { value, name } }) => setInput(
-                            {
-                                experinceKey: index,
-                                value,
-                                name
-                            })
-                        } />
-
-                    </div>
-                </div>
-                <div className="flex w-100 mb-14">
-                    <div className="flex flex-col w-full pr-3">
-                        <span className="mb-2">Keywords</span>
-                        <div className="relative">
-                            <input className="border rounded h-12 p-3 w-full" type="text" placeholder="Responsible for all things design related, Leadership, Sales, Javascript, CSS..." name="keywords" value={experience.keywords} onChange={({ target: { value, name } }) => setInput(
-                                {
-                                    experinceKey: index,
-                                    value,
-                                    name
-                                })
-                            } />
-                            <button onClick={() => getDesc(index)} className="absolute right-1 mt-2 z-10 bg-indigo-100 text-indigo-700 p-2 rounded-lg text-sm">Save and Generate</button>
-                        </div>
-                        <span className="text-xs text-gray-500">Start with <b>Responsible for </b>and enter keywords related with your job. Seperate them with commas.</span>
-                    </div>
-                </div>
-                <div className="flex w-100 mb-16">
-                    <div className="flex flex-col w-full pr-3">
-                        <span className="mb-2">Description of a Job</span>
-                        <input className="border rounded h-20 px-3 py-1 placeholder:text-sm placeholder:whitespace-normal" type="textarea" name="desc" value={experience.desc} placeholder="Responsible for A/B tests - designing and conducting experiments to test the efficacy of different changes/improvements, analyzing the results, and making decisions based on those results." onChange={({ target: { value, name } }) => setInput(
-                            {
-                                experinceKey: index,
-                                value,
-                                name
-                            })
-                        } />
-                        <span className="text-xs text-gray-500">You can edit it directly above and head over to next step when you are done! </span>
-                    </div>
-                </div>
-            </div>
-        )
-    }
 
     return (
         <>
             {
                 experiences.map((item, index) => (
-                    <InputGroup key={index} index={index} experience={item} />
+                    <InputGroup key={index} index={index} experience={item} getDescForm={(e) => getDesc(e)} setInputForm={(e) => setInput(e)} />
                 ))
             }
 

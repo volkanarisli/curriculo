@@ -4,6 +4,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+
     minWidth: {
       'md': '300px',
       'lg': '400px',
@@ -13,6 +14,18 @@ module.exports = {
       center: true,
     },
     extend: {
+      fontSize: {
+        '2xs': '10px',
+      },
+      minHeight: {
+        'a4': '1122px',
+      },
+      height: {
+        'a4': '855px',
+      },
+      width: {
+        'a4': '800px',
+      },
       screens: {
         'tablet': '640px',
         'laptop': '860px',

@@ -1,18 +1,18 @@
 
 
-const Experience = ({ educationHistory }) => {
+const Education = ({ educationHistory }) => {
     return (
         <div>
-            <span className="text-lg">Education</span>
+            <span className="text-lg font-bold">Education</span>
             {
                 educationHistory?.map((item, index) => (
                     <div key={index} className="mb-7">
-                        <div className="flex mb-5">
-                            <span>{item.degree}</span>
+                        <div className="flex mb-5 items-center leading-tight">
+                            <span className="text-base font-bold">{item.degree}</span>
                             •
-                            <span>{item.school}</span>
+                            <span className="text-base font-bold">{item.school}</span>
                         </div>
-                        <div >
+                        <div className="text-lg">
                             {item.desc}
                         </div>
 
@@ -23,4 +23,4 @@ const Experience = ({ educationHistory }) => {
     )
 };
 
-export default Experience;
+export default Education;

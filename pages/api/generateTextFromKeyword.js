@@ -6,7 +6,7 @@ const handler = async (req, res) => {
         apiKey: process.env.OPENAI_API_KEY,
     });
     const openai = new OpenAIApi(configuration);
-    const prompt = `Create a Job Experience Description from these notes\n\n${req.body.keyword}`
+    const prompt = `Create a description for each of your jobs\n\n${req.body.keyword}`
     const { data: { choices } } = await openai.createCompletion("text-davinci-001", {
         prompt,
         temperature: 0,

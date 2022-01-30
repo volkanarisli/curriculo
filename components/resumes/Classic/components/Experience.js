@@ -3,7 +3,7 @@
 const Experience = ({ experiences }) => {
     return (
         <div>
-            <span className="text-lg">Work Experiences</span>
+            <span className="text-base font-bold">Work Experiences</span>
             {
                 experiences?.map((item, index) => (
                     <div key={index} className="mb-7">

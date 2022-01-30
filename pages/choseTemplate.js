@@ -18,13 +18,13 @@ const ChoseTemplate = () => {
         {
             id: 1,
             name: 'modern',
-            source: Classic,
+            source: Modern,
 
         },
         {
             id: 2,
             name: 'classic',
-            source: Modern,
+            source: Classic,
         },
     ]
     const selectStyle = (item) => {
