@@ -11,7 +11,7 @@ const InputGroup = ({ index, experience, getDescForm, setInputForm }) => {
             <div className="flex w-100 mb-3">
                 <div className="flex flex-col w-1/2 pr-3">
                     <span className="mb-2">Company</span>
-                    <input className="border rounded h-10 p-3" type="text" placeholder="Facebook..." name="company" onChange={({ target: { value, name } }) => setInputForm(
+                    <input className="border rounded h-10 p-3" type="text" placeholder="Facebook..." name="company" value={experience.company} onChange={({ target: { value, name } }) => setInputForm(
                         {
                             experinceKey: index,
                             value,
@@ -22,7 +22,7 @@ const InputGroup = ({ index, experience, getDescForm, setInputForm }) => {
                 </div>
                 <div className="flex flex-col w-1/2 pr-3">
                     <span className="mb-2">Title</span>
-                    <input className="border rounded h-10 p-3" type="text" placeholder="Ceo..." name="title" onChange={({ target: { value, name } }) => setInputForm(
+                    <input className="border rounded h-10 p-3" type="text" placeholder="Ceo..." name="title" value={experience.title} onChange={({ target: { value, name } }) => setInputForm(
                         {
                             experinceKey: index,
                             value,
@@ -36,7 +36,7 @@ const InputGroup = ({ index, experience, getDescForm, setInputForm }) => {
                 <div className="flex flex-col w-full pr-3">
                     <span className="mb-2">Keywords</span>
                     <div className="relative">
-                        <input className="border rounded h-12 p-3 w-full" type="text" placeholder="Responsible for all things design related, Leadership, Sales, Javascript, CSS..." name="keywords" onChange={({ target: { value, name } }) => setInputForm(
+                        <input className="border rounded h-12 p-3 w-full" type="text" value={experience.keywords} placeholder="Responsible for all things design related, Leadership, Sales, Javascript, CSS..." name="keywords" onChange={({ target: { value, name } }) => setInputForm(
                             {
                                 experinceKey: index,
                                 value,
