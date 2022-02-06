@@ -16,7 +16,7 @@ const Modern = () => {
     return (
         <div className="w-a4 min-h-a4 border bg-Modern-background font-roboto-mono p-10 relative overflow-hidden">
             <div className="absolute -z-10 left-0 top-0 -ml-52 -mt-44">
-                <Image src={gradientUst} alt="gradient" height="700" width="700" />
+                <Image src={gradientAlt} alt="gradient" height="700" width="700" />
             </div>
             <div className="mb-10">
                 <Bio about={about} contact={contact} />
