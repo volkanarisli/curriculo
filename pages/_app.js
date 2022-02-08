@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import Script from 'next/script'
 import { useRouter } from 'next/router'
 import * as gtag from '../utils/gtag'
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.ENV === "production";
 
 
 const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
