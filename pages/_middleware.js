@@ -5,7 +5,7 @@ const isDevelopment = process.env.ENV === "development"
 
 
 export const middleware = (req) => {
-    if (isProduction || isDevelopment) NextResponse.next();
+    if (isProduction || isDevelopment) return NextResponse.next();
     const basicAuth = req.headers.get('authorization')
 
     if (basicAuth) {
