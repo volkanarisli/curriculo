@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+const isProduction = process.env.NODE_ENV === "production";
+
+
 export const middleware = (req) => {
+    if (isProduction) NextResponse.next();
     const basicAuth = req.headers.get('authorization')
 
     if (basicAuth) {
