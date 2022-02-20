@@ -2,14 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useUser } from '../../context/UserInfo'
 const Nav = () => {
+    const { user, logout } = useUser()
     return (
         <div className="bg-white">
             <header>
                 <div className="relative bg-white">
                     <div className="flex justify-between items-center max-w-7xl mx-auto px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-8">
                         <div className="flex justify-start lg:flex-1">
-                            <Link href="#">
+                            <Link href="/">
                                 <a>
                                     <span className="sr-only">Curriculo</span>
                                     <Image className="h-8 w-14 sm:h-10" src="/logomark.svg" alt="logo" width="205" height="45" />
@@ -34,6 +36,26 @@ const Nav = () => {
                                 Get Started Now
                             </a>
                         </Link>
+                        <div suppressHydrationWarning={true}>
+                            {
+                                process.browser &&
+                                (
+                                    user ?
+                                        <a
+                                            onClick={logout}
+                                            className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                                            Logout
+                                        </a>
+                                        :
+                                        <Link href="/login">
+                                            <a
+                                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                                                Login
+                                            </a>
+                                        </Link>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
 

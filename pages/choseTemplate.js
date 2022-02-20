@@ -4,10 +4,15 @@ import Image from "next/image"
 import Barn from "../assets/img/Barn.jpg"
 import Classic from "../assets/img/Classic.jpg"
 import Modern from "../assets/img/Modern.jpg"
-import Router from "next/router";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useUser } from "../context/UserInfo";
+
 
 
 const ChoseTemplate = () => {
+    const { user } = useUser()
+    const router = useRouter()
     const { setResumeTeplateId } = useResumeInfo()
     const cvTemplates = [
         {
@@ -27,10 +32,13 @@ const ChoseTemplate = () => {
             source: Classic,
         },
     ]
+    useEffect(() => {
+        if (!user) router.push('/login')
+    }, [user, router])
+
     const selectStyle = (item) => {
         setResumeTeplateId(item.id)
-        Router.push('/preview')
-
+        router.push('/preview')
     }
     return (
         <div className="flex flex-col justify-center items-center">

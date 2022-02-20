@@ -2,19 +2,25 @@ import Barn from "../components/resumes/Barn"
 import Modern from "../components/resumes/Modern"
 import Classic from "../components/resumes/Classic"
 import { useResumeInfo } from "../context/ResumeInfo";
-import axios from "axios";
-import Router from "next/router";
+
 
 import Head from "next/head";
 
-
+import { useEffect } from "react"
+import { useRouter } from "next/router";
+import { useUser } from "../context/UserInfo";
 
 
 
 
 const Preview = () => {
     const { resumeTemplateId } = useResumeInfo()
+    const { user } = useUser()
+    const router = useRouter()
 
+    useEffect(() => {
+        if (!user) router.push('/login')
+    }, [user, router])
     const templateConfig = {
         0: <Barn />,
         1: <Modern />,

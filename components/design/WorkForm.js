@@ -94,7 +94,7 @@ const WorkForm = () => {
     const getDesc = async (index) => {
 
         const prompt = `Create an employment history from my company, title and skillset, company:${experiences[index].company} title:${experiences[index].title} my skills:${experiences[index].keywords} summary:`
-        console.log(prompt)
+        // console.log(prompt)
         const { data } = await axios.post('/api/generateTextFromKeyword', { prompt })
         setInput({
             experinceKey: index,

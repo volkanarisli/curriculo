@@ -9,14 +9,18 @@ import AiInfo from '../components/landing/AiInfo';
 import GetMailSubs from '../components/landing/GetMailSubs';
 import Pricing from '../components/landing/Pricing';
 import Footer from '../components/landing/Footer';
+import { supabase } from '../utils/supabase';
+import { useUser } from '../context/UserInfo'
+
 const Home = () => {
+  const { user } = useUser()
+  // console.log(user)
   // useEffect(() => {
 
-  //   router.push('/index.html')
+
   // }, [])
   return (
     <div>
-      <Nav />
       <Hero />
       <LogoCloud />
       <ProductInfo />

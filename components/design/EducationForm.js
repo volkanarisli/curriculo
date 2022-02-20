@@ -93,7 +93,7 @@ const EducationForm = () => {
     }
     const getDesc = async (index) => {
         const prompt = `Create a resume education summary: I am ${educationHistory[index].degree},${educationHistory[index].school}, ${educationHistory[index].keywords} summary:`
-        console.log(prompt)
+        // console.log(prompt)
         const { data } = await axios.post('/api/generateTextFromKeyword', { prompt })
         setInput({
             experinceKey: index,
