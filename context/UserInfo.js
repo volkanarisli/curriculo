@@ -64,12 +64,12 @@ const Provider = ({ children }) => {
                 data: restInfo
             }
         )
-        console.table({ user, session, error })
+        // console.table({ user, session, error })
         const today = new Date()
         const endDateOfSubscription = new Date()
         endDateOfSubscription.setDate(today.getDate() + 90)
-        console.log(endDateOfSubscription)
-        await supabase
+
+        const createUserProfile = await supabase
             .from("profile")
             .update({
                 is_subscribed: true,
@@ -79,7 +79,6 @@ const Provider = ({ children }) => {
                 subscription_plan_id: "496197"
             })
             .eq("id", user.id)
-
 
         if (!error) router.push('/')
     }
