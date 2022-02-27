@@ -52,7 +52,7 @@ const MailSubscribe = () => {
                     }
                 </div>
 
-                <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                <div className="mt-4 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
                     {
                         isSuccess ?
                             <div className="w-full flex items-center justify-center py-3 px-10 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
