@@ -7,7 +7,7 @@ const handler = async (req, res) => {
         res.status(200).send({ success: false, message: 'Email already exist' })
         return
     }
-    const response = addEmailToTheList(req.body.email)
+    const response = await addEmailToTheList(req.body.email)
     res.status(200).send({ success: true, message: response })
 }
 
