@@ -4,6 +4,7 @@ import axios from "axios";
 import validator from 'validator';
 import { BadgeCheckIcon } from '@heroicons/react/solid'
 import Image from "next/image";
+import Link from "next/link";
 
 
 const MailSubscribe = () => {
@@ -71,9 +72,12 @@ const MailSubscribe = () => {
             </div>
             <p className="mt-3 text-sm text-gray-500">
                 We care about the protection of your data. Read our
-                <a href="#" className="font-medium underline">
-                    Privacy Policy.
-                </a>
+                <Link href="/terms">
+                    <a className="font-medium underline">
+                        Privacy Policy.
+                    </a>
+                </Link>
+
             </p>
         </>
     )
