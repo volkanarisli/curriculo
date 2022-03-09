@@ -43,6 +43,7 @@ const Provider = ({ children }) => {
         const { user, session, error } = await supabase.auth.signIn(userInfo)
         // console.log({ user, session, error })
         if (!error) router.push('/')
+        else return error
     }
     const logout = async () => {
         const { error } = await supabase.auth.signOut()

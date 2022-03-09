@@ -28,7 +28,7 @@ const Pricing = () => {
 
     ]
     return (
-        <div className="bg-indigo-700 sm:rounded-2xl max-w-7xl mx-auto">
+        <div className="bg-blue-600 sm:rounded-2xl max-w-7xl mx-auto">
             <div className="pt-12 sm:pt-16 lg:pt-24">
                 <div className="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
                     <div className="max-w-3xl mx-auto space-y-2 lg:max-w-none">
@@ -46,7 +46,7 @@ const Pricing = () => {
             </div>
             <div className="mt-8 pb-12 bg-gray-50 sm:mt-12 sm:pb-16 lg:mt-16 lg:pb-24">
                 <div className="relative">
-                    <div className="absolute inset-0 h-3/4 bg-indigo-700"></div>
+                    <div className="absolute inset-0 h-3/4 bg-blue-600"></div>
                     <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="max-w-md mx-auto space-y-4 lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0">
                             {
@@ -55,7 +55,7 @@ const Pricing = () => {
                                         <div className="px-6 py-8 bg-white sm:p-10 sm:pb-6">
                                             <div>
                                                 <h3
-                                                    className="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-indigo-100 text-indigo-600"
+                                                    className="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-indigo-100 text-blue-500"
                                                     id="tier-standard">
                                                     {item.name}
                                                 </h3>
@@ -91,7 +91,7 @@ const Pricing = () => {
                                             </ul>
                                             <div className="rounded-md shadow">
                                                 <a href="#"
-                                                    className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-900"
+                                                    className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-indigo-900"
                                                     aria-describedby="tier-standard">
                                                     Get started
                                                 </a>

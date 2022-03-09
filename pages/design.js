@@ -98,7 +98,7 @@ const Design = () => {
                 }
                 <div className="flex justify-center bottom-10 mt-10">
                     <button onClick={() => nextTab(currentTab, currentTab + 1)}
-                        className="bg-indigo-100 text-indigo-700 py-3 sm:min-w-lg rounded-md">
+                        className="bg-indigo-100 text-blue-600 py-3 sm:min-w-lg rounded-md">
                         Next Step
                     </button>
                 </div>

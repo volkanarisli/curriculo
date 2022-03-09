@@ -20,6 +20,8 @@ module.exports = {
       },
       minHeight: {
         'a4': '1122px',
+        '90vh': '90vh',
+        'inherit': 'inherit'
       },
       height: {
         'a4': '855px',

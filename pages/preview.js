@@ -36,7 +36,7 @@ const Preview = () => {
     return (
         <div className="flex flex-col justify-center items-center">
             <Head><script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js" defer></script></Head>
-            <button className="bg-indigo-100 text-indigo-700 py-3 sm:min-w-lg rounded-md my-5" onClick={download}>Download</button>
+            <button className="bg-indigo-100 text-blue-600 py-3 sm:min-w-lg rounded-md my-5" onClick={download}>Download</button>
             <div className="flex justify-center mt-10 mb-10">
                 <div id="design" className="max-w-4xl">
                     {templateConfig[resumeTemplateId]}

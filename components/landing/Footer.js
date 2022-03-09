@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <>
 
-            <div className="bg-indigo-700 sm:rounded-2xl max-w-7xl mx-auto">
+            <div className="bg-blue-600 sm:rounded-2xl max-w-7xl mx-auto">
                 <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
                         <span className="block">Are you ready to stay one step ahead?</span>
@@ -14,7 +14,7 @@ const Footer = () => {
                     <p className="mt-4 text-lg leading-6 text-indigo-200">Start building your Curriculo resume right now—and get one step
                         closer to your dream job.</p>
                     <Link href="/design">
-                        <a className="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 sm:w-auto">
+                        <a className="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-500 bg-white hover:bg-indigo-50 sm:w-auto">
                             Get Started
                         </a>
                     </Link>

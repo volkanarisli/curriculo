@@ -59,7 +59,7 @@ const ChoseTemplate = () => {
                 {
                     cvTemplates.map((item, index) => {
                         return (
-                            <div className="mx-5 border border-indigo-500 hover:scale-125 transition-all" key={index} onClick={() => selectStyle(item)}>
+                            <div className="mx-5 border border-blue-400 hover:scale-125 transition-all" key={index} onClick={() => selectStyle(item)}>
 
                                 <Image className="bg-cover" src={item.source} alt='Logo' width="200" height="300" />
 
