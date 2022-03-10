@@ -57,15 +57,15 @@ const MailSubscribe = () => {
                 <div className="mt-4 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
                     {
                         isSuccess ?
-                            <div className="w-full flex items-center justify-center py-3 px-10 border border-transparent text-base font-medium rounded-md text-white bg-blue-500  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+                            <div className="w-full flex items-center justify-center py-3 px-10 border border-transparent text-base font-medium rounded-md text-white bg-blue-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
                                 <BadgeCheckIcon className="h-6 w-5 text-white" />
                             </div> :
                             isLoading ?
-                                <div className="w-full flex items-center justify-center py-3 px-9 border border-transparent text-base font-medium rounded-md text-white bg-blue-500  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+                                <div className="w-full flex items-center justify-center py-3 px-9 border border-transparent text-base font-medium rounded-md text-white bg-blue-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
                                     <Image className="animate-pulse" src="/logo.svg" alt="logo" width="25" height="25" />
                                 </div> :
                                 <button onClick={saveEmail}
-                                    className="w-full flex items-center justify-center py-3 px-5 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+                                    className="w-full flex items-center justify-center py-3 px-5 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
                                     Notify me
                                 </button>
                     }

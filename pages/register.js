@@ -16,22 +16,22 @@ const Register = () => {
         <div className="flex flex-col justify-center items-center">
             <label>
                 First Name
-                <input className="border border-blue-500" type="text" name="firstName" onChange={e => onInputChange({ key: e.target.name, value: e.target.value })} />
+                <input className="border border-blue-600" type="text" name="firstName" onChange={e => onInputChange({ key: e.target.name, value: e.target.value })} />
 
             </label>
             <label>
                 Last Name
-                <input className="border border-blue-500" type="text" name="lastName" onChange={e => onInputChange({ key: e.target.name, value: e.target.value })} />
+                <input className="border border-blue-600" type="text" name="lastName" onChange={e => onInputChange({ key: e.target.name, value: e.target.value })} />
 
             </label>
             <label>
                 mail
-                <input className="border border-blue-500" type="text" name="email" onChange={e => onInputChange({ key: e.target.name, value: e.target.value })} />
+                <input className="border border-blue-600" type="text" name="email" onChange={e => onInputChange({ key: e.target.name, value: e.target.value })} />
 
             </label>
             <label>
                 password
-                <input className="border border-blue-500" type="text" name="password" onChange={e => onInputChange({ key: e.target.name, value: e.target.value })}></input>
+                <input className="border border-blue-600" type="text" name="password" onChange={e => onInputChange({ key: e.target.name, value: e.target.value })}></input>
 
             </label>
             <button onClick={() => registerUser(userInfo)}>Giriş Yap</button>

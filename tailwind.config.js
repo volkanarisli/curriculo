@@ -29,6 +29,9 @@ module.exports = {
       width: {
         'a4': '800px',
       },
+      minWidth: {
+        '72': '18rem',
+      },
       screens: {
         'tablet': '640px',
         'laptop': '860px',

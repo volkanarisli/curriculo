@@ -14,7 +14,7 @@ const Footer = () => {
                     <p className="mt-4 text-lg leading-6 text-indigo-200">Start building your Curriculo resume right now—and get one step
                         closer to your dream job.</p>
                     <Link href="/design">
-                        <a className="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-500 bg-white hover:bg-indigo-50 sm:w-auto">
+                        <a className="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-indigo-50 sm:w-auto">
                             Get Started
                         </a>
                     </Link>
