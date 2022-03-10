@@ -7,7 +7,7 @@ const Terms = () => {
                 <div className="text-lg max-w-prose mx-auto">
                     <h1>
                         <Link href="/" >
-                            <a className="block text-base text-center text-indigo-700 font-semibold tracking-wide uppercase">
+                            <a className="block text-base text-center text-blue-600 font-semibold tracking-wide uppercase">
                                 Curriculo
                             </a>
                         </Link>
@@ -94,7 +94,7 @@ const Terms = () => {
                         <h4 className="mb-2 text-lg font-bold">Cookies</h4>
                         <p className="mb-2">You may also refrain from providing or may withdraw your consent for cookies via your browser settings. Please keep in mind that in order to use Curriculo, some Cookies are often required.</p>
                         <h4 className="mb-2 text-lg font-bold">Analytics Services</h4>
-                        <p className="mb-2">You may opt-out of Google Analytics’ services using the Opt-Out feature on their website. The Google Analytics service is provided by Google Inc. For more information about the privacy policies of Google, please visit Google's privacy policies: <Link href="https://policies.google.com/privacy"><a className="text-indigo-700">https://policies.google.com/privacy</a></Link></p>
+                        <p className="mb-2">You may opt-out of Google Analytics’ services using the Opt-Out feature on their website. The Google Analytics service is provided by Google Inc. For more information about the privacy policies of Google, please visit Google's privacy policies: <Link href="https://policies.google.com/privacy"><a className="text-blue-600">https://policies.google.com/privacy</a></Link></p>
                     </div>
                     <div>
                         <h3 className="text-2xl font-bold text-black my-3">7. CONTROLS FOR DO-NOT-TRACK FEATURES</h3>

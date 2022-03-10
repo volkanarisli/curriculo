@@ -1,6 +1,11 @@
 import { Configuration, OpenAIApi } from 'openai'
+import { supabase } from '../../utils/supabase';
 
 const handler = async (req, res) => {
+    const { user } = await supabase.auth.api.getUserByCookie(req)
+    if (!user) {
+        return res.status(401).send("You are not authorized to call this API")
+    }
     const { prompt } = req.body
     const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,

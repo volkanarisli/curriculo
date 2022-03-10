@@ -63,7 +63,7 @@ const handler = async (req, res) => {
     const png = await element.screenshot({ path: 'resume.png' });
     // close browser
     const pdf = await page.pdf({ path: 'hn.pdf', format: 'a4' });
-    console.log(pdf)
+    // console.log(pdf)
     await browser.close();
     res.setHeader('Content-Disposition', "attachment; resume.png")
     res.status(200).send(pdf)

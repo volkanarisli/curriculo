@@ -7,10 +7,13 @@ import Logo from "../assets/img/logomark.svg"
 import Image from "next/image"
 
 
-import { useState } from "react"
-import Router from "next/router"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/router";
+import { useUser } from "../context/UserInfo";
 
 const Design = () => {
+    const { user } = useUser()
+    const router = useRouter()
     const [tabs, setTabs] = useState([
         {
             name: 'work',
@@ -47,6 +50,10 @@ const Design = () => {
     ])
     const [currentTab, setCurrentTab] = useState(0)
 
+    useEffect(() => {
+        if (!user) router.push('/login')
+    }, [user, router])
+
     const isLastPage = nextTabVal => nextTabVal > tabs.length
 
 
@@ -57,7 +64,7 @@ const Design = () => {
     const nextTab = (currentTab, nextTabVal) => {
 
         if (isLastPage(nextTabVal + 1)) {
-            Router.push('/choseTemplate')
+            router.push('/choseTemplate')
             return;
         }
         let newArr = [...tabs]; // copying the old datas array
@@ -91,7 +98,7 @@ const Design = () => {
                 }
                 <div className="flex justify-center bottom-10 mt-10">
                     <button onClick={() => nextTab(currentTab, currentTab + 1)}
-                        className="bg-indigo-100 text-indigo-700 py-3 sm:min-w-lg rounded-md">
+                        className="bg-indigo-100 text-blue-600 py-3 sm:min-w-lg rounded-md">
                         Next Step
                     </button>
                 </div>
