@@ -1,7 +1,10 @@
 import TextInput from "../inputs/TextInput"
+import PasswordInput from "../inputs/PasswordInput"
+
 
 const inputEnum = {
-    text: (props) => <TextInput {...props} />
+    text: (props) => <TextInput {...props} />,
+    password: (props) => <PasswordInput {...props} />
 }
 
 const UserInput = (props) => {

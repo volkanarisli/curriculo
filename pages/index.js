@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import router from 'next/router'
+import { useRouter } from 'next/router'
 import Hero from '../components/landing/Hero';
 import Nav from '../components/common/Nav';
 import LogoCloud from '../components/landing/LogoCloud';
@@ -12,13 +12,19 @@ import Footer from '../components/landing/Footer';
 import { supabase } from '../utils/supabase';
 import { useUser } from '../context/UserInfo'
 
+
 const Home = () => {
   const { user } = useUser()
-  // console.log(user)
-  // useEffect(() => {
-
-
-  // }, [])
+  const router = useRouter()
+  useEffect(() => {
+    let searchParams = new URLSearchParams(router.asPath.split('#').join('&'));
+    const type = searchParams.get('type');
+    const token = searchParams.get('access_token')
+    // console.log(token)
+    if (type === 'recovery') {
+      router.push({ pathname: '/update-password', query: { at: token } })
+    }
+  }, [])
   return (
     <div>
       <Hero />
