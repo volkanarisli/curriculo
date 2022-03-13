@@ -28,24 +28,30 @@ const Provider = ({ children }) => {
         }
         getUserProfile()
         supabase.auth.onAuthStateChange(() => {
+
             getUserProfile()
         })
     }, [])
 
     useEffect(() => {
-        axios.post('/api/set-supabase-cookie', {
-            event: user ? 'SIGNED_IN' : 'SIGNED_OUT',
-            session: supabase.auth.session(),
-        })
+        (async () => {
+            const session = await supabase.auth.session()
+            await axios.post('/api/set-supabase-cookie', {
+                event: user ? 'SIGNED_IN' : 'SIGNED_OUT',
+                session
+            })
+        })()
+
     }, [user])
 
     const loginUser = async (userInfo) => {
         const { user, session, error } = await supabase.auth.signIn(userInfo)
         // console.log({ user, session, error })
-        if (!error) router.push('/')
+        if (!error) return router.push('/')
         else return error
     }
     const logout = async () => {
+        if (!user) return
         const { error } = await supabase.auth.signOut()
         setUser(null)
         // console.log(error)
@@ -83,12 +89,27 @@ const Provider = ({ children }) => {
 
         if (!error) router.push('/')
     }
+    const sendRenewPasswordEmail = async (email) => {
+        const { data, error } = await supabase.auth.api
+            .resetPasswordForEmail(email)
+        console.log(data, error)
+        if (error) return { error }
+        else return data
+    }
+    const updatePasswordWithAccessToken = async (access_token, new_password) => {
+        const { error, data } = await supabase.auth.api
+            .updateUser(access_token, { password: new_password })
+        if (error) return { error }
+        else return data
+    }
 
     const exposed = {
         user,
         loginUser,
         logout,
-        registerUser
+        registerUser,
+        sendRenewPasswordEmail,
+        updatePasswordWithAccessToken
     }
 
 

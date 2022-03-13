@@ -82,9 +82,10 @@ const Login = () => {
                                             hasError={hasError}
                                             name="password"
                                             type="password"
-                                            input="text"
+                                            input="password"
                                             label="Password"
                                             placeholder="Enter Password"
+                                            showPasswordRules={false}
                                         />
                                     </div>
                                     <div className="flex items-center justify-between">
@@ -101,9 +102,12 @@ const Login = () => {
                                         </div>
 
                                         <div className="text-sm">
-                                            <a href="#" className="font-medium text-blue-600 hover:text-blue-400">
-                                                Forgot your password?
-                                            </a>
+                                            <Link href="/reset-password">
+                                                <a className="font-medium text-blue-600 hover:text-blue-400">
+                                                    Forgot your password?
+                                                </a>
+                                            </Link>
+
                                         </div>
                                     </div>
 
