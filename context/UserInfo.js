@@ -71,6 +71,7 @@ const Provider = ({ children }) => {
                 data: restInfo
             }
         )
+        if (error) return error
         // console.table({ user, session, error })
         const today = new Date()
         const endDateOfSubscription = new Date()
