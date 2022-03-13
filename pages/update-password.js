@@ -11,8 +11,6 @@ import { CheckCircleIcon } from "@heroicons/react/outline";
 const UpdatePassword = () => {
     const router = useRouter()
     const { logout, user } = useUser()
-    // const searchParams = new URLSearchParams(router.asPath)
-
     const accessToken = router.query.at
     const { updatePasswordWithAccessToken } = useUser()
 
@@ -43,7 +41,6 @@ const UpdatePassword = () => {
         await logout()
         router.push('/login')
     }
-
     useEffect(() => {
         if (!accessToken) {
             return router.push('/')
