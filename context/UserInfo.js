@@ -131,7 +131,7 @@ const Provider = ({ children }) => {
         else return data
     }
     const setSubscriptionIdOfUser = async () => {
-        const { subscription_plan_id, paddle_user_id } = user;
+        const { subscription_plan_id, paddle_user_id } = user || {};
         if (!cookie) return
         if (user.subscription_id) return
         const { data } = await axios.post('/api/getUserPaymentInfo', { subscription_plan_id, paddle_user_id })
