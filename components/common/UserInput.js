@@ -1,12 +1,15 @@
 import TextInput from "../inputs/TextInput"
 import PasswordInput from "../inputs/PasswordInput"
 import CheckboxInput from "../inputs/CheckboxInput"
+import SelectInput from "../inputs/SelectInput"
 
 
 const inputEnum = {
     text: (props) => <TextInput {...props} />,
     password: (props) => <PasswordInput {...props} />,
     checkbox: (props) => <CheckboxInput {...props} />,
+    select: (props) => <SelectInput {...props} />,
+
 }
 
 const UserInput = (props) => {
