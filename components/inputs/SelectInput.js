@@ -1,8 +1,8 @@
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { classNames, isEmptyObject } from '../../utils/helpers'
-const SelectInput = ({ onInputChange, placeholder, options, selected}) => {
+const SelectInput = ({ onInputChange, placeholder, options, selected }) => {
 
     return (
         <Listbox value={selected} onChange={onInputChange} >

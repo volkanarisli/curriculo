@@ -10,6 +10,7 @@ const Provider = ({ children }) => {
     const router = useRouter()
 
     const [user, setUser] = useState(supabase.auth.user())
+    const [cookie, setCookie] = useState(false)
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         const getUserProfile = async () => {
@@ -29,10 +30,9 @@ const Provider = ({ children }) => {
         }
         getUserProfile()
         supabase.auth.onAuthStateChange(() => {
-
             getUserProfile()
         })
-    }, [])
+    }, [loading])
 
     useEffect(() => {
         (async () => {
@@ -41,8 +41,8 @@ const Provider = ({ children }) => {
                 event: user ? 'SIGNED_IN' : 'SIGNED_OUT',
                 session
             })
-        })()
-
+            user && setCookie(true)
+        })();
     }, [user])
 
     const loginUser = async (userInfo) => {
@@ -56,22 +56,25 @@ const Provider = ({ children }) => {
         setUser(null)
         if (!error) router.push('/')
     }
-
     const checkIfAccountAlreadyExistAndOpenCheckout = async (userInfo, Paddle) => {
+        setLoading(true)
         const { email, password, ...restInfo } = userInfo
         //Check if account already exist
         const { data: { emailExist } } = await axios.get('/api/checkEmail', { params: { email } })
-        if (emailExist) return { message: 'Account Already Exist' }
+        if (emailExist) {
+            setLoading(false)
+            return { message: 'Account Already Exist' }
+        }
         Paddle.Checkout.open({
             product: userInfo.subscriptionInfo.id,
             email: email,
-            successCallback: async (paddleUser) => await registerUser(userInfo, Paddle, paddleUser),
+            successCallback: (paddleUser) => registerUser(userInfo, Paddle, paddleUser),
         });
         return {}
     }
     const registerUser = async (userInfo, Paddle, paddleUser) => {
         const { email, password, ...restInfo } = userInfo
-        const { user: { id } } = paddleUser
+        const { user: { id: paddleUserId } } = paddleUser
         const { user: signedUpUser, session, error } = await supabase.auth.signUp(
             {
                 email,
@@ -83,10 +86,9 @@ const Provider = ({ children }) => {
             }
         )
         if (error) return error
-        const { data: { id: subscription_id } } = await axios.get('/api/getUserPaymentInfo', { params: { id } })
-        await subscribeUser(restInfo, subscription_id, signedUpUser.id)
+        await subscribeUser(restInfo, paddleUserId, signedUpUser.id)
     }
-    const subscribeUser = async (restInfo, subscription_id, userId) => {
+    const subscribeUser = async (restInfo, paddleUserId, userId) => {
         const { billing_period, billing_type, id, name } = restInfo.subscriptionInfo
         const monthDayEnum = {
             1: 30,
@@ -107,12 +109,13 @@ const Provider = ({ children }) => {
             .from("profile")
             .update({
                 is_subscribed: true,
-                subscription_id: subscription_id,
+                paddle_user_id: paddleUserId,
                 interval: name,
                 end_of_subscription: endDateOfSubscription,
                 subscription_plan_id: id
             })
             .eq("id", userId)
+        setLoading(false)
         if (!createUserProfile.error) router.push('/')
     }
     const sendRenewPasswordEmail = async (email) => {
@@ -127,16 +130,30 @@ const Provider = ({ children }) => {
         if (error) return { error }
         else return data
     }
+    const setSubscriptionIdOfUser = async () => {
+        const { subscription_plan_id, paddle_user_id } = user;
+        if (!cookie) return
+        if (user.subscription_id) return
+        const { data } = await axios.post('/api/getUserPaymentInfo', { subscription_plan_id, paddle_user_id })
+        await supabase
+            .from("profile")
+            .update({
+                subscription_id: data.subscription_id
+            })
+            .eq("id", user.id);
+    }
 
     const exposed = {
         user,
+        loading,
+        cookie,
         loginUser,
         logout,
         registerUser,
         sendRenewPasswordEmail,
         updatePasswordWithAccessToken,
         checkIfAccountAlreadyExistAndOpenCheckout,
-        loading
+        setSubscriptionIdOfUser,
     }
 
 
