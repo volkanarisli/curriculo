@@ -131,6 +131,7 @@ const Provider = ({ children }) => {
         else return data
     }
     const setSubscriptionIdOfUser = async () => {
+        if (!user) return
         const { subscription_plan_id, paddle_user_id } = user || {};
         if (!cookie) return
         if (user.subscription_id) return
