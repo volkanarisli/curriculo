@@ -33,6 +33,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router.events])
+
   return (
     <>
       <Script

@@ -11,20 +11,23 @@ import Pricing from '../components/landing/Pricing';
 import Footer from '../components/landing/Footer';
 import { supabase } from '../utils/supabase';
 import { useUser } from '../context/UserInfo'
+import axios from 'axios';
 
 
 const Home = () => {
-  const { user } = useUser()
+  const { setSubscriptionIdOfUser } = useUser()
   const router = useRouter()
   useEffect(() => {
     let searchParams = new URLSearchParams(router.asPath.split('#').join('&'));
     const type = searchParams.get('type');
     const token = searchParams.get('access_token')
-    // console.log(token)
     if (type === 'recovery') {
       router.push({ pathname: '/update-password', query: { at: token } })
     }
-  }, [])
+  }, [router])
+  useEffect(() => {
+    setSubscriptionIdOfUser()
+  }, [setSubscriptionIdOfUser])
   return (
     <div>
       <Hero />

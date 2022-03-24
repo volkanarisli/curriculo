@@ -10,6 +10,8 @@ const Provider = ({ children }) => {
     const router = useRouter()
 
     const [user, setUser] = useState(supabase.auth.user())
+    const [cookie, setCookie] = useState(false)
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         const getUserProfile = async () => {
             const sessionUser = supabase.auth.user()
@@ -28,10 +30,9 @@ const Provider = ({ children }) => {
         }
         getUserProfile()
         supabase.auth.onAuthStateChange(() => {
-
             getUserProfile()
         })
-    }, [])
+    }, [loading])
 
     useEffect(() => {
         (async () => {
@@ -40,13 +41,12 @@ const Provider = ({ children }) => {
                 event: user ? 'SIGNED_IN' : 'SIGNED_OUT',
                 session
             })
-        })()
-
+            user && setCookie(true)
+        })();
     }, [user])
 
     const loginUser = async (userInfo) => {
         const { user, session, error } = await supabase.auth.signIn(userInfo)
-        // console.log({ user, session, error })
         if (!error) return router.push('/')
         else return error
     }
@@ -54,14 +54,28 @@ const Provider = ({ children }) => {
         if (!user) return
         const { error } = await supabase.auth.signOut()
         setUser(null)
-        // console.log(error)
         if (!error) router.push('/')
     }
-
-    const registerUser = async (userInfo) => {
+    const checkIfAccountAlreadyExistAndOpenCheckout = async (userInfo, Paddle) => {
+        setLoading(true)
         const { email, password, ...restInfo } = userInfo
-        // console.log(restInfo)
-        const { user, session, error } = await supabase.auth.signUp(
+        //Check if account already exist
+        const { data: { emailExist } } = await axios.get('/api/checkEmail', { params: { email } })
+        if (emailExist) {
+            setLoading(false)
+            return { message: 'Account Already Exist' }
+        }
+        Paddle.Checkout.open({
+            product: userInfo.subscriptionInfo.id,
+            email: email,
+            successCallback: (paddleUser) => registerUser(userInfo, Paddle, paddleUser),
+        });
+        return {}
+    }
+    const registerUser = async (userInfo, Paddle, paddleUser) => {
+        const { email, password, ...restInfo } = userInfo
+        const { user: { id: paddleUserId } } = paddleUser
+        const { user: signedUpUser, session, error } = await supabase.auth.signUp(
             {
                 email,
                 password
@@ -72,28 +86,41 @@ const Provider = ({ children }) => {
             }
         )
         if (error) return error
-        // console.table({ user, session, error })
+        await subscribeUser(restInfo, paddleUserId, signedUpUser.id)
+    }
+    const subscribeUser = async (restInfo, paddleUserId, userId) => {
+        const { billing_period, billing_type, id, name } = restInfo.subscriptionInfo
+        const monthDayEnum = {
+            1: 30,
+            3: 90,
+            6: 180,
+        }
+        const yearDayEnum = {
+            1: 360
+        }
         const today = new Date()
         const endDateOfSubscription = new Date()
-        endDateOfSubscription.setDate(today.getDate() + 90)
-
+        const subscriptionSpan = () => {
+            return billing_type === "month" ?
+                monthDayEnum[billing_period] : yearDayEnum[billing_period]
+        }
+        endDateOfSubscription.setDate(today.getDate() + subscriptionSpan())
         const createUserProfile = await supabase
             .from("profile")
             .update({
                 is_subscribed: true,
-                subscription_id: "123456",
-                interval: "3 months",
+                paddle_user_id: paddleUserId,
+                interval: name,
                 end_of_subscription: endDateOfSubscription,
-                subscription_plan_id: "496197"
+                subscription_plan_id: id
             })
-            .eq("id", user.id)
-
-        if (!error) router.push('/')
+            .eq("id", userId)
+        setLoading(false)
+        if (!createUserProfile.error) router.push('/')
     }
     const sendRenewPasswordEmail = async (email) => {
         const { data, error } = await supabase.auth.api
             .resetPasswordForEmail(email)
-        console.log(data, error)
         if (error) return { error }
         else return data
     }
@@ -103,14 +130,31 @@ const Provider = ({ children }) => {
         if (error) return { error }
         else return data
     }
+    const setSubscriptionIdOfUser = async () => {
+        if (!user) return
+        const { subscription_plan_id, paddle_user_id } = user || {};
+        if (!cookie) return
+        if (user.subscription_id) return
+        const { data } = await axios.post('/api/getUserPaymentInfo', { subscription_plan_id, paddle_user_id })
+        await supabase
+            .from("profile")
+            .update({
+                subscription_id: data.subscription_id
+            })
+            .eq("id", user.id);
+    }
 
     const exposed = {
         user,
+        loading,
+        cookie,
         loginUser,
         logout,
         registerUser,
         sendRenewPasswordEmail,
-        updatePasswordWithAccessToken
+        updatePasswordWithAccessToken,
+        checkIfAccountAlreadyExistAndOpenCheckout,
+        setSubscriptionIdOfUser,
     }
 
 

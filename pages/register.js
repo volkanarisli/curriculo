@@ -7,8 +7,10 @@ import SignUp from "../assets/img/SignUp.svg"
 import { isEmail, isStrongPassword } from 'validator';
 import UserInput from "../components/common/UserInput"
 import ErrorAlert from "../components/common/ErrorAlert"
-const Register = () => {
-    const { registerUser, user } = useUser()
+import PaddleLoader from "../components/common/PaddleLoader"
+import axios from "axios"
+const Register = ({ plans }) => {
+    const { checkIfAccountAlreadyExistAndOpenCheckout, user } = useUser()
     const router = useRouter()
     useEffect(() => {
         if (user) router.push('/')
@@ -19,6 +21,7 @@ const Register = () => {
         surname: '',
         email: '',
         password: '',
+        subscriptionInfo: null,
         terms: false,
     })
     const [hasError, setHasError] = useState({ ...userInfo })
@@ -32,14 +35,16 @@ const Register = () => {
 
         setUserInfo({ ...userInfo, ...{ [key]: value } })
     }
-    const signUp = async () => {
+    const signUp = async (Paddle) => {
         if (!isFormValid(hasError)) return
-        const { message, status } = await registerUser(userInfo)
+        const { message, status } = await checkIfAccountAlreadyExistAndOpenCheckout(userInfo, Paddle)
+
         if (message) {
             setHasError({ ...hasError, general: message })
         }
 
     }
+
     useEffect(() => {
         if (startValidating.email) {
             if (isEmail(userInfo.email)) {
@@ -59,11 +64,12 @@ const Register = () => {
     }, [userInfo, startValidating])
     return (
         <>
+            <PaddleLoader />
             <div className="flex flex-col sm:flex-row items-center min-h-90vh">
                 <div className="hidden lg:flex justify-center w-1/2 bg-blue-700 min-h-inherit">
                     <Image src={SignUp} alt="Sign Up" />
                 </div>
-                <div className="flex flex-col items-center justify-center py-12 px-0 sm:w-1/2 sm:px-6 lg:flex-none lg:px-20 xl:px-24 h-full">
+                <div className="flex flex-col relative sm:static items-center justify-center py-12 px-0 sm:w-1/2 sm:px-6 lg:flex-none lg:px-20 xl:px-24 h-full">
                     <div className="min-w-72 max-w-sm px-10 sm:px-0 lg:w-96">
                         <div className="flex flex-col justify-center items-center mb-10">
                             <Image src="/logo.svg" alt="Logo" height="80" width="80" />
@@ -118,6 +124,18 @@ const Register = () => {
                                             showPasswordRules={true}
                                         />
                                     </div>
+                                    <div className="space-y-1">
+                                        <UserInput onInputChange={e => onInputChange({ key: "subscriptionInfo", value: e, nativeEvent: 'select' })}
+                                            hasError={hasError}
+                                            name="subscriptionInfo"
+                                            type="select"
+                                            input="select"
+                                            label="Choose Subscription Plan"
+                                            placeholder="Choose Subscription Plan"
+                                            selected={userInfo.subscriptionInfo}
+                                            options={plans}
+                                        />
+                                    </div>
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center">
                                             <UserInput onInputChange={e => onInputChange({ key: e.target.name, value: e.target.checked, nativeEvent: e.nativeEvent.inputType })}
@@ -127,7 +145,7 @@ const Register = () => {
                                                 input="checkbox"
                                                 placeholder="Enter Password"
                                             >
-                                                <p className="text-sm">I agree to the
+                                                <p className="text-xs sm:text-sm">I agree to the
                                                     <Link href="/terms#terms">
                                                         <a className="text-blue-700 hover:underline"> Terms of Service</a>
                                                     </Link> and
@@ -141,7 +159,7 @@ const Register = () => {
 
                                     <div>
                                         <button
-                                            onClick={signUp}
+                                            onClick={() => signUp(Paddle)}
                                             className={`w-full flex justify-center
                                             py-2 px-4 border border-transparent rounded-md shadow-sm
                                             text-sm font-medium text-white bg-blue-600 hover:bg-blue-600
@@ -169,5 +187,23 @@ const Register = () => {
 
     )
 }
+
+export const getStaticProps = async () => {
+    const { data: { response } } = await axios.post(`${process.env.PADDLE_API_URL}2.0/subscription/plans`,
+        {
+            vendor_id: process.env.PADDLE_VENDOR_ID,
+            vendor_auth_code: process.env.PADDLE_API_AUTH_CODE
+        }
+    );
+    const plans = response.map((option) => {
+        return { ...option, title: `${option.name} - ${option.recurring_price.USD}$` }
+    })
+    return {
+        props: {
+            plans
+        }
+    }
+}
+
 
 export default Register
