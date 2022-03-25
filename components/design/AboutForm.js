@@ -50,7 +50,7 @@ const AboutForm = () => {
                         <span className="mb-2">Keywords</span>
                         <div className="relative">
                             <input className="border rounded h-12 p-3 w-full" type="text" onChange={(e) => updateData(e.target.value, 'keywords')} placeholder="Science and stuff...." name="keywords" />
-                            <button onClick={() => getDesc()} className="absolute right-1 mt-2 z-10 bg-indigo-100 text-indigo-700 p-2 rounded-lg text-sm">Save and Generate</button>
+                            <button onClick={() => getDesc()} className="absolute right-1 mt-2 z-10 bg-indigo-100 text-blue-600 p-2 rounded-lg text-sm">Save and Generate</button>
                         </div>
                         <span className="text-xs text-gray-500">Start with <b>Responsible for </b>and enter keywords related with your job. Seperate them with commas.</span>
                     </div>

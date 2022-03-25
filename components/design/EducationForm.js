@@ -42,7 +42,7 @@ const InputGroup = ({ index, experience, getDesc, setInput }) => {
                                 name
                             })
                         } />
-                        <button onClick={() => getDesc(index)} className="absolute right-1 mt-2 z-10 bg-indigo-100 text-indigo-700 p-2 rounded-lg text-sm">Save and Generate</button>
+                        <button onClick={() => getDesc(index)} className="absolute right-1 mt-2 z-10 bg-indigo-100 text-blue-600 p-2 rounded-lg text-sm">Save and Generate</button>
                     </div>
                     <span className="text-xs text-gray-500">Start with <b>Responsible for </b>and enter keywords related with your job. Seperate them with commas.</span>
                 </div>
@@ -93,7 +93,7 @@ const EducationForm = () => {
     }
     const getDesc = async (index) => {
         const prompt = `Create a resume education summary: I am ${educationHistory[index].degree},${educationHistory[index].school}, ${educationHistory[index].keywords} summary:`
-        console.log(prompt)
+        // console.log(prompt)
         const { data } = await axios.post('/api/generateTextFromKeyword', { prompt })
         setInput({
             experinceKey: index,
@@ -116,7 +116,7 @@ const EducationForm = () => {
 
             <div className="bottom-10 mt-10 w-full">
                 <button onClick={addNewExperience}
-                    className="bg-white text-indigo-700 border border-indigo-700 py-3 sm:min-w-lg rounded-md w-full">
+                    className="bg-white text-blue-600 border border-blue-600 py-3 sm:min-w-lg rounded-md w-full">
                     Add Education
                 </button>
             </div>

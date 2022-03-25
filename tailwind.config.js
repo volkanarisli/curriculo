@@ -20,12 +20,17 @@ module.exports = {
       },
       minHeight: {
         'a4': '1122px',
+        '90vh': '90vh',
+        'inherit': 'inherit'
       },
       height: {
         'a4': '855px',
       },
       width: {
         'a4': '800px',
+      },
+      minWidth: {
+        '72': '18rem',
       },
       screens: {
         'tablet': '640px',

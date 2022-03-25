@@ -73,7 +73,7 @@ const ProductInfo = () => {
                             infoCards.map((item, index) => (
                                 <div key={index} className="relative">
                                     <dt>
-                                        <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                                        <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-400 text-white">
                                             {item.svg}
 
                                         </div>

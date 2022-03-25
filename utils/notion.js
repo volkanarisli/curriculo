@@ -8,7 +8,6 @@ export const getDatabase = async () => {
     const response = await notion.databases.retrieve({
         database_id: databaseId
     })
-    console.log(response)
 }
 
 export const addEmailToTheList = async (email) => {

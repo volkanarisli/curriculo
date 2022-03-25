@@ -14,7 +14,7 @@ const Hero = () => {
                                 alt="People working on laptops"
                                 layout="fill"
                             />
-                            <div className="absolute inset-0 bg-indigo-700 mix-blend-multiply"></div>
+                            <div className="absolute inset-0 bg-blue-600 mix-blend-multiply"></div>
                         </div>
                         <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
                             <h1 className="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
@@ -29,7 +29,7 @@ const Hero = () => {
                                 <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid  sm:gap-5">
                                     <Link href="/design">
                                         <a
-                                            className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8">
+                                            className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-blue-600 bg-white hover:bg-indigo-50 sm:px-8">
                                             Create Resume
                                         </a>
                                     </Link>
