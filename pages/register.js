@@ -66,10 +66,10 @@ const Register = ({ plans }) => {
         <>
             <PaddleLoader />
             <div className="flex flex-col sm:flex-row items-center min-h-90vh">
-                <div className="hidden lg:flex justify-center w-1/2 bg-blue-700 min-h-inherit">
+                <div className="hidden lg:flex justify-center w-1/2 bg-blue-700 min-h-inherit h-full">
                     <Image src={SignUp} alt="Sign Up" />
                 </div>
-                <div className="flex flex-col relative sm:static items-center justify-center py-12 px-0 sm:w-1/2 sm:px-6 lg:flex-none lg:px-20 xl:px-24 h-full">
+                <div className="flex flex-col relative sm:static items-center justify-center px-0 sm:w-1/2 sm:px-6 h-full">
                     <div className="min-w-72 max-w-sm px-10 sm:px-0 lg:w-96">
                         <div className="flex flex-col justify-center items-center mb-10">
                             <Image src="/logo.svg" alt="Logo" height="80" width="80" />
@@ -173,7 +173,7 @@ const Register = ({ plans }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="absolute bottom-5">
+                    <div className="absolute -bottom-5 2xl:bottom-5">
                         <p className="text-gray-400">
                             Do you have an account?
                             <span className="text-blue-700 ml-2 hover:underline">
