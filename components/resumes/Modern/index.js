@@ -12,9 +12,9 @@ import Image from 'next/image';
 
 const Modern = () => {
     const { allResumeData: { about, contact, educationHistory, experiences } } = useResumeInfo()
-
+    // w-a4 min-h-a4
     return (
-        <div className="w-a4 min-h-a4 border bg-Modern-background font-roboto-mono p-10 relative overflow-hidden">
+        <div className="border w-mobile-preview-a4 sm:w-desktop-preview-a4 min-h-preview-a4 bg-Modern-background font-roboto-mono p-10 relative overflow-hidden">
             <div className="absolute -z-10 left-0 top-0 -ml-52 -mt-44">
                 <Image src={gradientAlt} alt="gradient" height="700" width="700" />
             </div>

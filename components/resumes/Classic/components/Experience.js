@@ -3,11 +3,11 @@
 const Experience = ({ experiences }) => {
     return (
         <div>
-            <span className="text-base font-bold">Work Experiences</span>
+            <span className="text-2xs font-bold">Work Experiences</span>
             {
                 experiences?.map((item, index) => (
-                    <div key={index} className="mb-7">
-                        <div className="flex mb-5">
+                    <div key={index} className="mb-3">
+                        <div className="flex mb-2">
                             <span>{item.company}</span>
                             •
                             <span>{item.title}</span>

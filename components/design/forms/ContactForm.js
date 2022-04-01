@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useResumeInfo } from "../../context/ResumeInfo";
+import { useResumeInfo } from "../../../context/ResumeInfo";
 
 const ContactForm = () => {
   const { contact, setContact } = useResumeInfo()

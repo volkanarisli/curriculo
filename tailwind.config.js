@@ -21,13 +21,17 @@ module.exports = {
       minHeight: {
         'a4': '1122px',
         '90vh': '90vh',
-        'inherit': 'inherit'
+        'inherit': 'inherit',
+        'preview-a4': '611px'
       },
       height: {
-        'a4': '855px',
+        'a4': '1122px',
+        'preview-a4': '611px'
       },
       width: {
         'a4': '800px',
+        'mobile-preview-a4': '360px',
+        'desktop-preview-a4': '400px'
       },
       minWidth: {
         '72': '18rem',

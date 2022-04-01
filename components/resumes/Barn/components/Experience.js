@@ -3,16 +3,16 @@
 const Experience = ({ experiences }) => {
     return (
         <div>
-            <span className="text-lg font-bold">Work Experiences</span>
+            <span className="text-xs font-bold">Work Experiences</span>
             {
                 experiences?.map((item, index) => (
-                    <div key={index} className="mb-7">
-                        <div className="flex mb-5 items-center leading-tight">
-                            <span className="font-bold text-base">{item.company}</span>
+                    <div key={index} className="mb-3">
+                        <div className="flex mb-2 items-center leading-tight">
+                            <span className="font-bold text-2xs">{item.company}</span>
                             •
-                            <span className="font-bold text-base">{item.title}</span>
+                            <span className="font-bold text-2xs">{item.title}</span>
                         </div>
-                        <div className="text-base">
+                        <div className="text-2xs">
                             {item.desc}
                         </div>
 

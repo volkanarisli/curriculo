@@ -3,7 +3,7 @@
 const Experience = ({ educationHistory }) => {
     return (
         <div>
-            <span className="text-lg">Education</span>
+            <span className="text-xs">Education</span>
             {
                 educationHistory?.map((item, index) => (
                     <div key={index} className="mb-7">

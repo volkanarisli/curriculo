@@ -1,18 +1,18 @@
 const Bio = ({ contact }) => {
     return (
         <div>
-            <div className="flex flex-col mb-5">
-                <span className="text-2xl mb-2 font-bold">{`${contact.firstName} ${contact.lastName}`}</span>
+            <div className="flex flex-col mb-2">
+                <span className="text-base mb-1 font-bold">{`${contact.firstName} ${contact.lastName}`}</span>
 
                 <div className="flex text-sm">
                     <span >{`${contact.location}`}</span>
-                    <span className="mx-2">•</span>
+                    <span className="mx-1">•</span>
 
                     <span >{`${contact.title}`}</span>
-                    <span className="mx-2">•</span>
+                    <span className="mx-1">•</span>
 
                     <span >{`${contact.email}`}</span>
-                    <span className="mx-2">•</span>
+                    <span className="mx-1">•</span>
                     <span>{`${contact.number}`}</span>
 
                 </div>

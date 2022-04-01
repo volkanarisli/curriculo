@@ -1,14 +1,14 @@
-import Barn from "../components/resumes/Barn"
-import Modern from "../components/resumes/Modern"
-import Classic from "../components/resumes/Classic"
-import { useResumeInfo } from "../context/ResumeInfo";
+import Barn from "../resumes/Barn"
+import Modern from "../resumes/Modern"
+import Classic from "../resumes/Classic"
+import { useResumeInfo } from "../../context/ResumeInfo";
 
 
 import Head from "next/head";
 
 import { useEffect } from "react"
 import { useRouter } from "next/router";
-import { useUser } from "../context/UserInfo";
+import { useUser } from "../../context/UserInfo";
 
 
 
@@ -35,7 +35,9 @@ const Preview = () => {
     }
     return (
         <div className="flex flex-col justify-center items-center">
-            <Head><script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js" defer></script></Head>
+            <Head>
+                <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js" defer></script>
+            </Head>
             <button className="bg-indigo-100 text-blue-600 py-3 sm:min-w-lg rounded-md my-5" onClick={download}>Download</button>
             <div className="flex justify-center mt-10 mb-10">
                 <div id="design" className="max-w-4xl">

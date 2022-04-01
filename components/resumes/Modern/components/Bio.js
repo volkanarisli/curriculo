@@ -4,7 +4,7 @@ const Bio = ({ contact }) => {
     return (
         <div>
             <div className="flex flex-col items-end mb-5">
-                <span className="text-2xl mb-2 font-bold">{`${contact.firstName} ${contact.lastName}`}</span>
+                <span className="text-base mb-2 font-bold">{`${contact.firstName} ${contact.lastName}`}</span>
                 <span className="mb-3">{`${contact.location}`}</span>
                 <div className="flex">
                     <span className="mr-5">{`${contact.email}`}</span>
