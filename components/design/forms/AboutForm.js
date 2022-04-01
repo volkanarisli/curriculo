@@ -99,11 +99,12 @@ const AboutForm = ({ name, surname, email }) => {
                         <span className="mb-1 text-xl text-gray-900">Professional Summary</span>
                         <span className="mb-1 text-sm text-gray-500">Select adjectives that describes you best. Mention your role, experience and best skills. AI carry on the rest. Remember more is better.</span>
                         <div>
-                            <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
+                            <UserInput onInputChange={setKeywords}
+                                value={keywords}
                                 name="keys"
                                 type="keys"
                                 input="keys"
-                                label="Keywords"
+                                label="Examples"
                             />
                         </div>
                         {/* <span className="text-xs text-gray-500">Start with <b>Responsible for </b>and enter keywords related with your job. Seperate them with commas.</span> */}

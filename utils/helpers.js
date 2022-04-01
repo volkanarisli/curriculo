@@ -148,15 +148,29 @@ export const phrasesForDesc = [
     'Analyzed and designed new systems and applications.',
     'Brought forth an energetic attitude and positive work-ethic.'
 ]
-
-
-
-
-
-
-
-
-
+export const getRandomValue = (arr) => {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+};
+export const getGivenNumberKeywordsFromArray = (arr, numberOfkKeywords) => {
+    let temp = [];
+    for (let i = 0; i < numberOfkKeywords; i++) {
+        let randomValue = getRandomValue(arr);
+        if (temp.includes(randomValue)) {
+            i--;
+            continue;
+        }
+        temp.push(randomValue);
+    }
+    return temp;
+}
+export const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 export const classNames = (...classes) => {
     return classes.filter(Boolean).join(' ')
 }
