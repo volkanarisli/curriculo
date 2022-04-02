@@ -13,6 +13,13 @@ module.exports = {
 
     container: {
       center: true,
+      screens: {
+        sm: '320px',
+        md: '640px',
+        lg: '860px',
+        xl: '1024px',
+        '2xl': '1200px',
+      },
     },
     extend: {
       fontSize: {
@@ -23,6 +30,9 @@ module.exports = {
         '90vh': '90vh',
         'inherit': 'inherit',
         'preview-a4': '611px'
+      },
+      maxWidth: {
+        '3xs': '230px'
       },
       height: {
         'a4': '1122px',
@@ -43,6 +53,7 @@ module.exports = {
       },
       colors: {
         'barn-background': '#FFFAE7',
+        'upwork': "#6FDA44"
       }
     },
   },

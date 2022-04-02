@@ -48,7 +48,7 @@ const UpdatePassword = () => {
         return () => {
             (async () => await logout())()
         };
-    }, [])
+    }, [accessToken, router, logout])
     useEffect(() => {
         if (!startValidating) return
         if (isStrongPassword(userInfo.password)) {
