@@ -3,13 +3,19 @@ import PasswordInput from "../inputs/PasswordInput"
 import CheckboxInput from "../inputs/CheckboxInput"
 import SelectInput from "../inputs/SelectInput"
 import KeyInput from "../inputs/KeyInput"
+import TextareaInput from "../inputs/TextareaInput"
+import DateInput from "../inputs/DateInput"
+import ToggleInput from "../inputs/ToggleInput"
 
 const inputEnum = {
     text: (props) => <TextInput {...props} />,
     password: (props) => <PasswordInput {...props} />,
     checkbox: (props) => <CheckboxInput {...props} />,
     select: (props) => <SelectInput {...props} />,
-    keys: (props) => <KeyInput {...props} />
+    keys: (props) => <KeyInput {...props} />,
+    textarea: (props) => <TextareaInput {...props} />,
+    date: (props) => <DateInput {...props} />,
+    toggle: (props) => <ToggleInput {...props} />
 }
 
 const UserInput = ({ children, ...props }) => {

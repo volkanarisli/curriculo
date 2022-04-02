@@ -1,6 +1,5 @@
 import {
-    personalSkillsKeyWords, technicalSkillsKeyWords,
-    phrasesForDesc, getGivenNumberKeywordsFromArray,
+    allKeywords, getGivenNumberKeywordsFromArray,
     shuffleArray,
     getRandomValue
 
@@ -8,17 +7,14 @@ import {
 import { useEffect, useState } from "react";
 import { PlusIcon, CheckIcon, XIcon } from "@heroicons/react/solid";
 import UserInput from "../common/UserInput";
-const allKeywords = [
-    personalSkillsKeyWords,
-    technicalSkillsKeyWords,
-    phrasesForDesc
-]
-const KeyInput = ({ onInputChange, value }) => {
+import Divider from "../common/Divider";
+
+const KeyInput = ({ onInputChange, value, setHasError, hasError, index }) => {
     const [selectedKeywords, setSelectedKeywords] = useState([]);
     const [displayedKeywords, setDisplayedKeywords] = useState([]);
     const [usersKeywords, setUsersKeywords] = useState([]);
     const [customKeyword, setCustomKeywords] = useState('');
-    const [hasError, setHasError] = useState({ customKeyword: '' })
+
     const addKeyword = (index, selectedKeyword) => {
         let tempDisplayedKeywords = [...displayedKeywords];
         tempDisplayedKeywords[index].selected = !selectedKeyword.selected
@@ -44,18 +40,43 @@ const KeyInput = ({ onInputChange, value }) => {
         setUsersKeywords(tempHoveredUsersKeywords);
     }
     const toggleKeyword = (selectedKeywordName, add, isCustom) => {
+        if (!selectedKeywordName) return
         if (add) {
-            if (value.includes(selectedKeywordName)) {
-                return setHasError({ customKeyword: 'Keyword already exists' })
+            if (index + 1) {
+                if (value?.[index].includes(selectedKeywordName)) {
+                    return setHasError({ customKeyword: 'Keyword already exists' })
+                }
+            } else {
+                if (value?.includes(selectedKeywordName)) {
+                    return setHasError({ customKeyword: 'Keyword already exists' })
+                }
             }
+
             setHasError({ customKeyword: '' })
-            onInputChange((prevState) => [...prevState, selectedKeywordName])
+            if (index + 1) {
+                onInputChange((prevState) => ({
+                    ...prevState,
+                    [index]: [...prevState[index], selectedKeywordName],
+                    [index + 1]: []
+                }))
+            } else {
+                onInputChange((prevState) => [...prevState, selectedKeywordName])
+            }
+
             if (isCustom) setCustomKeywords('')
         } else {
-            onInputChange((prevState) => prevState.filter(keyword => keyword !== selectedKeywordName))
+
+            if (index + 1) {
+                onInputChange((prevState) => ({
+                    ...prevState,
+                    [index]: prevState[index].filter(keyword => keyword !== selectedKeywordName)
+                }))
+            } else {
+                onInputChange((prevState) => prevState.filter(keyword => keyword !== selectedKeywordName))
+            }
+
         }
     }
-
     useEffect(() => {
         allKeywords.forEach((eachKeywords) => {
             let keywordsFromTopic = getGivenNumberKeywordsFromArray(eachKeywords, 3);
@@ -73,17 +94,28 @@ const KeyInput = ({ onInputChange, value }) => {
         setDisplayedKeywords(shuffleArray(keywordsObjectArray));
     }, [selectedKeywords]);
     useEffect(() => {
-        let tempValues = value.map((item) => {
-            return {
-                name: item,
-                hovered: false
-            }
-        })
+        let tempValues
+        if (index + 1) {
+            tempValues = value?.[index].map((item) => {
+                return {
+                    name: item,
+                    hovered: false
+                }
+            })
+        } else {
+            tempValues = value?.map((item) => {
+                return {
+                    name: item,
+                    hovered: false
+                }
+            })
+        }
+
         setUsersKeywords(tempValues);
-    }, [value])
+    }, [value, index])
     return (
-        <div className="flex flex-col space-y-5">
-            <div className="flex flex-wrap mb-2 mt-3">
+        <div className="flex flex-col">
+            <div className="flex flex-wrap mb-3 mt-3">
                 {
                     displayedKeywords?.map((eachKeyword, index) => {
                         return (
@@ -111,9 +143,17 @@ const KeyInput = ({ onInputChange, value }) => {
                     })
                 }
             </div>
-            <div className="flex flex-wrap">
+            {
+                usersKeywords?.length > 0 &&
+                <Divider className="mb-3">
+                    <p className="px-2 bg-white text-sm text-gray-500">Selected</p>
+                </Divider>
+            }
+
+            <div className="flex flex-wrap mb-4">
+
                 {
-                    usersKeywords.map((item, index) => {
+                    usersKeywords?.map((item, index) => {
                         return (
                             <div key={index}
                                 onClick={() => toggleKeyword(item.name, false)}
@@ -138,8 +178,6 @@ const KeyInput = ({ onInputChange, value }) => {
                         )
                     })
                 }
-
-
             </div>
             <div className="max-w-sm">
                 <div className="flex">

@@ -148,6 +148,16 @@ export const phrasesForDesc = [
     'Analyzed and designed new systems and applications.',
     'Brought forth an energetic attitude and positive work-ethic.'
 ]
+export const allKeywords = [
+    personalSkillsKeyWords,
+    phrasesForDesc,
+    technicalSkillsKeyWords,
+]
+export const allKeywordsWithTitles = {
+    personalSkillsKeyWords,
+    phrasesForDesc,
+    technicalSkillsKeyWords,
+}
 export const getRandomValue = (arr) => {
     const randomIndex = Math.floor(Math.random() * arr.length);
     return arr[randomIndex];
@@ -181,3 +191,11 @@ export const isEmptyObject = (obj) => {
         && Object.getPrototypeOf(obj) === Object.prototype)
 }
 
+export const getDifferenceBetweenArrays = (arr1, arr2) => {
+    return arr1.filter(item => !arr2.includes(item))
+}
+
+export const getDifferenceBetweenDatesAsYear = (date1, date2) => {
+    const diff = Math.abs(date1.getTime() - date2.getTime());
+    return Math.ceil(diff / (1000 * 3600 * 24 * 365));
+}

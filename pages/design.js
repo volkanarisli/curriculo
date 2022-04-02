@@ -18,7 +18,7 @@ const Design = () => {
     }, [user, router])
     const currentForms = [
         (props) => <AboutForm {...props} />,
-        // () => <WorkForm />,
+        (props) => <WorkForm  {...props} />,
         // () => <EducationForm />,
         // () => <ContactForm />
     ]
