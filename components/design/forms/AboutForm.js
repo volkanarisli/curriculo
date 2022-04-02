@@ -110,6 +110,12 @@ const AboutForm = ({ name, surname, email }) => {
                         {/* <span className="text-xs text-gray-500">Start with <b>Responsible for </b>and enter keywords related with your job. Seperate them with commas.</span> */}
                     </div>
                 </div>
+                <div className="flex items-stretch w-full mb-4">
+                    <button
+                        className="flex items-center justify-center w-30 px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 flex-grow">
+                        Generate Summary
+                    </button>
+                </div>
                 <div className="flex w-100 mb-16">
                     <div className="flex flex-col w-full pr-3">
                         <span className="mb-2">Description of a Job</span>
