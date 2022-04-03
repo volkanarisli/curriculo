@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router";
 import { useUser } from "../context/UserInfo";
-import Redirectcard from '../components/dashboard/redirectcard';
+import Redirectcard from '../components/dashboard/RedirectCard';
 import Divider from '../components/common/Divider';
 
 import { ViewListIcon, PaperClipIcon } from '@heroicons/react/solid'
