@@ -5,7 +5,7 @@ import Classic from "../assets/img/Classic.jpg"
 import Modern from "../assets/img/Modern.jpg"
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useUser } from "../context/UserInfo";
+import { useUser } from "../../context/UserInfo";
 
 
 
