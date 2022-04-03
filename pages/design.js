@@ -16,8 +16,8 @@ const Design = () => {
         if (!user) router.push('/login')
     }, [user, router])
     const currentForms = [
-        // (props) => <AboutForm {...props} />,
-        // (props) => <WorkForm  {...props} />,
+        (props) => <AboutForm {...props} />,
+        (props) => <WorkForm  {...props} />,
         (props) => <EducationForm {...props} />,
     ]
 
