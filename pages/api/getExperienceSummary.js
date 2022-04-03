@@ -12,9 +12,7 @@ const handler = async (req, res) => {
         return res.status(401).send("You are not authorized to call this API")
     }
     const { keywords, experience, isBulletPoint } = req.body;
-    console.log({ keywords, experience, isBulletPoint })
     let workingTime = getDifferenceBetweenDatesAsYear(new Date(experience.startDate), (experience.endDate ? new Date(experience.endDate) : new Date()))
-    console.log(workingTime)
     let chosenKeywords = [];
     let techicalSkillsAsText = '';
     let socialSkillsAsText = '';
@@ -35,12 +33,9 @@ const handler = async (req, res) => {
     customSkills.forEach(customSkill => {
         techicalSkillsAsText += `${customSkill},`
     })
-    const prompt = `Create a ${isBulletPoint ? ' bullet point' : 'brief'} employment history to a employee who has been working for
-                    ${experience.company} for ${workingTime} years, who is ${socialSkillsAsText}
-                     with technical skillset of ${techicalSkillsAsText} summary:`
-
-    console.log(prompt)
-
+    const prompt = `Generate a ${isBulletPoint ? ' bullet point employment history' : 'employment history summary'}  for me, I have been working for
+                    ${experience.company} for ${workingTime} years as a  ${experience.title} , I am ${socialSkillsAsText},
+                    I have work with ${techicalSkillsAsText} summary:`
     const { data: { choices } } = await openai.createCompletion("text-davinci-001", {
         prompt,
         temperature: 1,
@@ -51,9 +46,6 @@ const handler = async (req, res) => {
     });
 
     res.status(200).json({ response: choices[0]?.text })
-    // res.status(200).json({ response: 'deneme' })
-
-
 }
 
 export default handler;

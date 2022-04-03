@@ -29,9 +29,9 @@ const KeyInput = ({ onInputChange, value, setHasError, hasError, index }) => {
             setDisplayedKeywords((prevState) => [...prevState, newKeyWord]);
         }, 500)
     }
-    const hoverKeyword = (index, selectedKeyword) => {
+    const hoverKeyword = (index, isHovered) => {
         let tempHoveredKeywords = [...displayedKeywords];
-        tempHoveredKeywords[index].hovered = !selectedKeyword.hovered;
+        tempHoveredKeywords[index].hovered = isHovered;
         setDisplayedKeywords(tempHoveredKeywords);
     }
     const hoverUsersKeywords = (index, selectedKeyword) => {
@@ -121,8 +121,8 @@ const KeyInput = ({ onInputChange, value, setHasError, hasError, index }) => {
                         return (
                             <div key={index}
                                 onClick={() => addKeyword(index, eachKeyword)}
-                                onMouseEnter={() => hoverKeyword(index, eachKeyword)}
-                                onMouseLeave={() => hoverKeyword(index, eachKeyword)}
+                                onMouseEnter={() => hoverKeyword(index, true)}
+                                onMouseLeave={() => hoverKeyword(index, false)}
                                 className={`flex items-center border border-gray-300
                                 group cursor-pointer shadow-sm text-xs rounded py-2 px-3 mr-3 mt-2
                             transition duration-150 hover:bg-blue-600
@@ -133,7 +133,7 @@ const KeyInput = ({ onInputChange, value, setHasError, hasError, index }) => {
                                 </p>
                                 <div>
                                     {
-                                        eachKeyword.selected || eachKeyword.hovered ?
+                                        eachKeyword.hovered || eachKeyword.selected ?
                                             <CheckIcon className="w-4 h-4 text-white" /> :
                                             <PlusIcon className="w-4 h-4 text-gray-400" />
                                     }

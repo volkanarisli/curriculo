@@ -6,7 +6,6 @@ import { PlusIcon, XIcon } from "@heroicons/react/solid";
 
 const InputGroup = ({ index,
     experience,
-    getDescForm,
     setInputForm,
     removeExperience, keywords, setKeywords,
     hasError, setHasError, isBulletPoint, setIsBulletPoint, getDesc }
@@ -140,8 +139,9 @@ const InputGroup = ({ index,
             <div className="flex mb-14 mt-3">
                 <div className="flex flex-col w-full pr-3">
 
-                    <span className="mb-1 text-xl text-gray-900">Professional Summary</span>
-                    <span className="mb-1 text-sm text-gray-500">Select adjectives that describes you best. Mention your role, experience and best skills. AI carry on the rest. Remember more is better.</span>
+                    <span className="mb-1 text-xl text-gray-900">Employment History</span>
+                    <span className="mb-1 text-sm text-gray-500">Select adjectives that describes your job experience best.
+                        Mention your role, experience, things you have accomplished and best skills. AI carry on the rest. Remember more is better.</span>
                     <UserInput onInputChange={setKeywords}
                         value={keywords}
                         index={index}
@@ -232,7 +232,7 @@ const WorkForm = () => {
         setExperiences([...newArr])
     }
     const getDesc = async (index, experience) => {
-        if (keywords[index].length < 2) {
+        if (keywords[index].length <= 2) {
             return setHasError({ customKeyword: 'You should add at least 3 keywords about you' })
         }
         const { data } = await axios.post('/api/getExperienceSummary', { experience, keywords: keywords[index], isBulletPoint })
@@ -252,7 +252,6 @@ const WorkForm = () => {
                     <InputGroup key={index}
                         index={index}
                         experience={item}
-                        getDescForm={getDesc}
                         setInputForm={setInput}
                         removeExperience={removeExperience}
                         setKeywords={setKeywords}

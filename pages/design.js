@@ -1,7 +1,6 @@
 import WorkForm from "../components/design/forms/WorkForm"
 import EducationForm from "../components/design/forms/EducationForm"
 import AboutForm from "../components/design/forms/AboutForm"
-import ContactForm from "../components/design/forms/ContactForm"
 import Preview from "../components/design/Preview"
 import Logo from "../assets/img/logomark.svg"
 import Image from "next/image"
@@ -17,10 +16,9 @@ const Design = () => {
         if (!user) router.push('/login')
     }, [user, router])
     const currentForms = [
-        (props) => <AboutForm {...props} />,
-        (props) => <WorkForm  {...props} />,
-        // () => <EducationForm />,
-        // () => <ContactForm />
+        // (props) => <AboutForm {...props} />,
+        // (props) => <WorkForm  {...props} />,
+        (props) => <EducationForm {...props} />,
     ]
 
     return (
