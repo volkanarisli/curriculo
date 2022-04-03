@@ -199,3 +199,14 @@ export const getDifferenceBetweenDatesAsYear = (date1, date2) => {
     const diff = Math.abs(date1.getTime() - date2.getTime());
     return Math.ceil(diff / (1000 * 3600 * 24 * 365));
 }
+
+export const isDateToday = (date) => {
+    const today = new Date();
+    return date.getDate() === today.getDate() &&
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() === today.getFullYear();
+}
+
+export const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}

@@ -2,7 +2,7 @@ import WorkForm from "../components/design/forms/WorkForm"
 import EducationForm from "../components/design/forms/EducationForm"
 import AboutForm from "../components/design/forms/AboutForm"
 import Preview from "../components/design/Preview"
-import Logo from "../assets/img/logomark.svg"
+import { isMobileDevice } from "../utils/helpers"
 import Image from "next/image"
 import ResumeInfoProvider from '../context/ResumeInfo'
 import { useState, useEffect } from "react"
@@ -12,9 +12,13 @@ import { useUser } from "../context/UserInfo";
 const Design = () => {
     const { user } = useUser()
     const router = useRouter()
+    const [isMobile, setIsMobile] = useState()
     useEffect(() => {
         if (!user) router.push('/login')
     }, [user, router])
+    useEffect(() => {
+        setIsMobile(isMobileDevice())
+    }, [])
     const currentForms = [
         (props) => <AboutForm {...props} />,
         (props) => <WorkForm  {...props} />,
@@ -24,7 +28,7 @@ const Design = () => {
     return (
         <ResumeInfoProvider>
             <div className="flex flex-col sm:flex-row min-h-90vh max-h-screen">
-                <div className="mb-10 w-1/2 px-20 overflow-y-auto">
+                <div className='mb-10 overflow-y-auto sm:w-1/2 sm:px-20'>
                     <div className="flex flex-col justify-center items-center mb-20">
                         <span className="mb-6">
                             <Image src="/logo.svg" alt='Logo' width="50" height="50" />
@@ -37,7 +41,7 @@ const Design = () => {
                         </span>
 
                     </div>
-                    <div className="container mx-auto">
+                    <div className='flex flex-col justify-center sm:container sm:mx-auto'>
                         {
                             currentForms.map((form, index) => (
                                 <div className="flex flex-col space-y-4" key={index}>
@@ -48,9 +52,16 @@ const Design = () => {
                     </div>
 
                 </div>
-                <div className="sm:w-1/2 bg-blue-600">
-                    <Preview />
-                </div>
+                {
+                    isMobile ?
+
+                        <h1>Deneme</h1>
+                        :
+                        <div className="sm:w-1/2 bg-blue-600">
+                            <Preview />
+                        </div>
+
+                }
             </div>
         </ResumeInfoProvider>
 

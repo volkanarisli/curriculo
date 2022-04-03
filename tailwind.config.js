@@ -29,19 +29,19 @@ module.exports = {
         'a4': '1122px',
         '90vh': '90vh',
         'inherit': 'inherit',
-        'preview-a4': '611px'
+        'preview-a4': '801px'
       },
       maxWidth: {
         '3xs': '230px'
       },
       height: {
         'a4': '1122px',
-        'preview-a4': '611px'
+        'preview-a4': '762px'
       },
       width: {
-        'a4': '800px',
+        'a4': '59rem',
         'mobile-preview-a4': '360px',
-        'desktop-preview-a4': '400px'
+        'desktop-preview-a4': '569px'
       },
       minWidth: {
         '72': '18rem',
