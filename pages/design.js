@@ -27,7 +27,7 @@ const Design = () => {
 
     return (
         <ResumeInfoProvider>
-            <div className="flex flex-col sm:flex-row min-h-90vh max-h-screen">
+            <div className="flex flex-col sm:flex-row min-h-screen">
                 <div className='mb-10 overflow-y-auto sm:w-1/2 sm:px-20'>
                     <div className="flex flex-col justify-center items-center mb-20">
                         <span className="mb-6">
@@ -57,7 +57,7 @@ const Design = () => {
 
                         <h1>Deneme</h1>
                         :
-                        <div className="sm:w-1/2 bg-blue-600">
+                        <div className="sm:w-1/2 bg-blue-600 z-10">
                             <Preview />
                         </div>
 

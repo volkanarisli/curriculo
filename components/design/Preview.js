@@ -20,6 +20,7 @@ const Preview = () => {
     const { user } = useUser()
     const router = useRouter()
     const [downloading, setDownloading] = useState(false)
+    const [changeTempalte, setChangeTemplate] = useState(false)
     const resumeDesign = useRef()
     useEffect(() => {
         if (!user) router.push('/login')
@@ -34,38 +35,57 @@ const Preview = () => {
         content: () => resumeDesign.current,
         onAfterPrint: () => { setDownloading(false) }
     })
-
-
-
     const download = async () => {
         setDownloading(true)
         setTimeout(async () => {
             await exportDivAsPdf()
         }, 1000)
-
     }
+
     return (
-        <div className="flex flex-col justify-center items-center">
-            <Head>
-                <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js" defer></script>
-            </Head>
-            <div className="relative">
-                <div className="flex flex-col justify-center mt-10 mb-10">
-                    <div id="design">
-                        {templateConfig[resumeTemplateId]({ print: false })}
+        <>
+            {
+                changeTempalte ?
+                    <div>Deneme</div> :
+                    <div className="bg-blue-600 sticky top-0">
+                        <div className="flex flex-col justify-center items-center">
+                            <div className="relative">
+                                <div className="flex flex-col justify-center mt-10 mb-10 h-full">
+                                    <div className="flex flex-col items-center mb-5 text-gray-100">
+                                        <span className="mb-3 font-semibold text-3xl">
+                                            Preview &#38; Download
+                                        </span>
+                                        <span className="max-w-lg text-center text-sm">
+                                            Preview your resume before downloading it. Minor adjustments can make huge differences.
+                                        </span>
+                                    </div>
+                                    <div id="design" className="mx-auto">
+                                        {templateConfig[resumeTemplateId]({ print: false })}
+                                    </div>
+                                    <div className="flex space-x-5 items-stretch">
+                                        <button className="bg-white text-blue-600 w-3/4 py-3 rounded-md my-5" onClick={() => setChangeTemplate(true)}>
+                                            Change Tempalte
+                                        </button>
+                                        <button className="bg-white text-blue-600 w-1/4 py-3 rounded-md my-5"
+                                            onClick={download}>
+                                            Download PDF
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div >
+                        {downloading &&
+                            <div className="absolute">
+                                <div className="bg-blue-600 w-full min-h-a4 z-10">
+                                </div>
+                                <div className="block absolute top-0 -z-50" ref={resumeDesign}>
+                                    {templateConfig[resumeTemplateId]({ print: true })}
+                                </div>
+                            </div>
+                        }
                     </div>
-                    {downloading &&
-                        <div className="block absolute top-0 -z-50" ref={resumeDesign}>
-                            {templateConfig[resumeTemplateId]({ print: true })}
-                        </div>
-                    }
-                    <div>
-                        <button className="bg-indigo-100 text-blue-600 py-3 sm:min-w-lg rounded-md my-5"
-                            onClick={download}>Download</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+            }
+        </>
     )
 
 }
