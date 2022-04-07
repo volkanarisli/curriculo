@@ -1,5 +1,5 @@
 import Link from "next/link"
-const Redirectcard = ({ href, header, info, Icon, bgColor }) => {
+const Redirectcard = ({ href, header, info, Icon, bgColor, badge }) => {
 
     const colors = {
         blue: 'bg-blue-500',
@@ -7,15 +7,38 @@ const Redirectcard = ({ href, header, info, Icon, bgColor }) => {
         orange: 'bg-orange-500',
         green: 'bg-upwork',
         red: 'bg-red-500',
-        yellow: 'bg-rose-300'
+        yellow: 'bg-rose-300',
+        purple:'bg-purple-700'
     }
+    const badges = {
+        beta: {
+            text: "Beta",
+            text_color: "text-yellow-800",
+            bg_color: "bg-yellow-100"
+        },
+        comingsoon: {
+            text: "Coming Soon",
+            text_color: "text-white",
+            bg_color: "bg-gray-900"
+        }
+    }
+    const isDisabled = ['comingsoon'].includes(badge)
 
     return (
-        <Link href={href}>
-            <a className="flex items-stretch p-3 transition hover:shadow-xl hover:-translate-y-2 rounded">
-                <div className={`flex items-center justify-center ${colors[bgColor]} h-16 w-16 rounded mr-4 text-white`}>
-                    <Icon className="h-7 w-7" />
-                </div>
+        <Link href={isDisabled ? '' : href}>
+            <a className={`flex items-stretch px-3 py-4 transition rounded ${!isDisabled && 'hover:shadow-xl hover:-translate-y-2'}
+            ${isDisabled && 'cursor-not-allowed'}`}>
+                <div className="flex flex-col items-center relative mr-4">
+                    <div className={`flex items-center justify-center ${colors[bgColor]} h-16 w-16 rounded text-white`}>
+                        <Icon className="h-7 w-7" />
+                    </div>
+                    {
+                        badge &&
+                        <span className={`flex justify-center absolute px-2.5 py-0.5 rounded-full text-2xs font-medium -mb-4 bottom-0 whitespace-nowrap ${badges[badge].text_color} ${badges[badge].bg_color}`}>
+                            {badges[badge].text}
+                        </span>
+                    }
+                </div >
                 <div className="flex flex-col text-sm max-w-3xs">
                     <span className="text-gray-900 mb-1">
                         {header}  →
@@ -24,7 +47,7 @@ const Redirectcard = ({ href, header, info, Icon, bgColor }) => {
                         {info}
                     </span>
                 </div>
-            </a>
+            </a >
         </Link>
     )
 }
