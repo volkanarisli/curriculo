@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useResumeInfo } from "../../../context/ResumeInfo";
 import axios from "axios";
 import UserInput from "../../common/UserInput"
-const AboutForm = ({ name, surname, email }) => {
+const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
     const { contact, setContact } = useResumeInfo()
     const [keywords, setKeywords] = useState([])
     const [hasError, setHasError] = useState({ customKeyword: '' })
@@ -82,30 +82,38 @@ const AboutForm = ({ name, surname, email }) => {
                         label="Desired Job Title"
                         placeholder="Bond... James Bond"
                     />
-                    <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
-                        value={contact?.email}
-                        name="email"
-                        type="text"
-                        input="text"
-                        label="Email"
-                        placeholder="Bond... James Bond"
-                    />
-                    <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
-                        value={contact?.number}
-                        name="number"
-                        type="text"
-                        input="text"
-                        label="Phone Number"
-                        placeholder="123456789"
-                    />
-                    <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
-                        value={contact?.location}
-                        name="location"
-                        type="text"
-                        input="text"
-                        label="Location"
-                        placeholder="İstanbul"
-                    />
+                    {
+                        isResumeBuilder &&
+                        <>
+                            <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
+                                value={contact?.email}
+                                name="email"
+                                type="text"
+                                input="text"
+                                label="Email"
+                                placeholder="Bond... James Bond"
+                            />
+                            <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
+                                value={contact?.number}
+                                name="number"
+                                type="text"
+                                input="text"
+                                label="Phone Number"
+                                placeholder="123456789"
+                            />
+                            <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
+                                value={contact?.location}
+                                name="location"
+                                type="text"
+                                input="text"
+                                label="Location"
+                                placeholder="İstanbul"
+                            />
+                        </>
+                    }
+
+
+
                 </div>
             </div>
             <div className="flex mb-14">

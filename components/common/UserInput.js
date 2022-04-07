@@ -23,14 +23,14 @@ const UserInput = ({ children, ...props }) => {
     return (
         <div className="flex flex-col w-full relative">
             {
-                children ||
+                !children &&
                 <label className="block text-sm font-medium text-gray-700">
                     {props?.label}
                 </label>
             }
 
             {
-                inputEnum[props?.input](props)
+                inputEnum[props?.input]({...props, children})
             }
             {
                 props?.hasError?.[props?.name] &&

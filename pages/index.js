@@ -9,13 +9,12 @@ import AiInfo from '../components/landing/AiInfo';
 import GetMailSubs from '../components/landing/GetMailSubs';
 import Pricing from '../components/landing/Pricing';
 import Footer from '../components/landing/Footer';
-import { supabase } from '../utils/supabase';
 import { useUser } from '../context/UserInfo'
-import axios from 'axios';
+
 
 
 const Home = () => {
-  const { setSubscriptionIdOfUser } = useUser()
+  const { setSubscriptionIdOfUser, user } = useUser()
   const router = useRouter()
   useEffect(() => {
     let searchParams = new URLSearchParams(router.asPath.split('#').join('&'));
@@ -28,8 +27,12 @@ const Home = () => {
   useEffect(() => {
     setSubscriptionIdOfUser()
   }, [setSubscriptionIdOfUser])
+  useEffect(() => {
+    if (user) router.push('/dashboard')
+  }, [user, router])
   return (
     <div>
+      <Nav />
       <Hero />
       <LogoCloud />
       <ProductInfo />

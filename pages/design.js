@@ -45,7 +45,7 @@ const Design = () => {
                         {
                             currentForms.map((form, index) => (
                                 <div className="flex flex-col space-y-4" key={index}>
-                                    {form({ name: user?.user_metadata.name, surname: user?.user_metadata.surname, email: user?.email })}
+                                    {form({ name: user?.user_metadata.name, surname: user?.user_metadata.surname, email: user?.email, isResumeBuilder: true })}
                                 </div>
                             ))
                         }
