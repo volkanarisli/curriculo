@@ -1,5 +1,5 @@
 import Link from "next/link"
-const Redirectcard = ({ href, header, info, Icon, bgColor, badge }) => {
+const Redirectcard = ({ href, header, info, Icon, bgColor, badge, disabled }) => {
 
     const colors = {
         blue: 'bg-blue-500',
@@ -8,7 +8,8 @@ const Redirectcard = ({ href, header, info, Icon, bgColor, badge }) => {
         green: 'bg-upwork',
         red: 'bg-red-500',
         yellow: 'bg-rose-300',
-        purple:'bg-purple-700'
+        purple: 'bg-purple-700',
+        dark_green:'bg-green-700'
     }
     const badges = {
         beta: {
@@ -22,7 +23,7 @@ const Redirectcard = ({ href, header, info, Icon, bgColor, badge }) => {
             bg_color: "bg-gray-900"
         }
     }
-    const isDisabled = ['comingsoon'].includes(badge)
+    const isDisabled = ['comingsoon'].includes(badge) || disabled
 
     return (
         <Link href={isDisabled ? '' : href}>

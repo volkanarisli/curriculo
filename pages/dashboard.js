@@ -6,7 +6,7 @@ import Redirectcard from '../components/dashboard/RedirectCard';
 import Divider from '../components/common/Divider';
 import Image from 'next/image';
 import { ViewListIcon, PaperClipIcon } from '@heroicons/react/solid'
-import { UserCircleIcon, AcademicCapIcon, CogIcon } from '@heroicons/react/outline'
+import { UserCircleIcon, AcademicCapIcon, CogIcon, PencilIcon } from '@heroicons/react/outline'
 import LogoIcon from '../components/common/icons/LogoIcon';
 import UpworkIcon from '../components/common/icons/UpworkIcon';
 import Link from 'next/link';
@@ -32,7 +32,8 @@ const Dashboard = () => {
             info: 'Create a cover letter to show what you can bring to the team.',
             bgColor: 'orange',
             Icon: PaperClipIcon
-        }, {
+        },
+        {
             href: "/",
             header: 'Motivational Letter',
             info: 'Create a motivational letter to enchance your application.',
@@ -60,6 +61,13 @@ const Dashboard = () => {
             info: 'Create a Employment Summary to show what you have done and what you can bring to the team.',
             bgColor: 'yellow',
             Icon: ViewListIcon
+        },
+        {
+            href: "/educational-summary",
+            header: 'Educational Summary',
+            info: 'Create a Educational Summary to show what you have learned in your education.',
+            bgColor: 'dark_green',
+            Icon: PencilIcon
         }
     ]
     const personalCards = [

@@ -8,16 +8,22 @@ const InputGroup = ({ index,
     experience,
     setInputForm,
     removeExperience, keywords, setKeywords,
-    hasError, setHasError, isBulletPoint, setIsBulletPoint, getDesc }
+    hasError, setHasError, isBulletPoint, setIsBulletPoint, getDesc, isResumeBuilder }
 ) => {
     return (
         <div>
             <div className="flex justify-between items-center ">
-                <span className="text-2xl font-bold mb-4">{index + 1}. Experience</span>
-                <span onClick={() => removeExperience(index)}
-                    className="flex items-center justify-center group h-7 w-7 rounded-full bg-white hover:bg-red-700 cursor-pointer" title="Remove Experience">
-                    <XIcon className="h-5 w-5 text-red-600 group-hover:text-white" />
+                <span className="text-2xl font-bold mb-4">
+                    {isResumeBuilder && `${index + 1}.`}
+                    Experience
                 </span>
+                {
+                    isResumeBuilder &&
+                    <span onClick={() => removeExperience(index)}
+                        className="flex items-center justify-center group h-7 w-7 rounded-full bg-white hover:bg-red-700 cursor-pointer" title="Remove Experience">
+                        <XIcon className="h-5 w-5 text-red-600 group-hover:text-white" />
+                    </span>
+                }
             </div>
             <div className="flex mb-3">
                 <div className="flex flex-col w-1/2 pr-3">
@@ -95,47 +101,51 @@ const InputGroup = ({ index,
 
                 </div>
             </div>
-            <div className="flex flex-col">
-                <div className="flex pr-3 mb-3">
+            {
+                isResumeBuilder &&
+                <div className="flex flex-col">
+                    <div className="flex pr-3 mb-3">
 
-                    <UserInput className="border rounded h-10 p-3"
-                        type="text"
-                        input="text"
-                        label="Country"
-                        placeholder="Turkey"
-                        name="country"
-                        value={experience.country || ''}
-                        onInputChange={({ target: { value, name } }) => {
-                            setInputForm(
-                                {
-                                    experinceKey: index,
-                                    value,
-                                    name
-                                })
-                        }
-                        }
-                    />
-                </div>
-                <div className="flex flex-col pr-3">
-                    <UserInput className="border rounded h-10 p-3"
-                        input="text"
-                        type="text"
-                        label="City"
-                        placeholder="İstanbul"
-                        name="city"
-                        value={experience.city || ''}
-                        onInputChange={({ target: { value, name } }) => {
-                            setInputForm(
-                                {
-                                    experinceKey: index,
-                                    value,
-                                    name
-                                })
-                        }
-                        } />
+                        <UserInput className="border rounded h-10 p-3"
+                            type="text"
+                            input="text"
+                            label="Country"
+                            placeholder="Turkey"
+                            name="country"
+                            value={experience.country || ''}
+                            onInputChange={({ target: { value, name } }) => {
+                                setInputForm(
+                                    {
+                                        experinceKey: index,
+                                        value,
+                                        name
+                                    })
+                            }
+                            }
+                        />
+                    </div>
+                    <div className="flex flex-col pr-3">
+                        <UserInput className="border rounded h-10 p-3"
+                            input="text"
+                            type="text"
+                            label="City"
+                            placeholder="İstanbul"
+                            name="city"
+                            value={experience.city || ''}
+                            onInputChange={({ target: { value, name } }) => {
+                                setInputForm(
+                                    {
+                                        experinceKey: index,
+                                        value,
+                                        name
+                                    })
+                            }
+                            } />
 
+                    </div>
                 </div>
-            </div>
+            }
+
             <div className="flex mb-14 mt-3">
                 <div className="flex flex-col w-full pr-3">
 
@@ -196,7 +206,7 @@ const InputGroup = ({ index,
     )
 }
 
-const WorkForm = () => {
+const WorkForm = ({ isResumeBuilder }) => {
     const { experiences, setExperiences } = useResumeInfo();
     const [keywords, setKeywords] = useState({ 0: [] })
     const [isBulletPoint, setIsBulletPoint] = useState(false)
@@ -243,7 +253,11 @@ const WorkForm = () => {
         })
     }
 
-
+    useEffect(() => {
+        if (isResumeBuilder) return
+        setExperiences([{ id: 0 }])
+        setKeywords({ 0: [] })
+    }, [isResumeBuilder, setExperiences])
 
     return (
         <>
@@ -261,17 +275,21 @@ const WorkForm = () => {
                         isBulletPoint={isBulletPoint}
                         setIsBulletPoint={setIsBulletPoint}
                         getDesc={getDesc}
+                        isResumeBuilder={isResumeBuilder}
                     />
                 ))
             }
+            {
+                isResumeBuilder &&
+                <div className="bottom-10 mt-10 w-full">
+                    <button onClick={addNewExperience}
+                        className="text-blue-600 flex items-center max-w-fit py-3 px-2 rounded-md w-full transition hover:-translate-y-1 hover:shadow flex-grow-0">
+                        <PlusIcon className="h-6 w-6 mr-2" />
+                        Add New Work Experience
+                    </button>
+                </div>
+            }
 
-            <div className="bottom-10 mt-10 w-full">
-                <button onClick={addNewExperience}
-                    className="text-blue-600 flex items-center max-w-fit py-3 px-2 rounded-md w-full transition hover:-translate-y-1 hover:shadow flex-grow-0">
-                    <PlusIcon className="h-6 w-6 mr-2" />
-                    Add New Work Experience
-                </button>
-            </div>
         </>
     )
 };

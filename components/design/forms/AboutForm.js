@@ -44,36 +44,43 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
                 <span className="text-xl text-gray-900 mb-1">
                     Personal Information
                 </span>
-                <span className="test-sm text-gray-500">
-                    Use a permanent address where you can receive mail.
-                </span>
+                {isResumeBuilder &&
+                    <span className="test-sm text-gray-500">
+                        Use a permanent address where you can receive mail.
+                    </span>
+                }
+
             </div>
             <div className="mb-10">
 
                 <div className="flex flex-col pr-3 space-y-3 w-full">
-                    <div className="flex justify-between space-x-2">
-                        <div className="flex flex-col w-1/2">
-                            <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
-                                value={contact?.firstName}
-                                name="firstName"
-                                type="text"
-                                input="text"
-                                label="First Name"
-                                placeholder="Jane"
-                            />
-                        </div>
-                        <div className="flex flex-col w-1/2">
-                            <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
-                                value={contact?.lastName}
-                                name="lastName"
-                                type="text"
-                                input="text"
-                                label="Last Name"
-                                placeholder="Jane"
-                            />
+                    {isResumeBuilder &&
+                        <div className="flex justify-between space-x-2">
+                            <div className="flex flex-col w-1/2">
+                                <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
+                                    value={contact?.firstName}
+                                    name="firstName"
+                                    type="text"
+                                    input="text"
+                                    label="First Name"
+                                    placeholder="Jane"
+                                />
+                            </div>
+                            <div className="flex flex-col w-1/2">
+                                <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
+                                    value={contact?.lastName}
+                                    name="lastName"
+                                    type="text"
+                                    input="text"
+                                    label="Last Name"
+                                    placeholder="Jane"
+                                />
 
+                            </div>
                         </div>
-                    </div>
+
+                    }
+
                     <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
                         value={contact?.title}
                         name="title"
