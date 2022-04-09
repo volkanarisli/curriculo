@@ -7,6 +7,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
     const { contact, setContact } = useResumeInfo()
     const [keywords, setKeywords] = useState([])
     const [hasError, setHasError] = useState({ customKeyword: '' })
+    const [isLoading, setIsLoading] = useState(false)
     const updateData = (e, propertyName) => {
         // ()=> { ...contact, [propertyName]: e }
         setContact(prevState => ({ ...prevState, [propertyName]: e }))
@@ -15,9 +16,11 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
         if (keywords.length < 2) {
             return setHasError({ customKeyword: 'You should add at least 3 keywords about you' })
         }
+        setIsLoading(true)
         const { data } = await axios.post('/api/getProfessionalSummary', {
             keywords: keywords, title: contact.title
         })
+        setIsLoading(false)
         updateData(data.response.trim(), 'desc')
     }
     useEffect(() => {
@@ -156,7 +159,8 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
                         type="textarea"
                         input="textarea"
                         placeholder="Responsible for A/B tests - designing and conducting experiments to test the efficacy of different changes/improvements, analyzing the results, and making decisions based on those results."
-                        className="border rounded h-40 px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
+                        className="border rounded h-40 w-full px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
+                        isLoading={isLoading}
                     />
                     <span className="text-xs text-gray-500">You can edit it directly above and head over to next step when you are done! </span>
                 </div>

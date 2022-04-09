@@ -7,6 +7,7 @@ const UpworkForm = () => {
     const [jobDescription, setJobDescription] = useState("")
     const [proposalLetter, setProposalLetter] = useState("")
     const [keywords, setKeywords] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     const handleJobDescription = (e) => {
         setJobDescription(e.target.value)
     }
@@ -20,8 +21,10 @@ const UpworkForm = () => {
         if (!jobDescription) {
             return setHasError({ jobDescription: 'Description area should not be empty.' })
         }
+        setIsLoading(true)
         setHasError({ jobDescription: '' })
         const { data } = await axios.post('/api/getProposalLetter', { description: jobDescription, keywords })
+        setIsLoading(false)
         setProposalLetter(data.response.trim())
     }
     return (
@@ -43,7 +46,7 @@ const UpworkForm = () => {
                         input="textarea"
                         placeholder="Gig Description From Upwork"
                         hasError={hasError}
-                        className="border rounded h-64 px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
+                        className="border rounded h-64 w-full px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
                     />
                     <span className="text-xs text-gray-500 mt-3">
                         Copy and paste the description of the gig you are applying for.
@@ -82,7 +85,8 @@ const UpworkForm = () => {
                     input="textarea"
                     placeholder="Generated Proposal Letter"
                     hasError={hasError}
-                    className="border rounded h-64 px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
+                    isLoading={isLoading}
+                    className="border rounded h-64 w-full px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
                 />
                 <span className="text-xs text-gray-500 mt-3">
                     Dont forget the edit, fine-tune your proposal letter.

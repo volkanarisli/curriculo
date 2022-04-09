@@ -6,7 +6,8 @@ import axios from "axios"
 const CoverLetterForm = () => {
     const [jobDescription, setJobDescription] = useState("")
     const [proposalLetter, setProposalLetter] = useState("")
-    const [keywords, setKeywords] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+
     const handleJobDescription = (e) => {
         setJobDescription(e.target.value)
     }
@@ -20,8 +21,10 @@ const CoverLetterForm = () => {
         if (!jobDescription) {
             return setHasError({ jobDescription: 'Description area should not be empty.' })
         }
+        setIsLoading(true)
         setHasError({ jobDescription: '' })
         const { data } = await axios.post('/api/getCoverLetter', { description: jobDescription })
+        setIsLoading(false)
         setProposalLetter(data.response.trim())
     }
     return (
@@ -43,7 +46,7 @@ const CoverLetterForm = () => {
                         input="textarea"
                         placeholder="Job Description From Linkedin, Indeed, Glassdoor, etc"
                         hasError={hasError}
-                        className="border rounded h-64 px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
+                        className="border rounded h-64 w-full px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
                     />
                     <span className="text-xs text-gray-500 mt-3">
                         Copy and paste the description of the Job you are applying for.
@@ -68,7 +71,8 @@ const CoverLetterForm = () => {
                     input="textarea"
                     placeholder="Generated Cover Letter"
                     hasError={hasError}
-                    className="border rounded h-64 px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
+                    isLoading={isLoading}
+                    className="border rounded w-full h-64 px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
                 />
                 <span className="text-xs text-gray-500 mt-3">
                     Dont forget the edit, fine-tune your cover letter.

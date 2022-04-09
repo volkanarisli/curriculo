@@ -8,7 +8,7 @@ const InputGroup = ({ index,
     experience,
     setInputForm,
     removeExperience, keywords, setKeywords,
-    hasError, setHasError, isBulletPoint, setIsBulletPoint, getDesc, isResumeBuilder }
+    hasError, setHasError, isBulletPoint, setIsBulletPoint, getDesc, isResumeBuilder, isLoading }
 ) => {
     return (
         <div>
@@ -197,7 +197,8 @@ const InputGroup = ({ index,
                         type="textarea"
                         input="textarea"
                         placeholder="Responsible for A/B tests - designing and conducting experiments to test the efficacy of different changes/improvements, analyzing the results, and making decisions based on those results."
-                        className="border rounded h-40 px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
+                        className="border rounded h-40 w-full px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
+                        isLoading={isLoading}
                     />
                     <span className="text-xs text-gray-500">You can edit it directly above and head over to next step when you are done! </span>
                 </div>
@@ -211,6 +212,8 @@ const WorkForm = ({ isResumeBuilder }) => {
     const [keywords, setKeywords] = useState({ 0: [] })
     const [isBulletPoint, setIsBulletPoint] = useState(false)
     const [hasError, setHasError] = useState({ customKeyword: '' })
+    const [isLoading, setIsLoading] = useState(false)
+
     const setInput = (value) => {
         const experience = {
             id: value.experinceKey,
@@ -245,7 +248,9 @@ const WorkForm = ({ isResumeBuilder }) => {
         if (keywords[index].length <= 2) {
             return setHasError({ customKeyword: 'You should add at least 3 keywords about you' })
         }
+        setIsLoading(true)
         const { data } = await axios.post('/api/getExperienceSummary', { experience, keywords: keywords[index], isBulletPoint })
+        setIsLoading(false)
         setInput({
             experinceKey: index,
             value: data.response.trim(),
@@ -276,6 +281,7 @@ const WorkForm = ({ isResumeBuilder }) => {
                         setIsBulletPoint={setIsBulletPoint}
                         getDesc={getDesc}
                         isResumeBuilder={isResumeBuilder}
+                        isLoading={isLoading}
                     />
                 ))
             }

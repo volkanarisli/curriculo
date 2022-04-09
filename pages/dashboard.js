@@ -92,7 +92,6 @@ const Dashboard = () => {
                 <Link href="/dashboard">
                     <a>
                         <Image src="/logo.svg" alt='Logo' width="50" height="50" />
-
                     </a>
                 </Link>
             </span>
