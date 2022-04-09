@@ -96,7 +96,7 @@ const Provider = ({ children }) => {
             6: 180,
         }
         const yearDayEnum = {
-            1: 360
+            1: 365
         }
         const today = new Date()
         const endDateOfSubscription = new Date()

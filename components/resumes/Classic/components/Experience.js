@@ -1,13 +1,15 @@
 
+import { classNames } from "../../../../utils/helpers";
 
-const Experience = ({ experiences }) => {
+
+const Experience = ({ experiences, print }) => {
     return (
         <div>
-            <span className="text-base font-bold">Work Experiences</span>
+            <span className={classNames("font-bold", print ? "text-xl" : "text-sm")}>Work Experiences</span>
             {
                 experiences?.map((item, index) => (
-                    <div key={index} className="mb-7">
-                        <div className="flex mb-5">
+                    <div key={index} className={classNames("mb-3", print ? "text-xl" : "text-xs")}>
+                        <div className="flex mb-2">
                             <span>{item.company}</span>
                             •
                             <span>{item.title}</span>
