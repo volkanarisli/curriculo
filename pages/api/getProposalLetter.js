@@ -7,22 +7,27 @@ const handler = async (req, res) => {
     if (!user) {
         return res.status(401).send("You are not authorized to call this API")
     }
-    const { keywords, title } = req.body;
+    const { description, keywords } = req.body;
 
-    const prompt = ``
-    // const { data: { choices } } = await openai.createCompletion("text-davinci-001", {
-    //     prompt,
-    //     temperature: 0.7,
-    //     max_tokens: 250,
-    //     top_p: 1,
-    //     frequency_penalty: 0,
-    //     presence_penalty: 0,
-    // });
+    let requieredSkilsAsText = '';
 
-    // res.status(200).json({ response: choices[0]?.text })
-    res.status(200).json({ response: 'deneme' })
-
-
+    keywords.forEach(keyword => {
+        requieredSkilsAsText += `${keyword},`
+    });
+    const prompt = `
+    Generate a proposal letter for me for this freelance job,
+    Description: ${description}
+    Requiered Skills:  ${requieredSkilsAsText}
+    Proposal Letter:`
+    const { data: { choices } } = await openai.createCompletion("text-davinci-001", {
+        prompt,
+        temperature: 1,
+        max_tokens: 350,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+    });
+    res.status(200).json({ response: choices[0]?.text })
 }
 
 export default handler;

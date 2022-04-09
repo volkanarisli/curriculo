@@ -18,7 +18,7 @@ const UpworkProposalLetter = () => {
     }, [user, router])
     return (
         <ResumeInfoProvider>
-            <div className="mt-8">
+            <div className="mt-8 mb-16">
                 <Link href='/dashboard'>
                     <a className="flex items-center justify-center py-3 px-5 border border-transparent text-base font-medium rounded-md text-indigo-900 bg-indigo-50 border-indigo-200 absolute sm:left-8 left-2">
                         ←

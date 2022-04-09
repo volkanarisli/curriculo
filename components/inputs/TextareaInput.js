@@ -1,8 +1,8 @@
 
 
-const TextareaInput = ({ onInputChange, name, type, placeholder, value }) => {
+const TextareaInput = ({ onInputChange, name, type, placeholder, value, className }) => {
     return (
-        <textarea className="border rounded h-40 px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
+        <textarea className={className}
             type={type}
             name={name}
             value={value}
