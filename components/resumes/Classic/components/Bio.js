@@ -1,23 +1,43 @@
-const Bio = ({ contact }) => {
+import { classNames } from "../../../../utils/helpers";
+
+
+const Bio = ({ contact, print }) => {
     return (
         <div>
             <div className="flex flex-col mb-2">
-                <span className="text-base mb-1 font-bold">{`${contact.firstName} ${contact.lastName}`}</span>
+                <span className={classNames("mb-1 font-bold", print ? "text-2xl" : "text-base")}>{`${contact?.firstName} ${contact?.lastName}`}</span>
 
-                <div className="flex text-sm">
+                <div className={classNames("flex", print ? "text-xl" : "text-sm")}>
                     <span >{`${contact.location}`}</span>
-                    <span className="mx-1">•</span>
 
-                    <span >{`${contact.title}`}</span>
-                    <span className="mx-1">•</span>
+                    {
+                        contact.currentTitle &&
+                        <>
+                            <span className="mx-1">•</span>
+                            <span >{`${contact.currentTitle}`}</span>
 
-                    <span >{`${contact.email}`}</span>
-                    <span className="mx-1">•</span>
-                    <span>{`${contact.number}`}</span>
+                        </>
 
+                    }
+                    {
+                        contact.email &&
+                        <>
+                            <span className="mx-1">•</span>
+                            <span >{`${contact.email}`}</span>
+                        </>
+
+                    }
+                    {
+                        contact.number &&
+                        <>
+                            <span className="mx-1">•</span>
+                            <span>{`${contact.number}`}</span>
+                        </>
+
+                    }
                 </div>
             </div>
-            <div className="max-w-4xl text-sm text-gray-500">
+            <div className={classNames("max-w-4xl text-gray-500", print ? "text-1xl" : "text-sm")}>
                 {`${contact.desc}`}
             </div>
         </div>

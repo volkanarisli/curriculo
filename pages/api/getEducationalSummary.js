@@ -36,11 +36,10 @@ const handler = async (req, res) => {
     const prompt = `Generate a ${isBulletPoint ? ' bullet point educational history' : 'educational history summary'}  for me, I have been studying at
                     ${experience.school} for ${workingTime} years on ${experience.degree} , I have learned to be ${socialSkillsAsText},
                     I have taken courses about ${techicalSkillsAsText} summary:`
-    // console.log(prompt)
     const { data: { choices } } = await openai.createCompletion("text-davinci-001", {
         prompt,
         temperature: 1,
-        max_tokens: keywords.length > 8 ? 500 : 300,
+        max_tokens: 200,
         top_p: 0.5,
         frequency_penalty: 0,
         presence_penalty: 0,

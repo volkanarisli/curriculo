@@ -1,21 +1,21 @@
+import { classNames } from "../../../../utils/helpers";
 
 
-const Education = ({ educationHistory }) => {
+const Education = ({ educationHistory, print }) => {
     return (
         <div>
-            <span className="text-xs font-bold">Education</span>
+            {educationHistory.length > 0 && <span className={classNames("font-bold", print ? "text-2xl" : "text-xs")}>Education</span>}
             {
                 educationHistory?.map((item, index) => (
                     <div key={index} className="mb-3">
-                        <div className="flex mb-2 items-center leading-tight">
-                            <span className="text-2xs font-bold">{item.degree}</span>
+                        <div className={classNames("flex mb-2 items-center leading-tight", print ? "text-xl" : "text-2xs")}>
+                            <span className="font-bold">{item.degree}</span>
                             •
-                            <span className="text-2xs font-bold">{item.school}</span>
+                            <span className="font-bold">{item.school}</span>
                         </div>
-                        <div className="text-xs">
+                        <div className={classNames(print ? "text-xl" : "text-2xs")}>
                             {item.desc}
                         </div>
-
                     </div>
                 ))
             }

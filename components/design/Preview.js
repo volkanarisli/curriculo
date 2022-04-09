@@ -2,21 +2,16 @@ import Barn from "../resumes/Barn"
 import Modern from "../resumes/Modern"
 import Classic from "../resumes/Classic"
 import { useResumeInfo } from "../../context/ResumeInfo";
-
-
-
-import Head from "next/head";
-
 import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/router";
 import { useUser } from "../../context/UserInfo";
-
+import ChoseTemplate from "./ChoseTemplate";
 import { useReactToPrint } from 'react-to-print'
 
 
 
 const Preview = () => {
-    const { resumeTemplateId } = useResumeInfo()
+    const { resumeTemplateId, setResumeTemplateId } = useResumeInfo()
     const { user } = useUser()
     const router = useRouter()
     const [downloading, setDownloading] = useState(false)
@@ -29,6 +24,10 @@ const Preview = () => {
         0: (props) => <Barn {...props} />,
         1: (props) => <Modern {...props} />,
         2: (props) => <Classic {...props} />
+    }
+    const selectTemplate = (id) => {
+        setResumeTemplateId(id)
+        setChangeTemplate(false)
     }
     const exportDivAsPdf = useReactToPrint({
         documentTitle: 'my-new-cv',
@@ -46,7 +45,7 @@ const Preview = () => {
         <>
             {
                 changeTempalte ?
-                    <div>Deneme</div> :
+                    <ChoseTemplate selectTemplate={selectTemplate} /> :
                     <div className="bg-blue-600 sticky top-0">
                         <div className="flex flex-col justify-center items-center">
                             <div className="relative">

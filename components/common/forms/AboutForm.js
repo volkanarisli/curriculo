@@ -18,7 +18,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
         }
         setIsLoading(true)
         const { data } = await axios.post('/api/getProfessionalSummary', {
-            keywords: keywords, title: contact.title
+            keywords: keywords, title: contact.currentTitle
         })
         setIsLoading(false)
         updateData(data.response.trim(), 'desc')
@@ -85,8 +85,8 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
                     }
 
                     <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
-                        value={contact?.title}
-                        name="title"
+                        value={contact?.currentTitle}
+                        name="currentTitle"
                         type="text"
                         input="text"
                         label="Desired Job Title"

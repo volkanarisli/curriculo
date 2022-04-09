@@ -28,7 +28,7 @@ const Design = () => {
     return (
         <ResumeInfoProvider>
             <div className="flex flex-col sm:flex-row min-h-screen">
-                <div className='mb-10 overflow-y-auto sm:w-1/2 sm:px-20'>
+                <div className='mb-10 px-6 overflow-y-auto sm:w-1/2 sm:px-20'>
                     <div className="flex flex-col justify-center items-center mb-20">
                         <span className="mb-6">
                             <Image src="/logo.svg" alt='Logo' width="50" height="50" />
@@ -36,7 +36,7 @@ const Design = () => {
                         <span className="text-gray-600 mb-1 text-3xl font-semibold">
                             Outstanding Resume
                         </span>
-                        <span className="text-sm text-gray-400">
+                        <span className="text-sm text-gray-400 text-center">
                             You are now few steps ahead of landing your dream job, really.
                         </span>
 

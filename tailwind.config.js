@@ -5,12 +5,10 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-
     minWidth: {
       'md': '300px',
       'lg': '400px',
     },
-
     container: {
       center: true,
       screens: {
@@ -26,7 +24,7 @@ module.exports = {
         '2xs': '10px',
       },
       minHeight: {
-        'a4': '1122px',
+        'a4': '83rem',
         '90vh': '90vh',
         'inherit': 'inherit',
         'preview-a4': '801px'
@@ -35,7 +33,7 @@ module.exports = {
         '3xs': '230px'
       },
       height: {
-        'a4': '1122px',
+        'a4': '83rem',
         'preview-a4': '762px'
       },
       width: {
