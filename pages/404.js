@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import FourOFour from '../assets/img/404.svg'
 import { useUser } from '../context/UserInfo'
 
