@@ -1,4 +1,4 @@
-import AboutForm from "../components/design/forms/AboutForm"
+import AboutForm from "../components/common/forms/AboutForm"
 import InfoAlert from "../components/common/InfoAlert"
 import Image from "next/image";
 import ResumeInfoProvider from '../context/ResumeInfo'
@@ -31,7 +31,7 @@ const ProfessionalSummary = () => {
           <span className="mb-6">
             <Image src="/logo.svg" alt='Logo' width="50" height="50" />
           </span>
-          <span className="text-gray-600 mb-1 text-3xl">
+          <span className="text-gray-600 mb-1 text-3xl font-semibold">
             Professional Summary
           </span>
           <span className="text-sm text-gray-400 text-center mb-3">

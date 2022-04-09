@@ -149,7 +149,7 @@ const InputGroup = ({ index,
             <div className="flex mb-14 mt-3">
                 <div className="flex flex-col w-full pr-3">
 
-                    <span className="mb-1 text-xl text-gray-900">Education</span>
+                    <span className="mb-1 text-xl text-gray-900 font-semibold">Education</span>
                     <span className="mb-1 text-sm text-gray-500">Select adjectives that describes your Educational experience best.
                         Mention your role, experience, things you have accomplished and best skills. AI carry on the rest. Remember more is better.</span>
                     <UserInput onInputChange={setKeywords}

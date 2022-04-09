@@ -40,17 +40,17 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
     return (
 
         <div>
-            <div className="flex flex-col mb-6">
-                <span className="text-xl text-gray-900 mb-1">
-                    Personal Information
-                </span>
-                {isResumeBuilder &&
+            {isResumeBuilder &&
+                <div className="flex flex-col mb-6">
+                    <span className="text-xl text-gray-900 mb-1">
+                        Personal Information
+                    </span>
+
                     <span className="test-sm text-gray-500">
                         Use a permanent address where you can receive mail.
                     </span>
-                }
-
-            </div>
+                </div>
+            }
             <div className="mb-10">
 
                 <div className="flex flex-col pr-3 space-y-3 w-full">
@@ -125,7 +125,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
             </div>
             <div className="flex mb-14">
                 <div className="flex flex-col w-full pr-3">
-                    <span className="mb-1 text-xl text-gray-900">Professional Summary</span>
+                    <span className="mb-1 text-xl text-gray-900 font-semibold">Professional Summary</span>
                     <span className="mb-1 text-sm text-gray-500">Select adjectives that describes you best. Mention your role, experience and best skills. AI carry on the rest. Remember more is better.</span>
                     <div>
                         <UserInput onInputChange={setKeywords}

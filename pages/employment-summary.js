@@ -1,4 +1,4 @@
-import WorkForm from "../components/design/forms/WorkForm"
+import WorkForm from "../components/common/forms/WorkForm"
 import InfoAlert from "../components/common/InfoAlert"
 import Image from "next/image";
 import ResumeInfoProvider from '../context/ResumeInfo'
@@ -31,7 +31,7 @@ const EmploymentSummary = () => {
           <span className="mb-6">
             <Image src="/logo.svg" alt='Logo' width="50" height="50" />
           </span>
-          <span className="text-gray-600 mb-1 text-3xl">
+          <span className="text-gray-600 mb-1 text-3xl font-semibold">
             Job Summary
           </span>
           <span className="text-sm text-gray-400 text-center mb-3">

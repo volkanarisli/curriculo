@@ -34,12 +34,11 @@ const Dashboard = () => {
             Icon: PaperClipIcon
         },
         {
-            href: "/",
-            header: 'Motivational Letter',
-            info: 'Create a motivational letter to enchance your application.',
-            bgColor: 'blue',
-            badge: 'comingsoon',
-            Icon: AcademicCapIcon
+            href: "/employment-summary",
+            header: 'Employment Summary',
+            info: 'Create a Employment Summary to show what you have done and what you can bring to the team.',
+            bgColor: 'yellow',
+            Icon: ViewListIcon
         },
         {
             href: "/upwork-proposal-letter",
@@ -55,12 +54,14 @@ const Dashboard = () => {
             bgColor: 'red',
             Icon: UserCircleIcon
         },
+
         {
-            href: "/employment-summary",
-            header: 'Employment Summary',
-            info: 'Create a Employment Summary to show what you have done and what you can bring to the team.',
-            bgColor: 'yellow',
-            Icon: ViewListIcon
+            href: "/",
+            header: 'Motivational Letter',
+            info: 'Create a motivational letter to enchance your application.',
+            bgColor: 'blue',
+            badge: 'comingsoon',
+            Icon: AcademicCapIcon
         },
         {
             href: "/educational-summary",

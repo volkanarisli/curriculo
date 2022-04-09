@@ -1,6 +1,6 @@
-import WorkForm from "../components/design/forms/WorkForm"
-import EducationForm from "../components/design/forms/EducationForm"
-import AboutForm from "../components/design/forms/AboutForm"
+import WorkForm from "../components/common/forms/WorkForm"
+import EducationForm from "../components/common/forms/EducationForm"
+import AboutForm from "../components/common/forms/AboutForm"
 import Preview from "../components/design/Preview"
 import { isMobileDevice } from "../utils/helpers"
 import Image from "next/image"
@@ -33,7 +33,7 @@ const Design = () => {
                         <span className="mb-6">
                             <Image src="/logo.svg" alt='Logo' width="50" height="50" />
                         </span>
-                        <span className="text-gray-600 mb-1 text-3xl">
+                        <span className="text-gray-600 mb-1 text-3xl font-semibold">
                             Outstanding Resume
                         </span>
                         <span className="text-sm text-gray-400">
