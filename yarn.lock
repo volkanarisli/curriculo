@@ -1344,11 +1344,6 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-html2pdf@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/html2pdf/-/html2pdf-0.0.11.tgz#1359156fbdeac0ec6fc8a781b05e8747ded19769"
-  integrity sha1-E1kVb73qwOxvyKeBsF6HR97Rl2k=
-
 https-proxy-agent@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-5.0.0.tgz#e2a90542abb68a762e0a0850f6c9edadfd8506b2"
@@ -2012,7 +2007,7 @@ progress@2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-prop-types@^15.7.2:
+prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -2080,6 +2075,13 @@ react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-to-print@^2.14.5:
+  version "2.14.5"
+  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.14.5.tgz#48ea5af6b73ee514772da96e4b98694cba1cec70"
+  integrity sha512-FeFBo4oRscVNiuw9/qET3RHOArN5wo1z0skzABdzFaxZNIy6FM8beJyBHxYWsiQ92M6Dv2To9Fp03Gve02GS5A==
+  dependencies:
+    prop-types "^15.8.1"
 
 react@17.0.2:
   version "17.0.2"

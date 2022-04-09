@@ -9,7 +9,7 @@ const handler = async (req, res) => {
             .select('*')
             .eq('email', email)
             .single()
-        console.log(data)
+
         if (!data) {
             res.status(200).send({ emailExist: false })
         } else {

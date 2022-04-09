@@ -1,18 +1,20 @@
+import { classNames } from "../../../../utils/helpers";
 
-
-const Bio = ({ contact }) => {
+const Bio = ({ contact, print }) => {
     return (
         <div>
-            <div className="flex flex-col items-center mb-5">
-                <span className="text-base mb-2 font-bold">{`${contact.firstName} ${contact.lastName}`}</span>
-                <span className="mb-3 text-base">{`${contact.location}`}</span>
+            <div className={classNames("flex flex-col items-center mb-2")}>
+                <span className={classNames(print ? "text-4xl mb-5 font-bold" : "text-2xs mb-1 font-bold")}>
+                    {`${contact.firstName} ${contact.lastName}`}
+                </span>
+                <span className={classNames(print ? "text-2xl mb-3" : "mb-1 text-2xs")}>{`${contact.location}`}</span>
                 <div className="flex">
-                    <span className="mr-5 text-base">{`${contact.email}`}</span>
-                    <span className="text-base">{`${contact.number}`}</span>
+                    <span className={classNames(print ? "text-2xl mr-3" : "text-2xs mr-1")}>{`${contact.email}`}</span>
+                    <span className={classNames(print ? "text-2xl" : "text-2xs")}>{`${contact.number}`}</span>
 
                 </div>
             </div>
-            <div className="max-w-4xl text-gray-500 text-base">
+            <div className={classNames("max-w-7xl text-gray-500", print ? "text-xl" : "text-2xs")}>
                 {`${contact.desc}`}
             </div>
         </div>

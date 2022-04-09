@@ -2,20 +2,21 @@ import Bio from './components/Bio'
 import Education from './components/Education'
 import Experience from './components/Experience'
 import { useResumeInfo } from "../../../context/ResumeInfo";
+import { classNames } from '../../../utils/helpers';
 
 
 
 
-const Classic = () => {
+const Classic = ({ print }) => {
     const { allResumeData: { about, contact, educationHistory, experiences } } = useResumeInfo()
-
+    // w-a4 min-h-a4
     return (
-        <div className="w-a4 min-h-a4 border bg-Classic-background font-roboto-mono p-10">
+        <div className={classNames('overflow-hidden -z-20  min-h-preview-a4 bg-white font-roboto-mono p-10 relative', print ? 'w-a4' : 'w-mobile-preview-a4 sm:w-desktop-preview-a4')}>
             <div className="mb-10">
-                <Bio about={about} contact={contact} />
+                <Bio about={about} contact={contact} print={print} />
             </div>
-            <Experience experiences={experiences} />
-            <Education educationHistory={educationHistory} />
+            <Experience experiences={experiences} print={print} />
+            <Education educationHistory={educationHistory} print={print} />
 
         </div>
 

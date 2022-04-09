@@ -36,7 +36,7 @@ const ResumeInfo = ({ children }) => {
         email: '',
         number: ''
     })
-    const [resumeTemplateId, setResumeTeplateId] = useState(0)
+    const [resumeTemplateId, setResumeTemplateId] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
     const exposed = {
         experiences,
@@ -48,7 +48,7 @@ const ResumeInfo = ({ children }) => {
         contact,
         setContact,
         resumeTemplateId,
-        setResumeTeplateId,
+        setResumeTemplateId,
         allResumeData: {
             experiences,
             educationHistory,
