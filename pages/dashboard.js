@@ -6,13 +6,13 @@ import Redirectcard from '../components/dashboard/RedirectCard';
 import Divider from '../components/common/Divider';
 import Image from 'next/image';
 import { ViewListIcon, PaperClipIcon } from '@heroicons/react/solid'
-import { UserCircleIcon, AcademicCapIcon, CogIcon, PencilIcon } from '@heroicons/react/outline'
+import { UserCircleIcon, AcademicCapIcon, CogIcon, PencilIcon, LogoutIcon } from '@heroicons/react/outline'
 import LogoIcon from '../components/common/icons/LogoIcon';
 import UpworkIcon from '../components/common/icons/UpworkIcon';
 import Link from 'next/link';
 
 const Dashboard = () => {
-    const { user } = useUser()
+    const { user, logout } = useUser()
     const router = useRouter()
 
     const [userName, setUserName] = useState('')
@@ -87,13 +87,20 @@ const Dashboard = () => {
 
 
     return (
-        <div className="container sm:max-w-3xl mx-auto mt-10">
-            <span className="mb-6">
+        <div className="container sm:max-w-3xl mx-auto mt-5">
+            <span className="flex justify-between items-center w-full mb-6">
                 <Link href="/dashboard">
                     <a>
-                        <Image src="/logo.svg" alt='Logo' width="50" height="50" />
+                        <Image src="/logomark.svg" alt='Logo' width="200" height="50" />
                     </a>
                 </Link>
+                <div onClick={logout} className="flex items-center cursor-pointer group">
+                    <div className="rounded-full bg-red-600 group-hover:bg-red-400 px-2 py-2 mr-2">
+                        <LogoutIcon className="h-5 w-5 text-white" />
+                    </div>
+                    <span className="font-semibold text-gray-900">Logout</span>
+                </div>
+
             </span>
             <div className="flex flex-col gap-1">
                 <span className="text-lg text-gray-900">Get a Head Start in Your Career </span>

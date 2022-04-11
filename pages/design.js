@@ -9,6 +9,7 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/router";
 import { useUser } from "../context/UserInfo";
 import Modal from "../components/common/Modal"
+import Link from "next/link"
 
 const Design = () => {
     const { user } = useUser()
@@ -30,7 +31,7 @@ const Design = () => {
     return (
         <ResumeInfoProvider>
             <div className="flex flex-col relative lg:flex-row min-h-screen">
-                <div className='mb-10 px-6 overflow-y-auto sm:w-1/2 sm:px-20'>
+                <div className='mb-10 mt-2 px-6 overflow-y-auto sm:w-1/2 sm:px-20'>
                     <div className="flex flex-col justify-center items-center mb-10">
                         <span className="mb-6">
                             <Image src="/logo.svg" alt='Logo' width="50" height="50" />
@@ -41,7 +42,14 @@ const Design = () => {
                         <span className="text-sm text-gray-400 text-center">
                             You are now few steps ahead of landing your dream job, really.
                         </span>
-
+                        <Link href='/dashboard'>
+                            <a className="flex items-center justify-center py-3 px-5 border border-transparent text-base font-medium rounded-md text-indigo-900 bg-indigo-50 border-indigo-200 absolute sm:left-8 top-1 left-2">
+                                ←
+                                <span className="sm:block sm:ml-2 hidden">
+                                    Back to Dashboard
+                                </span>
+                            </a>
+                        </Link>
                     </div>
                     <div className='flex flex-col justify-center sm:container sm:mx-auto'>
                         {

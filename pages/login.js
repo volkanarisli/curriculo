@@ -48,7 +48,7 @@ const Login = () => {
     }, [userInfo, startValidating])
     return (
         <>
-            <div className="flex flex-col sm:flex-row items-center min-h-90vh">
+            <div className="flex flex-col sm:flex-row items-center min-h-screen">
                 <div className="hidden lg:flex justify-center w-1/2 bg-blue-700 min-h-inherit">
                     <Image src={ProjectManagement} alt="Login" />
                 </div>
