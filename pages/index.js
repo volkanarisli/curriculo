@@ -13,6 +13,8 @@ import { useUser } from '../context/UserInfo'
 
 
 
+
+
 const Home = () => {
   const { setSubscriptionIdOfUser, user } = useUser()
   const router = useRouter()
@@ -32,6 +34,7 @@ const Home = () => {
   }, [user, router])
   return (
     <div>
+      {/* <Nav /> */}
       <Hero />
       <LogoCloud />
       <ProductInfo />
