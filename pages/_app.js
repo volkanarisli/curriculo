@@ -1,7 +1,7 @@
 import '../assets/styles/globals.scss'
 import Head from 'next/head'
 import UserProvider from '../context/UserInfo'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Script from 'next/script'
 import { useRouter } from 'next/router'
 import * as gtag from '../utils/gtag'
@@ -12,6 +12,10 @@ const isProduction = process.env.ENV === "production";
 
 const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
   const router = useRouter()
+  const hideNav = ['/dashboard', '/design',
+    '/upwork-proposal-letter', '/cover-letter',
+    '/employment-summary', '/professional-summary',
+    '/educational-summary'].includes(router.pathname)
   useEffect(() => {
     function initDesk360Chat() {
       window.desk360Chat.init({
@@ -59,7 +63,9 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
           <link rel="icon" href="/favicon.svg" />
           <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         </Head>
-        <Nav />
+        {
+          !hideNav && <Nav />
+        }
         <Component {...pageProps} />
       </UserProvider>
     </>
