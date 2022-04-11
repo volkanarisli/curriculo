@@ -69,7 +69,7 @@ const Register = ({ plans }) => {
                 <div className="hidden lg:flex justify-center w-1/2 bg-blue-700 min-h-inherit h-full">
                     <Image src={SignUp} alt="Sign Up" />
                 </div>
-                <div className="flex flex-col relative sm:static items-center justify-center px-0 sm:w-1/2 sm:px-6 h-full">
+                <div className="flex flex-col sm:static items-center justify-center px-0 sm:w-1/2 sm:px-6 h-full">
                     <div className="min-w-72 max-w-sm px-10 sm:px-0 lg:w-96">
                         <div className="flex flex-col justify-center items-center mb-10">
                             <Image src="/logo.svg" alt="Logo" height="80" width="80" />
@@ -173,7 +173,7 @@ const Register = ({ plans }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="absolute -bottom-5 2xl:bottom-5">
+                    <div className="absolute bottom-4 sm:-bottom-4">
                         <p className="text-gray-400">
                             Do you have an account?
                             <span className="text-blue-700 ml-2 hover:underline">
@@ -188,7 +188,7 @@ const Register = ({ plans }) => {
     )
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     const { data: { response } } = await axios.post(`${process.env.PADDLE_API_URL}2.0/subscription/plans`,
         {
             vendor_id: process.env.PADDLE_VENDOR_ID,
