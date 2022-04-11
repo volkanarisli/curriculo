@@ -61,7 +61,7 @@ const Preview = () => {
                                     <div id="design" className="mx-auto overflow-x-auto">
                                         {templateConfig[resumeTemplateId]({ print: false })}
                                     </div>
-                                    <div className="flex gap-3 sm:space-x-5 items-stretch px-8">
+                                    <div className="flex gap-3 items-stretch px-8 sm:px-0">
                                         <button className="bg-white text-blue-600 w-3/4 py-2 sm:py-3 rounded-md my-5" onClick={() => setChangeTemplate(true)}>
                                             Change Tempalte
                                         </button>
