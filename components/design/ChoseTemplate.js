@@ -23,7 +23,7 @@ const ChoseTemplate = ({ selectTemplate }) => {
     ]
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center bg-blue-600">
             <div className="flex flex-col items-center mt-3">
                 <div className="mb-1">
                     <Image src="/logo.svg" alt='Logo' width="50" height="50" />

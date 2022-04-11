@@ -58,14 +58,14 @@ const Preview = () => {
                                             Preview your resume before downloading it. Minor adjustments can make huge differences.
                                         </span>
                                     </div>
-                                    <div id="design" className="mx-auto">
+                                    <div id="design" className="mx-auto overflow-x-auto">
                                         {templateConfig[resumeTemplateId]({ print: false })}
                                     </div>
-                                    <div className="flex space-x-5 items-stretch">
-                                        <button className="bg-white text-blue-600 w-3/4 py-3 rounded-md my-5" onClick={() => setChangeTemplate(true)}>
+                                    <div className="flex gap-3 sm:space-x-5 items-stretch px-8">
+                                        <button className="bg-white text-blue-600 w-3/4 py-2 sm:py-3 rounded-md my-5" onClick={() => setChangeTemplate(true)}>
                                             Change Tempalte
                                         </button>
-                                        <button className="bg-white text-blue-600 w-1/4 py-3 rounded-md my-5"
+                                        <button className="bg-white text-blue-600 w-1/4 py-2 sm:py-3 rounded-md my-5"
                                             onClick={download}>
                                             Download PDF
                                         </button>
