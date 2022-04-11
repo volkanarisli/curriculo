@@ -12,7 +12,7 @@ const handler = async (req, res) => {
     Generate a cover letter for me for the given job description,
     Description: ${description}
     Cover Letter:`
-    const { data: { choices } } = await openai.createCompletion("text-davinci-002", {
+    const { data: { choices } } = await openai.createCompletion("text-davinci-001", {
         prompt,
         temperature: 1,
         max_tokens: 800,
