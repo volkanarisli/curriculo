@@ -8,11 +8,13 @@ import ResumeInfoProvider from '../context/ResumeInfo'
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router";
 import { useUser } from "../context/UserInfo";
+import Modal from "../components/common/Modal"
 
 const Design = () => {
     const { user } = useUser()
     const router = useRouter()
     const [isMobile, setIsMobile] = useState()
+    const [modalOpen, setModalOpen] = useState(false)
     useEffect(() => {
         if (!user) router.push('/login')
     }, [user, router])
@@ -27,9 +29,9 @@ const Design = () => {
 
     return (
         <ResumeInfoProvider>
-            <div className="flex flex-col sm:flex-row min-h-screen">
+            <div className="flex flex-col relative lg:flex-row min-h-screen">
                 <div className='mb-10 px-6 overflow-y-auto sm:w-1/2 sm:px-20'>
-                    <div className="flex flex-col justify-center items-center mb-20">
+                    <div className="flex flex-col justify-center items-center mb-10">
                         <span className="mb-6">
                             <Image src="/logo.svg" alt='Logo' width="50" height="50" />
                         </span>
@@ -54,8 +56,16 @@ const Design = () => {
                 </div>
                 {
                     isMobile ?
-
-                        <h1>Deneme</h1>
+                        <>
+                            <div className="flex justify-center w-full fixed bottom-3 z-10">
+                                <button className="rounded-full bg-blue-600 text-white py-3 px-4" onClick={() => setModalOpen(true)}>
+                                    Preview Resume
+                                </button>
+                            </div>
+                            <Modal open={modalOpen} setOpen={setModalOpen}>
+                                <Preview />
+                            </Modal>
+                        </>
                         :
                         <div className="sm:w-1/2 bg-blue-600 z-10">
                             <Preview />

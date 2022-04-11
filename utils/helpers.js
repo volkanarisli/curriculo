@@ -215,3 +215,12 @@ export const isMobileDevice = () => {
 export const copyText = (text) => {
     navigator.clipboard.writeText(text)
 }
+
+export const exportTextAsDocxFile = (text) => {
+    const blob = new Blob([text], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'coverletter.docx';
+    link.click();
+}

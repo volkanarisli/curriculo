@@ -1,7 +1,7 @@
 import UserInput from "../../common/UserInput"
 import { useState, useEffect } from "react"
 import { DuplicateIcon, ClipboardIcon } from "@heroicons/react/outline"
-import { copyText } from "../../../utils/helpers"
+import { copyText, exportTextAsDocxFile } from "../../../utils/helpers"
 import axios from "axios"
 const CoverLetterForm = () => {
     const [jobDescription, setJobDescription] = useState("")
@@ -82,6 +82,11 @@ const CoverLetterForm = () => {
                     onClick={() => copyText(proposalLetter)}
                     className="h-5 w-5 text-gray-500 absolute right-2 top-2 hover:scale-125 cursor-pointer" />
             </div>
+            <button
+                onClick={() => exportTextAsDocxFile(proposalLetter)}
+                className="px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-1/3 my-7">
+                Export Cover Letter as .docx
+            </button>
 
         </div>
     )
