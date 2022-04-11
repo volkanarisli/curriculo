@@ -130,7 +130,7 @@ const Login = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="absolute bottom-5">
+                    <div className="absolute bottom-5 sm:bottom-7">
                         <p className="text-gray-400">
                             Don’t have an account yet?
                             <span className="text-blue-700 ml-2 hover:underline">
