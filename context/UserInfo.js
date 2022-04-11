@@ -70,6 +70,7 @@ const Provider = ({ children }) => {
             email: email,
             successCallback: (paddleUser) => registerUser(userInfo, Paddle, paddleUser),
         });
+
         return {}
     }
     const registerUser = async (userInfo, Paddle, paddleUser) => {
