@@ -34,7 +34,6 @@ const Home = () => {
   }, [user, router])
   return (
     <div>
-      {/* <Nav /> */}
       <Hero />
       <LogoCloud />
       <ProductInfo />
