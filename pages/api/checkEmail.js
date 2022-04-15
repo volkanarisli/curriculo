@@ -1,4 +1,6 @@
-import { supabase } from "../../utils/supabase"
+import { getServiceSupabase } from '../../utils/supabase';
+const supabase = getServiceSupabase();
+
 
 const handler = async (req, res) => {
     try {
