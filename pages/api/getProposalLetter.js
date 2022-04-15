@@ -15,8 +15,9 @@ const handler = async (req, res) => {
         requieredSkilsAsText += `${keyword},`
     });
     const prompt = `
-    Generate a proposal letter for me for this freelance job,
-    Description: ${description}
+    Generate a proposal letter for me from given freelance job description and requiered Skills,
+    don't include contact me details
+    freelance job description: ${description}
     Requiered Skills:  ${requieredSkilsAsText}
     Proposal Letter:`
     const { data: { choices } } = await openai.createCompletion("text-davinci-001", {
