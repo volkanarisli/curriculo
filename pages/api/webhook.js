@@ -38,7 +38,7 @@ const isRequestValid = (paddleWebhookData) => {
 }
 const subscriptionCreated = async (data, plans, emailExist) => {
     if (emailExist) {
-        //set update_url and cancel_url of user from supabase
+        //set update_url and cancel_url of user from database
         await supabase
             .from("profile")
             .update({
