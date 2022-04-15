@@ -33,6 +33,8 @@ JwmpTPeGVJK//mQg8ghP1H8d1bvrtKUFpn9a4J/Brk8PL34LmcdeigdYPzWIBEAb
 4MCmVY6GwU8vPIkwkLCmsA+cRrOTdKC0nvU923lrjrwsff1gbyzmkzyMBmcvfpVL
 tYXW/RyiBUzvUW3FPKTrRF0CAwEAAQ==
 -----END PUBLIC KEY-----`
+
+
 const isRequestValid = (paddleWebhookData) => {
     return verifyPaddleWebhook(PUBLIC_KEY, paddleWebhookData);
 }
@@ -114,10 +116,16 @@ const handler = async (req, res) => {
             vendor_auth_code: process.env.PADDLE_API_AUTH_CODE
         }
     );
-    const { data: { emailExist } } = await axios.get(`${process.env.DOMAIN}api/checkEmail`, { params: { email: req.body.email } })
-    const { alert_name } = req.body;
-    webhookActionEnum[alert_name]?.(req.body, response, emailExist);
-    res.status(200).send({ success: true })
+    try {
+        const { data: { emailExist } } = await axios.get(`${process.env.DOMAIN}api/checkEmail`, { params: { email: req.body.email } })
+        const { alert_name } = req.body;
+        webhookActionEnum[alert_name]?.(req.body, response, emailExist);
+        res.status(200).send({ success: true })
+    } catch (error) {
+        console.log(error);
+        res.status(444).send({ success: false })
+    }
+
 }
 
 export default handler
