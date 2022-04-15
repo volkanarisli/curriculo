@@ -27,8 +27,8 @@ const Home = () => {
     }
   }, [router])
   useEffect(() => {
-    setSubscriptionIdOfUser()
-  }, [setSubscriptionIdOfUser])
+    if (user) setSubscriptionIdOfUser()
+  }, [user, setSubscriptionIdOfUser])
   useEffect(() => {
     if (user) router.push('/dashboard')
   }, [user, router])
