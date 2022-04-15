@@ -4,7 +4,7 @@ import axios from 'axios';
 const supabase = getServiceSupabase();
 const { verifyPaddleWebhook } = require('verify-paddle-webhook');
 
-const PUBLIC_KEY = process.env.ENV === 'development' ?
+const PUBLIC_KEY = process.env.ENV === 'development' || 'stage' ?
     `-----BEGIN PUBLIC KEY-----
 MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAu1bDgt6UtxhPV0q31gNu
 W2QATTbtaTj6M4eRMSomqhbfhBJlw49rfGllYtKgPtPTFoPTwyybOKNhxfG9yPfN
@@ -105,7 +105,6 @@ const webhookActionEnum = {
     subscription_payment_failed: (data, plans) => subscriptionPaymentFailed(data, plans),
 }
 const handler = async (req, res) => {
-    console.log(PUBLIC_KEY)
     if (!isRequestValid(req.body)) {
         return res.status(404).send("Request is not valid");
     }
