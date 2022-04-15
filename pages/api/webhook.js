@@ -114,7 +114,7 @@ const handler = async (req, res) => {
             vendor_auth_code: process.env.PADDLE_API_AUTH_CODE
         }
     );
-    const { data: { emailExist } } = await axios.get('http://localhost:3000/api/checkEmail', { params: { email: req.body.email } })
+    const { data: { emailExist } } = await axios.get(`${process.env.DOMAIN}api/checkEmail`, { params: { email: req.body.email } })
     const { alert_name } = req.body;
     webhookActionEnum[alert_name]?.(req.body, response, emailExist);
     res.status(200).send({ success: true })
