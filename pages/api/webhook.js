@@ -105,6 +105,7 @@ const webhookActionEnum = {
     subscription_payment_failed: (data, plans) => subscriptionPaymentFailed(data, plans),
 }
 const handler = async (req, res) => {
+    console.log(PUBLIC_KEY)
     if (!isRequestValid(req.body)) {
         return res.status(404).send("Request is not valid");
     }
