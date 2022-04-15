@@ -20,19 +20,19 @@ bKz9hBl1lXVsIrc+7q/awaID830ytEgUs/FSlnw6pHWu++Tv1wEqbbbdyMKezZOz
 T7dv+IstGHtRc+WhfD1f/10CAwEAAQ==
 -----END PUBLIC KEY-----` :
     `-----BEGIN PUBLIC KEY-----
-MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAu1bDgt6UtxhPV0q31gNu
-W2QATTbtaTj6M4eRMSomqhbfhBJlw49rfGllYtKgPtPTFoPTwyybOKNhxfG9yPfN
-v9B5VC1tfHBcguThmvGYcPYi3xiJ2XWJUohQfDYwGCdkNZqmBinrgjSY3hsXqsC6
-/I9SIu6ao97KjiwLQQj6wcVldh8uUDB+/0YMBkbLlur/TASKxlkCY20ZS53Ht939
-0/M5gAhP0atV5Ys8jyQKO63Miro129EsJbSwFTY2fOfSY20YthkNYNrcWHbKcAIa
-cGThqcrEXWHGHHzvxT3YdnE0Rmx8LmO3sGObcw7DgBb1lPp5vIJPWYp/77EPPnGp
-+X0WTaOvSjzKJ0CD5o+cKQciDsGrISnTGAT1g018X6iPfqddFkN9yNsJD+WJqJn8
-cWBW3g9nnYF62OWwEKX9uHYRQMLg8ghoyiz10x+r+feSNOWgcMY1qKf+WTGXBj1o
-28QbHNI4//8FBsUKyfoAJYvi3WTT3KsBh7Z4RUipoHAjdh/D+gsEOs1xiX5ArHLp
-Ze6w/Hi2Mb5uZDDThSE3mzNFef7T3l5F52ntwJHwo+mcYl6ozp129ayuAzzfR8H0
-bKz9hBl1lXVsIrc+7q/awaID830ytEgUs/FSlnw6pHWu++Tv1wEqbbbdyMKezZOz
-T7dv+IstGHtRc+WhfD1f/10CAwEAAQ==
------END PUBLIC KEY-----`
+    MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA4NylAIN7NGAEBQx0B4td
+    3KR3iS5mF2uGdm8nJ+xGFjnOoOlav7zvJBhhD79YiK3qUy0xxn5OH5El8E5eBcmu
+    t5pYNSEAJdBJscAe0zHenSYaUPfxIEOGcBCbA6ovMuukd6GhUHH0uEVn0WaolND8
+    f+rSXPvSDFk20ryaCUZ+AO68YOCKtJ+LiJtWkSSxR4FPcMZV7Owxuqp/SdwfcOqs
+    uzrk9ZA7Km39gKOeySHUsFcz/0821HXGI5UeyhwMoHoNlB/jhiBGXzK+bgYXV9W/
+    jnQ9oh+VZeURjant5TfJGBPzK3sjRYWoF7523Y4Zo+ObApY5ZJqjGkBeGrNXWF7I
+    tF35pbUmPabgr0FmJR/M4hDarcuSnUkWrlETWs8+5NChDMmO5tRR7+LY2Od8rLzf
+    keXycxkiRrWIl6JFxctHvD3ZJTjXMBuuT4Pag0gqgePeNVotTuMKTfdMiFTG4CH+
+    JwmpTPeGVJK//mQg8ghP1H8d1bvrtKUFpn9a4J/Brk8PL34LmcdeigdYPzWIBEAb
+    22npgM/Jylz6/s86uIjhv4KLwxxvifKurGyaZkRaqG6u4ZvlV5usiLea7x3htl/1
+    4MCmVY6GwU8vPIkwkLCmsA+cRrOTdKC0nvU923lrjrwsff1gbyzmkzyMBmcvfpVL
+    tYXW/RyiBUzvUW3FPKTrRF0CAwEAAQ==
+    -----END PUBLIC KEY-----`
 const isRequestValid = (paddleWebhookData) => {
     return verifyPaddleWebhook(PUBLIC_KEY, paddleWebhookData);
 }
