@@ -1936,6 +1936,11 @@ pend@~1.2.0:
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
   integrity sha1-elfrVQpng/kRUzH89GY9XI4AelA=
 
+php-serialize@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/php-serialize/-/php-serialize-4.0.2.tgz#869bd4e01c2d26ac41c1d3e8058ab00ec072e3e5"
+  integrity sha512-73K9MqCnRn07sXxOht6kVLg+fg1lf/VYpecKy4n9ABcw1PJIAWfaxuQKML27EjolGHWxlXTy3rfh59AGrcUvIA==
+
 picocolors@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
@@ -2482,6 +2487,13 @@ validator@^13.7.0:
   version "13.7.0"
   resolved "https://registry.yarnpkg.com/validator/-/validator-13.7.0.tgz#4f9658ba13ba8f3d82ee881d3516489ea85c0857"
   integrity sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==
+
+verify-paddle-webhook@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/verify-paddle-webhook/-/verify-paddle-webhook-1.1.0.tgz#aa0743bfe2f6079a7e7825212597af27ccc658f4"
+  integrity sha512-YHbKftrNnXKQPsnzwRpR25c7WqYuWkr+tKG/LWkKsMfgG1AKaXzfAqDikLr4+3SyhP4Rb8QCuaex3ZeDIf2YyA==
+  dependencies:
+    php-serialize "^4.0.2"
 
 webidl-conversions@^3.0.0:
   version "3.0.1"

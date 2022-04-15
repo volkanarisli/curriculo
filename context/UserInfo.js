@@ -91,20 +91,20 @@ const Provider = ({ children }) => {
     }
     const subscribeUser = async (restInfo, paddleUserId, userId) => {
         const { billing_period, billing_type, id, name } = restInfo.subscriptionInfo
-        const monthDayEnum = {
-            1: 30,
-            3: 90,
-            6: 180,
-        }
-        const yearDayEnum = {
-            1: 365
-        }
-        const today = new Date()
-        const endDateOfSubscription = new Date()
-        const subscriptionSpan = () => {
-            return billing_type === "month" ?
-                monthDayEnum[billing_period] : yearDayEnum[billing_period]
-        }
+        // const monthDayEnum = {
+        //     1: 30,
+        //     3: 90,
+        //     6: 180,
+        // }
+        // const yearDayEnum = {
+        //     1: 365
+        // }
+        // const today = new Date()
+        // const endDateOfSubscription = new Date()
+        // const subscriptionSpan = () => {
+        //     return billing_type === "month" ?
+        //         monthDayEnum[billing_period] : yearDayEnum[billing_period]
+        // }
         endDateOfSubscription.setDate(today.getDate() + subscriptionSpan())
         const createUserProfile = await supabase
             .from("profile")
@@ -112,7 +112,6 @@ const Provider = ({ children }) => {
                 is_subscribed: true,
                 paddle_user_id: paddleUserId,
                 interval: name,
-                end_of_subscription: endDateOfSubscription,
                 subscription_plan_id: id
             })
             .eq("id", userId)

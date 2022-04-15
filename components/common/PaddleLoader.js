@@ -4,11 +4,11 @@ const PaddleLoader = () => {
     return (
         <Script
             src="https://cdn.paddle.com/paddle/paddle.js"
-            onLoad={async () => {
+            onLoad={() => {
                 if (process.env.PADDLE_SANDBOX) {
                     Paddle.Environment.set("sandbox");
                 }
-                await Paddle.Setup({ vendor: Number(process.env.PADDLE_VENDOR_ID) });
+                Paddle.Setup({ vendor: Number(process.env.PADDLE_VENDOR_ID) });
             }}
         />
     )
