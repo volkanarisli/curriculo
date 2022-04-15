@@ -8,7 +8,12 @@ const PaddleLoader = () => {
                 if (process.env.PADDLE_SANDBOX) {
                     Paddle.Environment.set("sandbox");
                 }
-                Paddle.Setup({ vendor: Number(process.env.PADDLE_VENDOR_ID) });
+                Paddle.Setup({
+                    vendor: Number(process.env.PADDLE_VENDOR_ID),
+                    eventCallback: (eventData) => {
+                        console.log(eventData);
+                    }
+                });
             }}
         />
     )
