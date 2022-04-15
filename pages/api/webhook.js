@@ -6,19 +6,19 @@ const { verifyPaddleWebhook } = require('verify-paddle-webhook');
 
 const PUBLIC_KEY = process.env.ENV === 'development' || 'stage' ?
     `-----BEGIN PUBLIC KEY-----
-MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAu1bDgt6UtxhPV0q31gNu
-W2QATTbtaTj6M4eRMSomqhbfhBJlw49rfGllYtKgPtPTFoPTwyybOKNhxfG9yPfN
-v9B5VC1tfHBcguThmvGYcPYi3xiJ2XWJUohQfDYwGCdkNZqmBinrgjSY3hsXqsC6
-/I9SIu6ao97KjiwLQQj6wcVldh8uUDB+/0YMBkbLlur/TASKxlkCY20ZS53Ht939
-0/M5gAhP0atV5Ys8jyQKO63Miro129EsJbSwFTY2fOfSY20YthkNYNrcWHbKcAIa
-cGThqcrEXWHGHHzvxT3YdnE0Rmx8LmO3sGObcw7DgBb1lPp5vIJPWYp/77EPPnGp
-+X0WTaOvSjzKJ0CD5o+cKQciDsGrISnTGAT1g018X6iPfqddFkN9yNsJD+WJqJn8
-cWBW3g9nnYF62OWwEKX9uHYRQMLg8ghoyiz10x+r+feSNOWgcMY1qKf+WTGXBj1o
-28QbHNI4//8FBsUKyfoAJYvi3WTT3KsBh7Z4RUipoHAjdh/D+gsEOs1xiX5ArHLp
-Ze6w/Hi2Mb5uZDDThSE3mzNFef7T3l5F52ntwJHwo+mcYl6ozp129ayuAzzfR8H0
-bKz9hBl1lXVsIrc+7q/awaID830ytEgUs/FSlnw6pHWu++Tv1wEqbbbdyMKezZOz
-T7dv+IstGHtRc+WhfD1f/10CAwEAAQ==
------END PUBLIC KEY-----` :
+    MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAu1bDgt6UtxhPV0q31gNu
+    W2QATTbtaTj6M4eRMSomqhbfhBJlw49rfGllYtKgPtPTFoPTwyybOKNhxfG9yPfN
+    v9B5VC1tfHBcguThmvGYcPYi3xiJ2XWJUohQfDYwGCdkNZqmBinrgjSY3hsXqsC6
+    /I9SIu6ao97KjiwLQQj6wcVldh8uUDB+/0YMBkbLlur/TASKxlkCY20ZS53Ht939
+    0/M5gAhP0atV5Ys8jyQKO63Miro129EsJbSwFTY2fOfSY20YthkNYNrcWHbKcAIa
+    cGThqcrEXWHGHHzvxT3YdnE0Rmx8LmO3sGObcw7DgBb1lPp5vIJPWYp/77EPPnGp
+    +X0WTaOvSjzKJ0CD5o+cKQciDsGrISnTGAT1g018X6iPfqddFkN9yNsJD+WJqJn8
+    cWBW3g9nnYF62OWwEKX9uHYRQMLg8ghoyiz10x+r+feSNOWgcMY1qKf+WTGXBj1o
+    28QbHNI4//8FBsUKyfoAJYvi3WTT3KsBh7Z4RUipoHAjdh/D+gsEOs1xiX5ArHLp
+    Ze6w/Hi2Mb5uZDDThSE3mzNFef7T3l5F52ntwJHwo+mcYl6ozp129ayuAzzfR8H0
+    bKz9hBl1lXVsIrc+7q/awaID830ytEgUs/FSlnw6pHWu++Tv1wEqbbbdyMKezZOz
+    T7dv+IstGHtRc+WhfD1f/10CAwEAAQ==
+    -----END PUBLIC KEY-----` :
     `-----BEGIN PUBLIC KEY-----
     MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA4NylAIN7NGAEBQx0B4td
     3KR3iS5mF2uGdm8nJ+xGFjnOoOlav7zvJBhhD79YiK3qUy0xxn5OH5El8E5eBcmu
