@@ -4,7 +4,7 @@ import axios from 'axios';
 const supabase = getServiceSupabase();
 const { verifyPaddleWebhook } = require('verify-paddle-webhook');
 
-const PUBLIC_KEY = (process.env.ENV === 'development' || 'stage') ?
+const PUBLIC_KEY = ['development', 'stage'].includes(process.env.ENV) ?
     `-----BEGIN PUBLIC KEY-----
 MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAu1bDgt6UtxhPV0q31gNu
 W2QATTbtaTj6M4eRMSomqhbfhBJlw49rfGllYtKgPtPTFoPTwyybOKNhxfG9yPfN
