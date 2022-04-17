@@ -11,12 +11,12 @@ import LogoIcon from '../components/common/icons/LogoIcon';
 import UpworkIcon from '../components/common/icons/UpworkIcon';
 import Link from 'next/link';
 
+
+
 const Dashboard = () => {
-    const { user, logout } = useUser()
+    const { user, userNotSubscribed, logout } = useUser()
     const router = useRouter()
-
     const [userName, setUserName] = useState('')
-
     const featureCards = [
         {
             href: "/design",
@@ -24,6 +24,7 @@ const Dashboard = () => {
             info: 'Create an AI-supported outstanding resume.',
             bgColor: 'pink',
             badge: 'beta',
+            disabled: userNotSubscribed,
             Icon: LogoIcon
         },
         {
@@ -31,6 +32,7 @@ const Dashboard = () => {
             header: 'Cover Letter',
             info: 'Create a cover letter to show what you can bring to the team.',
             bgColor: 'orange',
+            disabled: userNotSubscribed,
             Icon: PaperClipIcon
         },
         {
@@ -38,6 +40,7 @@ const Dashboard = () => {
             header: 'Employment Summary',
             info: 'Create a Employment Summary to show what you have done and what you can bring to the team.',
             bgColor: 'yellow',
+            disabled: userNotSubscribed,
             Icon: ViewListIcon
         },
         {
@@ -45,6 +48,7 @@ const Dashboard = () => {
             header: 'Upwork Proposal Letter',
             info: 'Create a proposal letter to land your next freelance job.',
             bgColor: 'green',
+            disabled: userNotSubscribed,
             Icon: UpworkIcon
         },
         {
@@ -52,6 +56,7 @@ const Dashboard = () => {
             header: 'Professional Summary',
             info: 'Create a professional summary to enchance your resume and show of your area of expertise.',
             bgColor: 'red',
+            disabled: userNotSubscribed,
             Icon: UserCircleIcon
         },
 
@@ -61,6 +66,7 @@ const Dashboard = () => {
             info: 'Create a motivational letter to enchance your application.',
             bgColor: 'blue',
             badge: 'comingsoon',
+            disabled: userNotSubscribed,
             Icon: AcademicCapIcon
         },
         {
@@ -68,6 +74,7 @@ const Dashboard = () => {
             header: 'Educational Summary',
             info: 'Create a Educational Summary to show what you have learned in your education.',
             bgColor: 'dark_green',
+            disabled: userNotSubscribed,
             Icon: PencilIcon
         }
     ]
@@ -83,7 +90,7 @@ const Dashboard = () => {
     useEffect(() => {
         if (!user) return router.push('/login')
         setUserName(user?.user_metadata?.name)
-    }, [user, router])
+    }, [user, userNotSubscribed, router])
 
 
     return (
@@ -102,10 +109,22 @@ const Dashboard = () => {
                 </div>
 
             </span>
+
             <div className="flex flex-col gap-1">
                 <span className="text-lg text-gray-900">Get a Head Start in Your Career </span>
                 <span className="text-sm text-gray-400">Hello {userName}, Let’s build your career together 🔖</span>
             </div>
+            {
+                userNotSubscribed &&
+                <div className='flex flex-col'>
+                    <span className="text-base text-gray-700">
+                        Huh, it looks like you canceled your subscription or there&apos;s a billing problem 🥺
+                    </span>
+                    <span className="text-base text-gray-700">
+                        You can update your payment info from Account Settings.
+                    </span>
+                </div>
+            }
             <div className="flex justify-center my-3">
                 <div className="flex flex-col justify-center">
                     <Divider className="my-3" />

@@ -27,11 +27,11 @@ const Home = () => {
     }
   }, [router])
   useEffect(() => {
-    if (user) setSubscriptionIdOfUser()
-  }, [user, setSubscriptionIdOfUser])
-  useEffect(() => {
-    if (user) router.push('/dashboard')
-  }, [user, router])
+    if (user) {
+      setSubscriptionIdOfUser()
+      router.push('/dashboard')
+    }
+  }, [user, router, setSubscriptionIdOfUser])
   return (
     <div>
       <Hero />

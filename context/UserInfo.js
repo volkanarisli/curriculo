@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import { supabase } from "../utils/supabase";
 import { useRouter } from "next/router"
 import axios from "axios";
+import { isDateToday } from "../utils/helpers";
 
 
 const Context = createContext();
@@ -35,6 +36,20 @@ const Provider = ({ children }) => {
     }, [loading])
 
     useEffect(() => {
+        const cancelUserSubscription = async () => {
+            if (!user) return
+            if (!cookie) return
+            if (!user.subscription_id) return
+            await supabase
+                .from("profile")
+                .update({
+                    is_subscribed: false,
+                    interval: null,
+                    subscription_plan_id: null,
+                    end_of_subscription: null,
+                })
+                .eq("id", user.id);
+        }
         (async () => {
             const session = await supabase.auth.session()
             await axios.post('/api/set-supabase-cookie', {
@@ -43,7 +58,10 @@ const Provider = ({ children }) => {
             })
             user && setCookie(true)
         })();
-    }, [user])
+        if (user && isDateToday(new Date(user?.end_of_subscription))) {
+            cancelUserSubscription()
+        }
+    }, [user, cookie])
 
     const loginUser = async (userInfo) => {
         const { user, session, error } = await supabase.auth.signIn(userInfo)
@@ -105,7 +123,7 @@ const Provider = ({ children }) => {
         //     return billing_type === "month" ?
         //         monthDayEnum[billing_period] : yearDayEnum[billing_period]
         // }
-        endDateOfSubscription.setDate(today.getDate() + subscriptionSpan())
+        // endDateOfSubscription.setDate(today.getDate() + subscriptionSpan())
         const createUserProfile = await supabase
             .from("profile")
             .update({
@@ -144,10 +162,12 @@ const Provider = ({ children }) => {
             .eq("id", user.id);
     }
 
+
     const exposed = {
         user,
         loading,
         cookie,
+        userNotSubscribed: !user?.is_subscribed,
         loginUser,
         logout,
         registerUser,
