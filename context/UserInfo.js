@@ -14,7 +14,9 @@ const Provider = ({ children }) => {
     const [cookie, setCookie] = useState(false)
     const [loading, setLoading] = useState(false)
     useEffect(() => {
+        // debugger
         const getUserProfile = async () => {
+            // debugger
             const sessionUser = supabase.auth.user()
             if (sessionUser) {
                 const { data: profile } = await supabase
@@ -33,7 +35,7 @@ const Provider = ({ children }) => {
         supabase.auth.onAuthStateChange(() => {
             getUserProfile()
         })
-    }, [loading])
+    }, [loading, router.asPath])
 
     useEffect(() => {
         const cancelUserSubscription = async () => {
@@ -161,8 +163,22 @@ const Provider = ({ children }) => {
             })
             .eq("id", user.id);
     }
-
-
+    const updateUserPersonalInformation = async ({ name, surname }) => {
+        if (!name && !surname) return
+        await supabase.auth.update({
+            data: {
+                name,
+                surname
+            }
+        })
+        return { success: true }
+    }
+    const sendUpdatePassword = async (password) => {
+        if (!password) return
+        const { user, error } = await supabase.auth.update({ password })
+        if (error) return { error }
+        else return { success: true }
+    }
     const exposed = {
         user,
         loading,
@@ -175,6 +191,8 @@ const Provider = ({ children }) => {
         updatePasswordWithAccessToken,
         checkIfAccountAlreadyExistAndOpenCheckout,
         setSubscriptionIdOfUser,
+        updateUserPersonalInformation,
+        sendUpdatePassword
     }
 
 

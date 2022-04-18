@@ -66,7 +66,7 @@ const Dashboard = () => {
             info: 'Create a motivational letter to enchance your application.',
             bgColor: 'blue',
             badge: 'comingsoon',
-            disabled: userNotSubscribed,
+            disabled: true,
             Icon: AcademicCapIcon
         },
         {
@@ -80,7 +80,7 @@ const Dashboard = () => {
     ]
     const personalCards = [
         {
-            href: "/settings",
+            href: "/account-settings",
             header: 'Account Settings',
             info: 'Preferences, Subscriptions and other details.',
             bgColor: 'purple',

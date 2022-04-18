@@ -1,4 +1,5 @@
-import { supabase } from '../../utils/supabase';
+import { getServiceSupabase } from '../../utils/supabase';
+const supabase = getServiceSupabase();
 import { openai } from '../../utils/openai';
 import {
     allKeywordsWithTitles,
