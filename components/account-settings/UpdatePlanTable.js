@@ -33,10 +33,6 @@ const UpdatePlanTable = ({ plans }) => {
         router.reload(window.location.pathname)
 
     }
-    useEffect(() => {
-        console.log(user)
-    }, [user])
-
     return (
         <>
             <PaddleLoader />

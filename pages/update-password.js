@@ -8,10 +8,9 @@ import PasswordRecovery from "../assets/img/PasswordRecovery.svg"
 import { useRouter } from "next/router";
 import { CheckCircleIcon } from "@heroicons/react/outline";
 
-const UpdatePassword = () => {
+const UpdatePassword = ({ accessToken }) => {
     const router = useRouter()
     const { logout, user } = useUser()
-    const accessToken = router.query.at
     const { updatePasswordWithAccessToken } = useUser()
 
     const [userInfo, setUserInfo] = useState({
@@ -45,9 +44,6 @@ const UpdatePassword = () => {
         if (!accessToken) {
             return router.push('/')
         }
-        return () => {
-            (async () => await logout())()
-        };
     }, [accessToken, router, logout])
     useEffect(() => {
         if (!startValidating) return
@@ -57,6 +53,7 @@ const UpdatePassword = () => {
             setHasError({ password: 'Not Strong Enough' })
         }
     }, [userInfo, startValidating])
+
     const passwordForm = (
         <div className="space-y-4 min-w-72 max-w-sm lg:w-96">
             <div className="flex flex-col justify-center items-center mb-10">
@@ -125,6 +122,16 @@ const UpdatePassword = () => {
 
         </div>
     )
+}
+
+export const getServerSideProps = async ({ query }) => {
+    const { at } = query
+
+    return {
+        props: {
+            accessToken: at
+        }
+    }
 }
 
 export default UpdatePassword

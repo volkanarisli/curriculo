@@ -239,10 +239,7 @@ const EducationForm = ({ isResumeBuilder }) => {
     }
     const removeExperience = (index) => {
         const newArr = educationHistory.filter((item) => item.id !== index)
-        // const { [index]: deletedKeyword, ...newKeywords } = keywords
         setEducationHistory([...newArr])
-        // setKeywords(newKeywords)
-
     }
     const getDesc = async (index, experience) => {
         if (keywords[index].length <= 2) {
