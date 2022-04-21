@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import { supabase } from "../utils/supabase";
 import { useRouter } from "next/router"
 import axios from "axios";
+import { isDateToday } from "../utils/helpers";
 
 
 const Context = createContext();
@@ -13,7 +14,9 @@ const Provider = ({ children }) => {
     const [cookie, setCookie] = useState(false)
     const [loading, setLoading] = useState(false)
     useEffect(() => {
+        // debugger
         const getUserProfile = async () => {
+            // debugger
             const sessionUser = supabase.auth.user()
             if (sessionUser) {
                 const { data: profile } = await supabase
@@ -32,18 +35,38 @@ const Provider = ({ children }) => {
         supabase.auth.onAuthStateChange(() => {
             getUserProfile()
         })
-    }, [loading])
+    }, [loading, router.asPath])
 
     useEffect(() => {
+        const cancelUserSubscription = async () => {
+            if (!user) return
+            if (!cookie) return
+            if (!user.subscription_id) return
+            await supabase
+                .from("profile")
+                .update({
+                    is_subscribed: false,
+                    interval: null,
+                    subscription_plan_id: null,
+                    end_of_subscription: null,
+                })
+                .eq("id", user.id);
+        }
         (async () => {
             const session = await supabase.auth.session()
+
             await axios.post('/api/set-supabase-cookie', {
                 event: user ? 'SIGNED_IN' : 'SIGNED_OUT',
                 session
             })
             user && setCookie(true)
+
+
         })();
-    }, [user])
+        if (user && isDateToday(new Date(user?.end_of_subscription))) {
+            cancelUserSubscription()
+        }
+    }, [user, cookie])
 
     const loginUser = async (userInfo) => {
         const { user, session, error } = await supabase.auth.signIn(userInfo)
@@ -105,7 +128,7 @@ const Provider = ({ children }) => {
         //     return billing_type === "month" ?
         //         monthDayEnum[billing_period] : yearDayEnum[billing_period]
         // }
-        endDateOfSubscription.setDate(today.getDate() + subscriptionSpan())
+        // endDateOfSubscription.setDate(today.getDate() + subscriptionSpan())
         const createUserProfile = await supabase
             .from("profile")
             .update({
@@ -143,11 +166,44 @@ const Provider = ({ children }) => {
             })
             .eq("id", user.id);
     }
-
+    const updateUserPersonalInformation = async ({ name, surname }) => {
+        if (!name && !surname) return
+        await supabase.auth.update({
+            data: {
+                name,
+                surname
+            }
+        })
+        return { success: true }
+    }
+    const sendUpdatePassword = async (password) => {
+        if (!password) return
+        const { user, error } = await supabase.auth.update({ password })
+        if (error) return { error }
+        else return { success: true }
+    }
+    const cancelSubsription = (Paddle) => {
+        Paddle.Checkout.open({
+            override: user.cancel_url,
+        });
+    }
+    const updateCard = (Paddle) => {
+        Paddle.Checkout.open({
+            override: user.update_url
+        });
+    }
+    const openCheckout = (plan, Paddle) => {
+        Paddle.Checkout.open({
+            product: plan.id,
+            email: user.email,
+            successCallback: () => router.reload(window.location.pathname)
+        });
+    }
     const exposed = {
         user,
         loading,
         cookie,
+        userNotSubscribed: !user?.is_subscribed,
         loginUser,
         logout,
         registerUser,
@@ -155,6 +211,11 @@ const Provider = ({ children }) => {
         updatePasswordWithAccessToken,
         checkIfAccountAlreadyExistAndOpenCheckout,
         setSubscriptionIdOfUser,
+        updateUserPersonalInformation,
+        sendUpdatePassword,
+        cancelSubsription,
+        updateCard,
+        openCheckout
     }
 
 

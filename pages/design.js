@@ -12,13 +12,14 @@ import Modal from "../components/common/Modal"
 import Link from "next/link"
 
 const Design = () => {
-    const { user } = useUser()
+    const { user, userNotSubscribed } = useUser()
     const router = useRouter()
     const [isMobile, setIsMobile] = useState()
     const [modalOpen, setModalOpen] = useState(false)
     useEffect(() => {
         if (!user) router.push('/login')
-    }, [user, router])
+        if (userNotSubscribed) return router.push('/dashboard')
+    }, [user, userNotSubscribed, router])
     useEffect(() => {
         setIsMobile(isMobileDevice())
     }, [])
@@ -70,7 +71,7 @@ const Design = () => {
                                     Preview Resume
                                 </button>
                             </div>
-                            <Modal open={modalOpen} setOpen={setModalOpen}>
+                            <Modal open={modalOpen} setOpen={setModalOpen} showClose={true}>
                                 <Preview />
                             </Modal>
                         </>
