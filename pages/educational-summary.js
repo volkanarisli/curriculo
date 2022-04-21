@@ -10,12 +10,14 @@ import { useUser } from "../context/UserInfo";
 
 
 const EducationalSummary = () => {
-    const { user } = useUser()
+    const { user, userNotSubscribed } = useUser()
     const router = useRouter()
 
     useEffect(() => {
-        if (!user) router.push('/login')
-    }, [user, router])
+        if (!user) return router.push('/login')
+        if (userNotSubscribed) return router.push('/dashboard')
+
+    }, [user, userNotSubscribed, router])
     return (
         <ResumeInfoProvider>
             <div className="mt-8">

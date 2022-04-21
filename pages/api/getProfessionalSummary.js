@@ -1,4 +1,5 @@
-import { supabase } from '../../utils/supabase';
+import { getServiceSupabase } from '../../utils/supabase';
+const supabase = getServiceSupabase();
 import { openai } from '../../utils/openai';
 import {
     allKeywordsWithTitles,
@@ -7,7 +8,12 @@ import {
 
 const handler = async (req, res) => {
     const { user } = await supabase.auth.api.getUserByCookie(req)
-    if (!user) {
+    const { data: profile } = await supabase
+        .from('profile')
+        .select('*')
+        .eq('id', user.id)
+        .single()
+    if (!user || !profile.is_subscribed) {
         return res.status(401).send("You are not authorized to call this API")
     }
     const { keywords, title } = req.body;

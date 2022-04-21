@@ -9,7 +9,7 @@ const Redirectcard = ({ href, header, info, Icon, bgColor, badge, disabled }) =>
         red: 'bg-red-500',
         yellow: 'bg-rose-300',
         purple: 'bg-purple-700',
-        dark_green:'bg-green-700'
+        dark_green: 'bg-green-700'
     }
     const badges = {
         beta: {
@@ -26,8 +26,8 @@ const Redirectcard = ({ href, header, info, Icon, bgColor, badge, disabled }) =>
     const isDisabled = ['comingsoon'].includes(badge) || disabled
 
     return (
-        <Link href={isDisabled ? '' : href}>
-            <a className={`flex items-stretch px-3 py-4 transition rounded ${!isDisabled && 'hover:shadow-xl hover:-translate-y-2'}
+        <Link href={(isDisabled || disabled) ? '' : href}>
+            <a className={`flex items-stretch px-3 py-4 transition rounded ${(!isDisabled || !disabled) && 'hover:shadow-xl hover:-translate-y-2'}
             ${isDisabled && 'cursor-not-allowed'}`}>
                 <div className="flex flex-col items-center relative mr-4">
                     <div className={`flex items-center justify-center ${colors[bgColor]} h-16 w-16 rounded text-white`}>

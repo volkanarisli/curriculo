@@ -40,15 +40,18 @@ const isRequestValid = (paddleWebhookData) => {
 }
 const subscriptionCreated = async (data, plans, emailExist) => {
     if (emailExist) {
-        //set update_url and cancel_url of user from database
-        await supabase
-            .from("profile")
-            .update({
-                subscription_id: data.subscription_id,
-                update_url: data.update_url,
-                cancel_url: data.cancel_url
-            })
-            .eq('paddle_user_id', data.user_id);
+        //set update_url and cancel_url of user from supabase
+        setTimeout(async () => {
+            await supabase
+                .from("profile")
+                .update({
+                    subscription_id: data.subscription_id,
+                    update_url: data.update_url,
+                    cancel_url: data.cancel_url,
+                    end_of_subscription: new Date(data.next_bill_date),
+                })
+                .eq('paddle_user_id', data.user_id);
+        }, 1000)
     }
 }
 const subscriptionUpdated = async (data, plans, emailExist) => {
@@ -60,6 +63,8 @@ const subscriptionUpdated = async (data, plans, emailExist) => {
                 interval: planName,
                 subscription_plan_id: data.subscription_plan_id,
                 end_of_subscription: new Date(data.next_bill_date),
+                update_url: data.update_url,
+                cancel_url: data.cancel_url,
             })
             .eq("paddle_user_id", data.user_id);
     }
@@ -69,7 +74,9 @@ const subscriptionCancelled = async (data, plans, emailExist) => {
         await supabase
             .from("profile")
             .update({
-                is_subscribed: false,
+                interval: null,
+                subscription_plan_id: null,
+                end_of_subscription: new Date(data.cancellation_effective_date)
             })
             .eq("paddle_user_id", data.user_id);
     }
@@ -77,15 +84,19 @@ const subscriptionCancelled = async (data, plans, emailExist) => {
 const subscriptionPaymentSucceeded = async (data, plans, emailExist) => {
     //update users info according to new payment detail
     const planName = plans.find(item => item.id == data.subscription_plan_id).name;
+
     if (emailExist) {
-        await supabase
-            .from("profile")
-            .update({
-                subscription_plan_id: data.subscription_plan_id,
-                interval: planName,
-                end_of_subscription: new Date(data.next_bill_date),
-            })
-            .eq("paddle_user_id", data.user_id);
+        setTimeout(async () => {
+            await supabase
+                .from("profile")
+                .update({
+                    subscription_plan_id: data.subscription_plan_id,
+                    interval: planName,
+                    end_of_subscription: new Date(data.next_bill_date),
+                    subscription_id: data.subscription_id,
+                })
+                .eq("paddle_user_id", data.user_id);
+        }, 2000)
     }
 }
 const subscriptionPaymentFailed = async (data, plans, emailExist) => {
@@ -95,16 +106,19 @@ const subscriptionPaymentFailed = async (data, plans, emailExist) => {
             .from("profile")
             .update({
                 is_subscribed: false,
+                interval: null,
+                subscription_plan_id: null,
+                end_of_subscription: null,
             })
             .eq("paddle_user_id", data.user_id);
     }
 }
 const webhookActionEnum = {
-    subscription_created: (data, plans) => subscriptionCreated(data, plans),
-    subscription_updated: (data, plans) => subscriptionUpdated(data, plans),
-    subscription_cancelled: (data, plans) => subscriptionCancelled(data, plans),
-    subscription_payment_succeeded: (data, plans) => subscriptionPaymentSucceeded(data, plans),
-    subscription_payment_failed: (data, plans) => subscriptionPaymentFailed(data, plans),
+    subscription_created: (data, plans, emailExist) => subscriptionCreated(data, plans, emailExist),
+    subscription_updated: (data, plans, emailExist) => subscriptionUpdated(data, plans, emailExist),
+    subscription_cancelled: (data, plans, emailExist) => subscriptionCancelled(data, plans, emailExist),
+    subscription_payment_succeeded: (data, plans, emailExist) => subscriptionPaymentSucceeded(data, plans, emailExist),
+    subscription_payment_failed: (data, plans, emailExist) => subscriptionPaymentFailed(data, plans, emailExist),
 }
 const handler = async (req, res) => {
     if (!isRequestValid(req.body)) {
@@ -116,15 +130,18 @@ const handler = async (req, res) => {
             vendor_auth_code: process.env.PADDLE_API_AUTH_CODE
         }
     );
-    try {
-        const { data: { emailExist } } = await axios.get(`${process.env.DOMAIN}api/checkEmail`, { params: { email: req.body.email } })
-        const { alert_name } = req.body;
-        webhookActionEnum[alert_name]?.(req.body, response, emailExist);
-        res.status(200).send({ success: true })
-    } catch (error) {
-        console.log(error);
-        res.status(444).send({ success: false })
+    let isEmailExist = true;
+    if (process.env.ENV !== 'stage') {
+        try {
+            const { data: { emailExist } } = await axios.get(`${process.env.DOMAIN}api/checkEmail`, { params: { email: req.body.email } })
+            isEmailExist = emailExist;
+        } catch (error) {
+            res.status(444).send({ success: false })
+        }
     }
+    const { alert_name } = req.body;
+    webhookActionEnum[alert_name]?.(req.body, response, isEmailExist);
+    res.status(200).send({ success: true })
 
 }
 
