@@ -100,7 +100,6 @@ const subscriptionPaymentSucceeded = async (data, plans, emailExist) => {
     }
 }
 const subscriptionPaymentFailed = async (data, plans, emailExist) => {
-    // attempt_number
     if (emailExist && data.attempt_number > 3) {
         await supabase
             .from("profile")

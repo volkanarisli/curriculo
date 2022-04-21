@@ -10,9 +10,6 @@ const PaddleLoader = () => {
                 }
                 Paddle.Setup({
                     vendor: Number(process.env.PADDLE_VENDOR_ID),
-                    eventCallback: (eventData) => {
-                        console.log(eventData);
-                    }
                 });
             }}
         />

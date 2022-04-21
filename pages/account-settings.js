@@ -40,9 +40,6 @@ export const getServerSideProps = async () => {
             vendor_auth_code: process.env.PADDLE_API_AUTH_CODE
         }
     );
-    // const plans = response.map((option) => {
-    //     return { ...option, title: `${option.name} - ${option.recurring_price.USD}$` }
-    // })
     return {
         props: {
             plans
