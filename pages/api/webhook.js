@@ -71,14 +71,14 @@ const subscriptionUpdated = async (data, plans, emailExist) => {
 }
 const subscriptionCancelled = async (data, plans, emailExist) => {
     if (emailExist) {
-        // await supabase
-        //     .from("profile")
-        //     .update({
-        //         is_subscribed: false,
-        // subscription_plan_id: null,
-        // end_of_subscription: null
-        //     })
-        //     .eq("paddle_user_id", data.user_id);
+        await supabase
+            .from("profile")
+            .update({
+                interval: null,
+                subscription_plan_id: null,
+                end_of_subscription: new Date(data.cancellation_effective_date)
+            })
+            .eq("paddle_user_id", data.user_id);
     }
 }
 const subscriptionPaymentSucceeded = async (data, plans, emailExist) => {
@@ -136,7 +136,6 @@ const handler = async (req, res) => {
             const { data: { emailExist } } = await axios.get(`${process.env.DOMAIN}api/checkEmail`, { params: { email: req.body.email } })
             isEmailExist = emailExist;
         } catch (error) {
-            console.log(error);
             res.status(444).send({ success: false })
         }
     }

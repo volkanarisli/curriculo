@@ -54,11 +54,14 @@ const Provider = ({ children }) => {
         }
         (async () => {
             const session = await supabase.auth.session()
+
             await axios.post('/api/set-supabase-cookie', {
                 event: user ? 'SIGNED_IN' : 'SIGNED_OUT',
                 session
             })
             user && setCookie(true)
+
+
         })();
         if (user && isDateToday(new Date(user?.end_of_subscription))) {
             cancelUserSubscription()
@@ -179,6 +182,23 @@ const Provider = ({ children }) => {
         if (error) return { error }
         else return { success: true }
     }
+    const cancelSubsription = (Paddle) => {
+        Paddle.Checkout.open({
+            override: user.cancel_url,
+        });
+    }
+    const updateCard = (Paddle) => {
+        Paddle.Checkout.open({
+            override: user.update_url
+        });
+    }
+    const openCheckout = (plan, Paddle) => {
+        Paddle.Checkout.open({
+            product: plan.id,
+            email: user.email,
+            successCallback: () => router.reload(window.location.pathname)
+        });
+    }
     const exposed = {
         user,
         loading,
@@ -192,7 +212,10 @@ const Provider = ({ children }) => {
         checkIfAccountAlreadyExistAndOpenCheckout,
         setSubscriptionIdOfUser,
         updateUserPersonalInformation,
-        sendUpdatePassword
+        sendUpdatePassword,
+        cancelSubsription,
+        updateCard,
+        openCheckout
     }
 
 

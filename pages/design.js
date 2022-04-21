@@ -71,7 +71,7 @@ const Design = () => {
                                     Preview Resume
                                 </button>
                             </div>
-                            <Modal open={modalOpen} setOpen={setModalOpen}>
+                            <Modal open={modalOpen} setOpen={setModalOpen} showClose={true}>
                                 <Preview />
                             </Modal>
                         </>
