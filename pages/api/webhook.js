@@ -51,7 +51,7 @@ const subscriptionCreated = async (data, plans, emailExist) => {
                     end_of_subscription: new Date(data.next_bill_date),
                 })
                 .eq('paddle_user_id', data.user_id);
-        }, 1000)
+        }, 3000)
     }
 }
 const subscriptionUpdated = async (data, plans, emailExist) => {
@@ -96,7 +96,7 @@ const subscriptionPaymentSucceeded = async (data, plans, emailExist) => {
                     subscription_id: data.subscription_id,
                 })
                 .eq("paddle_user_id", data.user_id);
-        }, 2000)
+        }, 4000)
     }
 }
 const subscriptionPaymentFailed = async (data, plans, emailExist) => {
