@@ -14,9 +14,7 @@ const Provider = ({ children }) => {
     const [cookie, setCookie] = useState(false)
     const [loading, setLoading] = useState(false)
     useEffect(() => {
-        // debugger
         const getUserProfile = async () => {
-            // debugger
             const sessionUser = supabase.auth.user()
             if (sessionUser) {
                 const { data: profile } = await supabase

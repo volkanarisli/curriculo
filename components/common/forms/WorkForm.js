@@ -219,7 +219,6 @@ const WorkForm = ({ isResumeBuilder }) => {
             id: value.experinceKey,
             [value.name]: value.value
         }
-        // if (experience[value.name] === experiences[value.experinceKey][value.name]) return
         const indexOfExperience = experiences.findIndex(item => item.id === experience.id)
         if (indexOfExperience > -1) {
             let newArr = experiences

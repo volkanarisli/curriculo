@@ -9,7 +9,6 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
     const [hasError, setHasError] = useState({ customKeyword: '' })
     const [isLoading, setIsLoading] = useState(false)
     const updateData = (e, propertyName) => {
-        // ()=> { ...contact, [propertyName]: e }
         setContact(prevState => ({ ...prevState, [propertyName]: e }))
     }
     const getDesc = async () => {
