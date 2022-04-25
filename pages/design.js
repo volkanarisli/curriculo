@@ -31,8 +31,8 @@ const Design = () => {
 
     return (
         <ResumeInfoProvider>
-            <div className="flex flex-col relative lg:flex-row min-h-screen">
-                <div className='mb-10 mt-2 px-6 overflow-y-auto sm:w-1/2 sm:px-20'>
+            <div className="flex flex-col sm:items-center lg:items-stretch relative lg:flex-row min-h-screen">
+                <div className='mb-10 mt-2 px-6 overflow-y-auto lg:w-1/2 sm:px-20'>
                     <div className="flex flex-col justify-center items-center mb-10">
                         <span className="mb-6">
                             <Image src="/logo.svg" alt='Logo' width="50" height="50" />
@@ -76,7 +76,7 @@ const Design = () => {
                             </Modal>
                         </>
                         :
-                        <div className="sm:w-1/2 bg-blue-600 z-10">
+                        <div className="lg:w-1/2 bg-blue-600 z-10">
                             <Preview />
                         </div>
 
