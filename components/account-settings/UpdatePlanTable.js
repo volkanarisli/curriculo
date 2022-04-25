@@ -86,7 +86,7 @@ const UpdatePlanTable = ({ plans }) => {
 
 
                                 <span id={`${plan.id}-description`} className={classNames("mx-4 sm:mx-16", plan.id === Number(user?.subscription_plan_id) ? 'text-indigo-900' : 'text-gray-700')}>
-                                    ${plan.recurring_price.USD} / mo <span className={classNames(plan.id === Number(user?.subscription_plan_id) ? 'text-indigo-700' : 'text-gray-400')}> (${Number(plan.recurring_price.USD * multiplyEnum[plan.id])} / yr)</span>
+                                    ${plan.recurring_price.USD} / mo <span className={classNames(plan.id === Number(user?.subscription_plan_id) ? 'text-indigo-700' : 'text-gray-400')}> (${Number(plan.recurring_price.USD) * multiplyEnum[plan.id]} / yr)</span>
                                 </span>
 
                                 <span id={`${plan.id}-description`} className={classNames(plan.id === Number(user?.subscription_plan_id) ? 'text-indigo-700' : 'text-gray-400')}>
