@@ -1,9 +1,9 @@
 import UserInput from "../../common/UserInput"
 import { useState, useEffect } from "react"
 import { DuplicateIcon, ClipboardIcon } from "@heroicons/react/outline"
-import { copyText, exportTextAsDocxFile } from "../../../utils/helpers"
+import { copyText, exportTextAsDocxFile, getRandomValue, sampleJobDesc, sampleCoverLetters } from "../../../utils/helpers"
 import axios from "axios"
-const CoverLetterForm = () => {
+const CoverLetterForm = ({ isTryout }) => {
     const [jobDescription, setJobDescription] = useState("")
     const [proposalLetter, setProposalLetter] = useState("")
     const [isLoading, setIsLoading] = useState(false)
@@ -27,6 +27,14 @@ const CoverLetterForm = () => {
         setIsLoading(false)
         setProposalLetter(data.response.trim())
     }
+    const getDescWithTryOut = () => {
+        setIsLoading(true)
+        setTimeout(() => {
+            setIsLoading(false)
+            setProposalLetter(getRandomValue(sampleCoverLetters).trim())
+        }, [1000])
+    }
+
     return (
         <div>
             <div className="flex flex-col mb-8">
@@ -40,25 +48,30 @@ const CoverLetterForm = () => {
             <div>
                 <div className="flex flex-col relative">
                     <UserInput onInputChange={handleJobDescription}
-                        value={jobDescription}
+                        value={isTryout ? sampleJobDesc : jobDescription}
                         name="jobDescription"
                         type="textarea"
                         input="textarea"
                         placeholder="Job Description From Linkedin, Indeed, Glassdoor, etc"
                         hasError={hasError}
+                        isTryout={isTryout}
                         className="border rounded h-64 w-full px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
                     />
                     <span className="text-xs text-gray-500 mt-3">
                         Copy and paste the description of the Job you are applying for.
                     </span>
-                    <ClipboardIcon
-                        title="Paste Clipboard"
-                        onClick={pasteClipbaord}
-                        className="h-5 w-5 text-gray-500 absolute right-2 top-2 hover:scale-125 cursor-pointer" />
+                    {
+                        !isTryout &&
+                        <ClipboardIcon
+                            title="Paste Clipboard"
+                            onClick={pasteClipbaord}
+                            className="h-5 w-5 text-gray-500 absolute right-2 top-2 hover:scale-125 cursor-pointer" />
+                    }
+
                 </div>
             </div>
             <button
-                onClick={getDesc}
+                onClick={isTryout ? getDescWithTryOut : getDesc}
                 className="px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-full my-7">
                 Generate Cover Letter
             </button>
@@ -72,21 +85,30 @@ const CoverLetterForm = () => {
                     placeholder="Generated Cover Letter"
                     hasError={hasError}
                     isLoading={isLoading}
+                    isTryout={isTryout}
                     className="border rounded w-full h-64 px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
                 />
                 <span className="text-xs text-gray-500 mt-3">
                     Dont forget the edit, fine-tune your cover letter.
                 </span>
-                <DuplicateIcon
-                    title="Paste Clipboard"
-                    onClick={() => copyText(proposalLetter)}
-                    className="h-5 w-5 text-gray-500 absolute right-2 top-2 hover:scale-125 cursor-pointer" />
+                {
+                    !isTryout &&
+                    <DuplicateIcon
+                        title="Paste Clipboard"
+                        onClick={() => copyText(proposalLetter)}
+                        className="h-5 w-5 text-gray-500 absolute right-2 top-2 hover:scale-125 cursor-pointer" />
+                }
+
             </div>
-            <button
-                onClick={() => exportTextAsDocxFile(proposalLetter)}
-                className="px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-2/3 my-7">
-                Export Cover Letter as .docx
-            </button>
+            {
+                !isTryout &&
+                <button
+                    onClick={() => exportTextAsDocxFile(proposalLetter)}
+                    className="px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-2/3 my-7">
+                    Export Cover Letter as .docx
+                </button>
+            }
+
 
         </div>
     )
