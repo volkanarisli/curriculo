@@ -9,6 +9,7 @@ import AiInfo from '../components/landing/AiInfo';
 import GetMailSubs from '../components/landing/GetMailSubs';
 import Pricing from '../components/landing/Pricing';
 import Footer from '../components/landing/Footer';
+import Tryout from '../components/landing/Tryout';
 import { useUser } from '../context/UserInfo'
 
 
@@ -35,6 +36,7 @@ const Home = () => {
   return (
     <div>
       <Hero />
+      <Tryout />
       <LogoCloud />
       <ProductInfo />
       <AiInfo />

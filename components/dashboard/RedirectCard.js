@@ -1,16 +1,6 @@
 import Link from "next/link"
+import { colors } from "../../utils/helpers"
 const Redirectcard = ({ href, header, info, Icon, bgColor, badge, disabled }) => {
-
-    const colors = {
-        blue: 'bg-blue-500',
-        pink: 'bg-pink-500',
-        orange: 'bg-orange-500',
-        green: 'bg-upwork',
-        red: 'bg-red-500',
-        yellow: 'bg-rose-300',
-        purple: 'bg-purple-700',
-        dark_green: 'bg-green-700'
-    }
     const badges = {
         beta: {
             text: "Beta",

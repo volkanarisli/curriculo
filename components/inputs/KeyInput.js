@@ -1,21 +1,22 @@
 import {
     allKeywords, getGivenNumberKeywordsFromArray,
     shuffleArray,
-    getRandomValue
-
+    getRandomValue,
+    classNames
 } from "../../utils/helpers";
 import { useEffect, useState } from "react";
 import { PlusIcon, CheckIcon, XIcon } from "@heroicons/react/solid";
 import UserInput from "../common/UserInput";
 import Divider from "../common/Divider";
 
-const KeyInput = ({ onInputChange, value, setHasError, hasError, index }) => {
+const KeyInput = ({ onInputChange, value, setHasError, hasError, index, isTryout }) => {
     const [selectedKeywords, setSelectedKeywords] = useState([]);
     const [displayedKeywords, setDisplayedKeywords] = useState([]);
     const [usersKeywords, setUsersKeywords] = useState([]);
     const [customKeyword, setCustomKeywords] = useState('');
 
     const addKeyword = (index, selectedKeyword) => {
+        if (isTryout) return
         let tempDisplayedKeywords = [...displayedKeywords];
         tempDisplayedKeywords[index].selected = !selectedKeyword.selected
         setDisplayedKeywords(tempDisplayedKeywords);
@@ -41,6 +42,7 @@ const KeyInput = ({ onInputChange, value, setHasError, hasError, index }) => {
     }
     const toggleKeyword = (selectedKeywordName, add, isCustom) => {
         if (!selectedKeywordName) return
+        if (isTryout) return
         if (add) {
             if (index + 1) {
                 if (value?.[index].includes(selectedKeywordName)) {
@@ -115,18 +117,22 @@ const KeyInput = ({ onInputChange, value, setHasError, hasError, index }) => {
     }, [value, index])
     return (
         <div className="flex flex-col">
-            <div className="flex flex-wrap mb-3 mt-3">
+            <div className={classNames("flex flex-wrap mb-3 mt-3", isTryout && 'cursor-not-allowed')}>
                 {
                     displayedKeywords?.map((eachKeyword, index) => {
                         return (
                             <div key={index}
                                 onClick={() => addKeyword(index, eachKeyword)}
-                                onMouseEnter={() => hoverKeyword(index, true)}
-                                onMouseLeave={() => hoverKeyword(index, false)}
-                                className={`flex items-center border border-gray-300
-                                group cursor-pointer shadow-sm text-xs rounded py-2 px-3 mr-3 mt-2
-                            transition duration-150 hover:bg-blue-600
-                            ${eachKeyword.selected && 'bg-blue-600'}`
+                                onMouseEnter={() => {
+                                    if (isTryout) return
+                                    hoverKeyword(index, true)
+                                }}
+                                onMouseLeave={() => {
+                                    if (isTryout) return
+                                    hoverKeyword(index, false)
+                                }}
+                                className={classNames('flex items-center border border-gray-300  group cursor-pointer shadow-sm text-xs rounded py-2 px-3 mr-3 mt-2  transition duration-150 hover:bg-blue-600',
+                                    eachKeyword.selected && 'bg-blue-600')
                                 }>
                                 <p className={`mr-2 group-hover:text-white ${eachKeyword.selected ? 'text-white' : 'text-gray-700 '}`}>
                                     {eachKeyword.name}
@@ -179,29 +185,35 @@ const KeyInput = ({ onInputChange, value, setHasError, hasError, index }) => {
                     })
                 }
             </div>
-            <div className="max-w-sm">
-                <div className="flex">
-                    <span className="w-full mr-2">
-                        <UserInput onInputChange={e => setCustomKeywords(e.target.value)}
-                            value={customKeyword}
-                            hasError={hasError}
-                            name="customKeyword"
-                            type="text"
-                            input="text"
-                            placeholder="Time Travel"
-                        >
-                            <p className="text-2xs text-gray-700 mb-1 font-semibold absolute -top-4">What do you bring to the table? Write your own keywords.</p>
+            {
+                !isTryout &&
+                <div className="max-w-sm">
+                    <div className="flex">
+                        <span className="w-full mr-2">
+                            <UserInput onInputChange={e => setCustomKeywords(e.target.value)}
+                                value={customKeyword}
+                                hasError={hasError}
+                                name="customKeyword"
+                                type="text"
+                                input="text"
+                                placeholder="Time Travel"
+                            >
+                                <p className="text-2xs text-gray-700 mb-1 font-semibold absolute -top-4">What do you bring to the table? Write your own keywords.</p>
 
-                        </UserInput>
-                    </span>
+                            </UserInput>
+                        </span>
 
-                    <button onClick={() => toggleKeyword(customKeyword, true, true)}
-                        className="flex items-center justify-center w-30 px-3 text-base font-medium rounded-md text-white bg-blue-600">
-                        Add
-                    </button>
+
+                        <button onClick={() => toggleKeyword(customKeyword, true, true)}
+                            className="flex items-center justify-center w-30 px-3 text-base font-medium rounded-md text-white bg-blue-600">
+                            Add
+                        </button>
+
+
+                    </div>
+
                 </div>
-
-            </div>
+            }
         </div>
     )
 }
