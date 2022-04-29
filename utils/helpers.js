@@ -225,16 +225,7 @@ export const exportTextAsDocxFile = (text) => {
     link.click();
 }
 
-export const colors = {
-    blue: 'bg-blue-500',
-    pink: 'bg-pink-500',
-    orange: 'bg-orange-500',
-    green: 'bg-upwork',
-    red: 'bg-red-500',
-    yellow: 'bg-rose-300',
-    purple: 'bg-purple-700',
-    dark_green: 'bg-green-700'
-}
+
 export const sampleJobDesc = `
 Description
 We at StaticKit believe that everyone can turn their passion into a career! With our cloud-based SaaS platform solution statickit.com, we offer people the opportunity to create and sell digital products and online courses quickly and easily. More than 35,000 statickit already trust in our expertise!
