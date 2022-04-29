@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { useResumeInfo } from "../../../context/ResumeInfo";
 import axios from "axios";
 import UserInput from "../../common/UserInput"
-const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
+import { getRandomValue, sampleProfessionalSummaries, sampleJobTitle } from "../../../utils/helpers";
+const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
     const { contact, setContact } = useResumeInfo()
     const [keywords, setKeywords] = useState([])
     const [hasError, setHasError] = useState({ customKeyword: '' })
@@ -22,6 +23,13 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
         setIsLoading(false)
         updateData(data.response.trim(), 'desc')
     }
+    const getDescWithTryOut = () => {
+        setIsLoading(true)
+        setTimeout(() => {
+            setIsLoading(false)
+            updateData(getRandomValue(sampleProfessionalSummaries).trim(), 'desc')
+        }, [1000])
+    }
     useEffect(() => {
         //set on page initial info
         setContact((prevState) => ({
@@ -38,6 +46,11 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
             keywords
         }))
     }, [keywords, setContact])
+    useEffect(() => {
+        if (isTryout) {
+            setKeywords(['Ability to Listen', 'Networking Ability', 'Resiliency', 'Enthusiasm', 'Multitasking Skills', 'Communications Skills'])
+        }
+    }, [isTryout])
 
     return (
 
@@ -84,7 +97,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
                     }
 
                     <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
-                        value={contact?.currentTitle}
+                        value={isTryout ? sampleJobTitle : contact?.currentTitle}
                         name="currentTitle"
                         type="text"
                         input="text"
@@ -137,6 +150,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
                             input="keys"
                             label="Examples"
                             hasError={hasError}
+                            isTryout={isTryout}
                             setHasError={setHasError}
                         />
                     </div>
@@ -144,7 +158,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
             </div>
             <div className="flex items-stretch w-full mb-4">
                 <button
-                    onClick={getDesc}
+                    onClick={isTryout ? getDescWithTryOut : getDesc}
                     className="flex items-center justify-center w-30 px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 flex-grow">
                     Generate Summary
                 </button>
@@ -159,6 +173,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder }) => {
                         input="textarea"
                         placeholder="Responsible for A/B tests - designing and conducting experiments to test the efficacy of different changes/improvements, analyzing the results, and making decisions based on those results."
                         className="border rounded h-40 w-full px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
+                        isTryout={isTryout}
                         isLoading={isLoading}
                     />
                     <span className="text-xs text-gray-500">You can edit it directly above and head over to next step when you are done! </span>

@@ -1,9 +1,9 @@
 import UserInput from "../../common/UserInput"
 import { useState, useEffect } from "react"
 import { DuplicateIcon, ClipboardIcon } from "@heroicons/react/outline"
-import { copyText } from "../../../utils/helpers"
+import { copyText, sampleProposalLetters, sampleUpworkJobsDesc, getRandomValue } from "../../../utils/helpers"
 import axios from "axios"
-const UpworkForm = () => {
+const UpworkForm = ({ isTryout }) => {
     const [jobDescription, setJobDescription] = useState("")
     const [proposalLetter, setProposalLetter] = useState("")
     const [keywords, setKeywords] = useState([])
@@ -27,6 +27,19 @@ const UpworkForm = () => {
         setIsLoading(false)
         setProposalLetter(data.response.trim())
     }
+    const getDescWithTryOut = () => {
+        setIsLoading(true)
+        setTimeout(() => {
+            setIsLoading(false)
+            setProposalLetter(getRandomValue(sampleProposalLetters).trim())
+        }, [1000])
+    }
+
+    useEffect(() => {
+        if (isTryout) {
+            setKeywords(['Web Design', ' Mockup', 'Wireframing', 'Responsive Design', 'Graphic Design', 'UserFlow', 'User Interface Design'])
+        }
+    }, [isTryout])
     return (
         <div>
             <div className="flex flex-col mb-8">
@@ -40,21 +53,26 @@ const UpworkForm = () => {
             <div>
                 <div className="flex flex-col relative">
                     <UserInput onInputChange={handleJobDescription}
-                        value={jobDescription}
+                        value={isTryout ? sampleUpworkJobsDesc : jobDescription}
                         name="jobDescription"
                         type="textarea"
                         input="textarea"
                         placeholder="Gig Description From Upwork"
                         hasError={hasError}
+                        isTryout={isTryout}
                         className="border rounded h-64 w-full px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
                     />
                     <span className="text-xs text-gray-500 mt-3">
                         Copy and paste the description of the gig you are applying for.
                     </span>
-                    <ClipboardIcon
-                        title="Paste Clipboard"
-                        onClick={pasteClipbaord}
-                        className="h-5 w-5 text-gray-500 absolute right-2 top-2 hover:scale-125 cursor-pointer" />
+                    {
+                        !isTryout &&
+                        <ClipboardIcon
+                            title="Paste Clipboard"
+                            onClick={pasteClipbaord}
+                            className="h-5 w-5 text-gray-500 absolute right-2 top-2 hover:scale-125 cursor-pointer" />
+                    }
+
                 </div>
                 <div className="mt-5">
                     <span className="text-large text-gray-500">
@@ -67,12 +85,13 @@ const UpworkForm = () => {
                         input="keys"
                         label="Examples"
                         hasError={hasError}
+                        isTryout={isTryout}
                         setHasError={setHasError}
                     />
                 </div>
             </div>
             <button
-                onClick={getDesc}
+                onClick={isTryout ? getDescWithTryOut : getDesc}
                 className="px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-full my-7">
                 Generate Proposal Letter
             </button>
@@ -86,15 +105,20 @@ const UpworkForm = () => {
                     placeholder="Generated Proposal Letter"
                     hasError={hasError}
                     isLoading={isLoading}
+                    isTryout={isTryout}
                     className="border rounded h-64 w-full px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
                 />
                 <span className="text-xs text-gray-500 mt-3">
                     Dont forget the edit, fine-tune your proposal letter.
                 </span>
-                <DuplicateIcon
-                    title="Paste Clipboard"
-                    onClick={() => copyText(proposalLetter)}
-                    className="h-5 w-5 text-gray-500 absolute right-2 top-2 hover:scale-125 cursor-pointer" />
+                {
+                    !isTryout &&
+                    <DuplicateIcon
+                        title="Paste Clipboard"
+                        onClick={() => copyText(proposalLetter)}
+                        className="h-5 w-5 text-gray-500 absolute right-2 top-2 hover:scale-125 cursor-pointer" />
+                }
+
             </div>
 
         </div>
