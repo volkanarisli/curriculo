@@ -1,7 +1,16 @@
 
-import { colors, classNames } from "../../utils/helpers"
+import { classNames } from "../../utils/helpers"
 const DisplayTabs = ({ tabs, selectedTab, updateTab }) => {
-
+    const colors = {
+        blue: 'bg-blue-500',
+        pink: 'bg-pink-500',
+        orange: 'bg-orange-500',
+        green: 'bg-upwork',
+        red: 'bg-red-500',
+        yellow: 'bg-rose-300',
+        purple: 'bg-purple-700',
+        dark_green: 'bg-green-700'
+    }
     return (
         <div className="max-w-xl mx-auto flex justify-between">
             {
