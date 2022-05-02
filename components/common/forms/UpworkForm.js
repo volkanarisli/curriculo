@@ -75,9 +75,13 @@ const UpworkForm = ({ isTryout }) => {
 
                 </div>
                 <div className="mt-5">
-                    <span className="text-large text-gray-500">
-                        Select/Add the keywords that requiered on the Job Description.
-                    </span>
+                    {
+                        !isTryout &&
+                        <span className="text-large text-gray-500">
+                            Select/Add the keywords that requiered on the Job Description.
+                        </span>
+                    }
+
                     <UserInput onInputChange={setKeywords}
                         value={keywords}
                         name="keys"

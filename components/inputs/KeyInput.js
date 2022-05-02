@@ -117,38 +117,42 @@ const KeyInput = ({ onInputChange, value, setHasError, hasError, index, isTryout
     }, [value, index])
     return (
         <div className="flex flex-col">
-            <div className={classNames("flex flex-wrap mb-3 mt-3", isTryout && 'cursor-not-allowed')}>
-                {
-                    displayedKeywords?.map((eachKeyword, index) => {
-                        return (
-                            <div key={index}
-                                onClick={() => addKeyword(index, eachKeyword)}
-                                onMouseEnter={() => {
-                                    if (isTryout) return
-                                    hoverKeyword(index, true)
-                                }}
-                                onMouseLeave={() => {
-                                    if (isTryout) return
-                                    hoverKeyword(index, false)
-                                }}
-                                className={classNames('flex items-center border border-gray-300  group cursor-pointer shadow-sm text-xs rounded py-2 px-3 mr-3 mt-2  transition duration-150 hover:bg-blue-600',
-                                    eachKeyword.selected && 'bg-blue-600')
-                                }>
-                                <p className={`mr-2 group-hover:text-white ${eachKeyword.selected ? 'text-white' : 'text-gray-700 '}`}>
-                                    {eachKeyword.name}
-                                </p>
-                                <div>
-                                    {
-                                        eachKeyword.hovered || eachKeyword.selected ?
-                                            <CheckIcon className="w-4 h-4 text-white" /> :
-                                            <PlusIcon className="w-4 h-4 text-gray-400" />
-                                    }
+            {
+                !isTryout &&
+                <div className={classNames("flex flex-wrap mb-3 mt-3", isTryout && 'cursor-not-allowed')}>
+                    {
+                        displayedKeywords?.map((eachKeyword, index) => {
+                            return (
+                                <div key={index}
+                                    onClick={() => addKeyword(index, eachKeyword)}
+                                    onMouseEnter={() => {
+                                        if (isTryout) return
+                                        hoverKeyword(index, true)
+                                    }}
+                                    onMouseLeave={() => {
+                                        if (isTryout) return
+                                        hoverKeyword(index, false)
+                                    }}
+                                    className={classNames('flex items-center border border-gray-300  group cursor-pointer shadow-sm text-xs rounded py-2 px-3 mr-3 mt-2  transition duration-150 hover:bg-blue-600',
+                                        eachKeyword.selected && 'bg-blue-600')
+                                    }>
+                                    <p className={`mr-2 group-hover:text-white ${eachKeyword.selected ? 'text-white' : 'text-gray-700 '}`}>
+                                        {eachKeyword.name}
+                                    </p>
+                                    <div>
+                                        {
+                                            eachKeyword.hovered || eachKeyword.selected ?
+                                                <CheckIcon className="w-4 h-4 text-white" /> :
+                                                <PlusIcon className="w-4 h-4 text-gray-400" />
+                                        }
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
+                            )
+                        })
+                    }
+                </div>
+            }
+
             {
                 usersKeywords?.length > 0 &&
                 <Divider className="mb-3">
@@ -163,12 +167,18 @@ const KeyInput = ({ onInputChange, value, setHasError, hasError, index, isTryout
                         return (
                             <div key={index}
                                 onClick={() => toggleKeyword(item.name, false)}
-                                onMouseEnter={() => hoverUsersKeywords(index, item)}
-                                onMouseLeave={() => hoverUsersKeywords(index, item)}
-                                className="flex items-center border hover:bg-red-700 border-gray-300
-                            cursor-pointer shadow-sm text-xs rounded py-2 px-3 mr-3 mt-2
-                            transition-colors duration-150
-                            bg-blue-600">
+                                onMouseEnter={() => {
+                                    if (isTryout) return
+                                    hoverUsersKeywords(index, item)
+                                }
+                                }
+                                onMouseLeave={() => {
+                                    if (isTryout) return
+                                    hoverUsersKeywords(index, item)
+                                }}
+                                className={classNames("flex items-center border  border-gray-300 cursor-pointer shadow-sm text-xs rounded py-2 px-3 mr-3 mt-2  transition-colors duration-150  bg-blue-600",
+                                    !isTryout && 'hover:bg-red-700')}
+                            >
                                 <p className="mr-2 text-white">
                                     {item.name}
                                 </p>
