@@ -23,7 +23,7 @@ const UserInput = ({ children, ...props }) => {
     return (
         <div className="flex flex-col w-full relative">
             {
-                !children &&
+                (!children && !props.isTryout)  &&
                 <label className="block text-sm font-medium text-gray-700">
                     {props?.label}
                 </label>
