@@ -51,7 +51,7 @@ module.exports = {
       },
       colors: {
         'barn-background': '#FFFAE7',
-        'upwork': "#6FDA44"
+        'upwork': "#14A800"
       }
     },
   },

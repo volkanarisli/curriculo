@@ -29,7 +29,7 @@ const Redirectcard = ({ href, header, info, Icon, bgColor, badge, disabled }) =>
             <a className={`flex items-stretch px-3 py-4 transition rounded ${(!isDisabled || !disabled) && 'hover:shadow-xl hover:-translate-y-2'}
             ${isDisabled && 'cursor-not-allowed'}`}>
                 <div className="flex flex-col items-center relative mr-4">
-                    <div className={`flex items-center justify-center ${colors[bgColor]} h-16 w-16 rounded text-white`}>
+                    <div className={`flex items-center justify-center ${colors[bgColor]} h-16 w-16 rounded-full text-white`}>
                         <Icon className="h-7 w-7" />
                     </div>
                     {
