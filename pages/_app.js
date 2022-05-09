@@ -17,6 +17,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
     '/upwork-proposal-letter', '/cover-letter',
     '/employment-summary', '/professional-summary',
     '/educational-summary'].includes(router.pathname)
+  const hideLandinglinks = ['/login', '/register'].includes(router.pathname)
   useEffect(() => {
     function initDesk360Chat() {
       window.desk360Chat.init({
@@ -69,7 +70,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
           <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         </Head>
         {
-          !hideNav && <Nav />
+          !hideNav && <Nav hideLandinglinks={hideLandinglinks} />
         }
         <Component {...pageProps} />
       </UserProvider>

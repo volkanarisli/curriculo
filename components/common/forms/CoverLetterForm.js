@@ -1,7 +1,7 @@
 import UserInput from "../../common/UserInput"
 import { useState, useEffect } from "react"
 import { DuplicateIcon, ClipboardIcon } from "@heroicons/react/outline"
-import { copyText, exportTextAsDocxFile, getRandomValue, sampleJobDesc, sampleCoverLetters } from "../../../utils/helpers"
+import { copyText, exportTextAsDocxFile, getRandomValue, sampleJobDesc, sampleCoverLetters, exportTextAsTxtFile } from "../../../utils/helpers"
 import axios from "axios"
 const CoverLetterForm = ({ isTryout }) => {
     const [jobDescription, setJobDescription] = useState("")
@@ -103,9 +103,9 @@ const CoverLetterForm = ({ isTryout }) => {
             {
                 !isTryout &&
                 <button
-                    onClick={() => exportTextAsDocxFile(proposalLetter)}
+                    onClick={() => exportTextAsTxtFile(proposalLetter)}
                     className="px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-2/3 my-7">
-                    Export Cover Letter as .docx
+                    Export Cover Letter as .txt
                 </button>
             }
 
