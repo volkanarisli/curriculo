@@ -3,64 +3,73 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useUser } from '../../context/UserInfo'
-const Nav = () => {
-    const { user, logout } = useUser()
-    return (
-        <div className="bg-white">
-            <header>
-                <div className="relative bg-white">
-                    <div className="flex justify-between items-center container max-w-7xl mx-auto px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-8">
-                        <div className="flex justify-start lg:flex-1">
-                            <Link href="/">
-                                <a>
-                                    <span className="sr-only">Curriculo</span>
-                                    <Image className="h-8 w-14 sm:h-10" src="/logomark.svg" alt="logo" width="205" height="45" />
-                                </a>
-                            </Link>
-                        </div>
-                        <div className="-mr-2 -my-2 md:hidden">
-                            <button type="button"
-                                className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-400"
-                                aria-expanded="false">
-                                <span className="sr-only">Open menu</span>
+import { isMobileDevice } from "../../utils/helpers";
 
-                                <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor" aria-hidden="true">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            </button>
-                        </div>
-                        <Link href="/design">
-                            <a
-                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-600">
-                                Get Started Now
+const Nav = ({ hideLandinglinks }) => {
+    const { user, logout } = useUser()
+
+    const tabs = [
+        {
+            name: 'Products',
+            scrollId: 'products',
+        },
+        {
+            name: 'Benefits',
+            scrollId: 'benefits',
+        },
+        {
+            name: 'Company',
+            scrollId: 'company',
+        },
+        {
+            name: 'Blog',
+            href: '/blog',
+        }
+    ]
+    return (
+
+        <header className="fixed top-0 z-20 w-full drop-shadow-md">
+            <div className="bg-white">
+                <div className="flex relative justify-between items-center container mx-auto pt-5 pb-10 md:px-4 md:py-6 ">
+                    <div className="w-40">
+                        <Link href="/">
+                            <a>
+                                <span className="sr-only">Curriculo</span>
+                                <Image src="/logo.svg" alt='Logo' width="50" height="50" />
                             </a>
                         </Link>
-                        <div suppressHydrationWarning={true}>
-                            {
-                                process.browser &&
-                                (
-                                    user ?
-                                        <a
-                                            onClick={logout}
-                                            className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-600">
-                                            Logout
-                                        </a>
-                                        :
-                                        <Link href="/login">
-                                            <a
-                                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-600">
-                                                Login
-                                            </a>
-                                        </Link>
-                                )
-                            }
-                        </div>
+                    </div>
+                    <div className="text-gray-700 flex w-full justify-between md:gap-3 absolute bottom-3 md:static md:justify-center items-center">
+                        {
+                            !hideLandinglinks &&
+                            tabs.map(({ name, href, scrollId }, index) => (
+                                <Link href={scrollId ? `#${scrollId}` : `/${href}`} key={index}>
+                                    <a>
+                                        <span className="">{name}</span>
+                                    </a>
+                                </Link>
+                            ))
+                        }
+                    </div>
+                    <div className="flex items-center md:w-40">
+                        <Link href="/login">
+                            <a
+                                className="text-gray-700">
+                                Login
+                            </a>
+                        </Link>
+                        <Link href="/register">
+                            <a
+                                className="ml-6 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-600">
+                                Sign Up
+                            </a>
+                        </Link>
                     </div>
                 </div>
+            </div>
 
-            </header>
-        </div>
+        </header>
+
     )
 };
 

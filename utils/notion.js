@@ -37,7 +37,7 @@ export const getEmails = async () => {
         sorts: [
             {
                 property: 'title',
-                direction: 'descending'
+                direction: 'descending',
             }
         ]
     })

@@ -224,6 +224,14 @@ export const exportTextAsDocxFile = (text) => {
     link.download = 'coverletter.docx';
     link.click();
 }
+export const exportTextAsTxtFile = (text) => {
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'coverletter.txt';
+    link.click();
+}
 
 
 export const sampleJobDesc = `
@@ -377,9 +385,9 @@ export const sampleProposalLetters = [
 ]
 
 export const sampleProfessionalSummaries = [
-`I have the ability to listen, networking ability, resiliency, enthusiasm, multitasking skills, and communications skills. I am able to work well with others and am a team player. I am also able to work independently and am self-motivated. I am looking for a position where I can use my skills and abilities to help the company reach its goals.`,
-`I have the ability to listen, networking ability, resiliency, enthusiasm, multitasking skills, and communications skills. I am able to work with different types of people and am very flexible. I work well under pressure and can always maintain a positive attitude.`,
-`I am a Salesman with a technical skillset. I have the ability to listen and network with others, as well as the resilience to stay positive and enthusiastic in the face of rejection. I am also able to multitask and communicate effectively with others.`
+    `I have the ability to listen, networking ability, resiliency, enthusiasm, multitasking skills, and communications skills. I am able to work well with others and am a team player. I am also able to work independently and am self-motivated. I am looking for a position where I can use my skills and abilities to help the company reach its goals.`,
+    `I have the ability to listen, networking ability, resiliency, enthusiasm, multitasking skills, and communications skills. I am able to work with different types of people and am very flexible. I work well under pressure and can always maintain a positive attitude.`,
+    `I am a Salesman with a technical skillset. I have the ability to listen and network with others, as well as the resilience to stay positive and enthusiastic in the face of rejection. I am also able to multitask and communicate effectively with others.`
 ]
 
 export const sampleJobTitle = 'Salesman'
