@@ -6,7 +6,7 @@ import SettingsRow from "../components/account-settings/SettingsRow";
 import PersonalInfoForm from "../components/account-settings/PersonalInfoForm";
 import UpdatePlanTable from "../components/account-settings/UpdatePlanTable";
 import axios from "axios";
-
+import Link from "next/link";
 
 const AccountSettings = ({ plans }) => {
     const { user } = useUser()
@@ -16,9 +16,21 @@ const AccountSettings = ({ plans }) => {
     }, [user, router])
     return (
         <div className="container mx-auto mt-5">
-            <div className="flex flex-col">
-                <span className="text-lg text-gray-900">Account Settings</span>
-                <span className="text-sm text-gray-500">Update your billing and account information.</span>
+            <div className="flex">
+                <Link href='/dashboard'>
+                    <a className="flex items-center mr-3 justify-center py-3 px-5 border border-transparent text-base font-medium rounded-md text-indigo-900 bg-indigo-50 border-indigo-200 sm:left-8 left-2">
+                        ←
+                        <span className="sm:block sm:ml-2 hidden">
+                            Back to Dashboard
+                        </span>
+                    </a>
+                </Link>
+                <div className="flex flex-col">
+
+
+                    <span className="text-lg text-gray-900">Account Settings</span>
+                    <span className="text-sm text-gray-500">Update your billing and account information.</span>
+                </div>
             </div>
             <Divider className="mt-5 mb-10" />
             <SettingsRow header="Personal information" info="Update your personal information.">

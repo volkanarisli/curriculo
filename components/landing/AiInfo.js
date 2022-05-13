@@ -1,86 +1,120 @@
 import Image from "next/image";
+import { MailIcon, LightningBoltIcon, ChartBarIcon, CheckIcon } from "@heroicons/react/outline";
+import Fast from "../../assets/img/Fast.svg";
+import Rich from "../../assets/img/Rich.svg";
+import { classNames, isOddNumber } from "../../utils/helpers";
+import Link from "next/link";
+
+
+import UserFriendly from "../../assets/img/UserFriendly.svg";
+
 
 const AiInfo = () => {
     const persons = [
         {
-            company: {
-                name: 'Tuple',
-                src: 'https://tailwindui.com/img/logos/tuple-logo-gray-400.svg'
-            },
-            testimonial: ' Responsible for A/B tests - designing and conducting experiments to test the efficacy of different changes/improvements, analyzing the results, and making decisions based on those results. ',
-            person: {
-                name: 'This Woman Doest Not Exist',
-                title: 'Ceo',
-                city: 'Kryptonite',
-                src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-            }
+            Icon: MailIcon,
+            header: 'Faster application process',
+            subHeader: 'Whether you are applying for a job or a freelance gig, we got you covered.',
+            image: Fast,
+            points: [
+                'Save tens of hours building resumes.',
+                'Write cover letters with ease just in seconds.',
+                'Get ahead of 75% of the applicants.'
+            ]
         },
         {
-            company: {
-                name: 'Workcation',
-                src: 'https://tailwindui.com/img/logos/workcation-logo-gray-400.svg'
-            },
-            testimonial: 'I am a software engineer with experience in a variety of languages and platforms. I have a strong focus on front-end development but am also proficient in back-end technologies. I have a proven track record in leadership.',
-            person: {
-                name: 'This Man Doest Not Exist',
-                title: 'Ceo',
-                city: 'Earth 616',
-                src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-            }
+            Icon: LightningBoltIcon,
+            header: 'Richer content and bigger impact',
+            subHeader: 'Each section of your resume plays an important part in getting you interviewed. Leaving out necessary information can cause potential employers to miss your strengths and overlook your candidacy.',
+            image: Rich,
+            points: [
+                'Professionally crafted resumes found jobs within 90 days.',
+                'Candidates who hire professional resume writers are 32% more likely to find jobs.',
+                'With AI-supported content generation, you can save time up to 85%.'
+            ]
+        },
+        {
+            Icon: ChartBarIcon,
+            header: 'User-friendly and effective builder',
+            subHeader: 'Resume writing is easier now than ever before with our AI-generated text, resume design templates, and more. Just fill in your details, and let us take care of the hard work.',
+            image: UserFriendly,
+            points: [
+                'Expanding resume tempate library.',
+                'Easy-to-use builder and generator interface.',
+                'Pre-written skill sets, user-friendly UI and more!'
+            ]
         }
     ]
     return (
-        <>
-            <div className="lg:text-center mb-10">
-
-                <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    GPT-3 in the Works
-                </p>
-                <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-                    World’s most powerful inhuman being is here to help you land that dream job! Fill in the empty fields, write down
-                    the keywords and ta-da! </p>
+        <div className="max-w-6xl mx-auto px-5">
+            <div className="text-center flex flex-col items-center gap-3 mb-20">
+                <span className="text-blue-700 font-semibold" id="benefits">Benefits</span>
+                <span className="text-gray-900 text-3xl font-semibold">Job applications made easy</span>
+                <span className="text-gray-500 text-sm max-w-md"> Powerful job application tools to help you stand out in the industry with the help of a well-trained AI. Trusted by over 5,000 users.</span>
             </div>
-            <section className="bg-indigo-800 sm:rounded-2xl max-w-7xl mx-auto">
-                <div className="max-w-7xl mx-auto md:grid md:grid-cols-2 md:px-6 lg:px-8">
-                    {
-                        persons.map((item, index) => (
-                            <div key={index}
-                                className={`py-12 px-4 sm:px-6 md:flex md:flex-col md:py-16 md:pl-10 md:pr-0 md:border-indigo-900 lg:pr-16  ${index % 2 === 0 && "md:border-r"}`}>
-                                <div className="md:flex-shrink-0">
-                                    <Image className="h-12" src={item.company.src} alt={item.company.name} width="105" height="48" />
-                                </div>
-                                <blockquote className="mt-6 md:flex-grow md:flex md:flex-col">
-                                    <div className="relative text-lg font-medium text-white md:flex-grow">
-                                        <svg className="absolute top-0 left-0 transform -translate-x-3 -translate-y-2 h-8 w-8 text-blue-600"
-                                            fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
-                                            <path
-                                                d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                                        </svg>
-                                        <p className="relative">
-                                            {item.testimonial} </p>
+
+            <section>
+                {
+                    persons.map(({ Icon, image, header, points, subHeader }, index) => (
+                        <div key={index} className={classNames('flex sm:justify-between flex-col md:flex-row', isOddNumber(index) && 'md:flex-row-reverse')}>
+                            <div className="flex flex-col">
+                                <div className="rounded-full bg-blue-50 h-20 w-20 mb-4 flex items-center justify-center">
+                                    <div className="rounded-full bg-blue-400 h-12 w-12 my-auto mx-auto flex items-center justify-center">
+                                        <span className="text-white">
+                                            <Icon className="h-6 w-6" />
+                                        </span>
                                     </div>
-                                    <footer className="mt-8">
-                                        <div className="flex items-start">
-                                            <div className="flex-shrink-0 inline-flex rounded-full border-2 border-white">
-                                                <Image className="h-12 w-12 rounded-full"
-                                                    src={item.person.src}
-                                                    alt=""
-                                                    height="48"
-                                                    width="48" />
+                                </div>
+                                <span className="text-xl text-gray-900 font-semibold mb-3">
+                                    {header}
+                                </span>
+                                <span className="text-gray-500 max-w-md">
+                                    {subHeader}
+                                </span>
+                                <div className="flex flex-col gap-3 mt-5">
+                                    {
+                                        points.map((point, index) => (
+                                            <div key={index} className="flex items-center gap-2">
+                                                <span className="bg-blue-200 text-white h-6 w-6 mr-2 flex items-center justify-center rounded-full">
+                                                    <CheckIcon />
+                                                </span>
+                                                <span className="text-gray-500 max-w-xs">{point}</span>
                                             </div>
-                                            <div className="ml-4">
-                                                <div className="text-base font-medium text-white">{item.person.name}</div>
-                                                <div className="text-base font-medium text-indigo-200">{item.person.title}, {item.person.city}</div>
-                                            </div>
-                                        </div>
-                                    </footer>
-                                </blockquote>
+                                        ))
+                                    }
+                                </div>
                             </div>
-                        ))
-                    }
-                </div>
+                            <div>
+                                <Image src={image} alt={header} />
+                            </div>
+
+                        </div>
+                    ))
+                }
+
             </section>
-        </>
+            <div className="bg-blue-50 flex flex-col sm:flex-row justify-between rounded p-8 sm:p-16">
+                <div className="flex flex-col mb-10 text-center sm:text-base sm:mb-0">
+                    <span className="text-blue-900 text-2xl font-semibold mb-3">Get started now and save tens of hours.</span>
+                    <span className="text-blue-700">
+                        Join over 5,000+ users already applying with Curriculo.
+                    </span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <button
+                        className="flex items-center justify-center w-30 px-3 py-2 text-base font-medium rounded-md text-gray-500 bg-white border border-gray-500 flex-grow">
+                        Learn more
+                    </button>
+                    <Link href="/register">
+                        <a
+                            className="flex items-center justify-center w-30 px-3 py-2 text-base font-medium rounded-md text-white bg-gradient flex-grow">
+                            Get Started
+                        </a>
+                    </Link>
+
+                </div>
+            </div>
+        </div>
     )
 };
 
