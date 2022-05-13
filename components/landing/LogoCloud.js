@@ -1,42 +1,61 @@
 import Image from "next/image";
-
+import AirBnb from "../../assets/img/CompanyLogos/airbnb.svg"
+import Figma from "../../assets/img/CompanyLogos/figma.svg"
+import Google from "../../assets/img/CompanyLogos/google.svg"
+// import Medium from "../../assets/img/CompanyLogos/medium.svg"
+import Microsoft from "../../assets/img/CompanyLogos/microsoft.svg"
+import Netflix from "../../assets/img/CompanyLogos/netflix.svg"
+import Patreon from "../../assets/img/CompanyLogos/patreon.svg"
+import Tiktok from "../../assets/img/CompanyLogos/tiktok.svg"
+import Twitch from "../../assets/img/CompanyLogos/twitch.svg"
 
 const LogoCloud = () => {
     const companies = [
         {
-            name: 'Tuple',
-            src: 'https://tailwindui.com/img/logos/tuple-logo-gray-400.svg'
+            name: 'Figma',
+            src: Figma,
         },
         {
-            name: 'Mirage',
-            src: 'https://tailwindui.com/img/logos/mirage-logo-gray-400.svg'
+            name: 'Microsoft',
+            src: Microsoft,
         },
         {
-            name: 'StaticKit',
-            src: 'https://tailwindui.com/img/logos/statickit-logo-gray-400.svg'
+            name: 'AirBnb',
+            src: AirBnb,
         },
         {
-            name: 'Transistor',
-            src: 'https://tailwindui.com/img/logos/transistor-logo-gray-400.svg'
+            name: 'Google',
+            src: Google,
         },
         {
-            name: 'Workcation',
-            src: 'https://tailwindui.com/img/logos/workcation-logo-gray-400.svg'
+            name: 'Tiktok',
+            src: Tiktok,
+        },
+        {
+            name: 'Netflix',
+            src: Netflix,
+        },
+        {
+            name: 'Twitch',
+            src: Twitch,
+        },
+        {
+            name: 'Patreon',
+            src: Patreon,
         }
-
     ]
     return (
         <div className="">
-            <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col items-center max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
                 <p className="text-center text-sm font-semibold uppercase text-gray-500 tracking-wide">
-                    Find Jobs at Companies Like
+                    Find jobs in your favorite company with Curriculo
                 </p>
-                <div className="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
+                <div className="mt-6 grid  grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-8">
                     {
                         companies.map((item, index) => (
                             <div key={index}
-                                className="col-span-2 flex justify-center md:col-span-2 md:col-start-4 lg:col-span-1">
-                                <Image className="h-12" src={item.src} alt={item.name} width="150" height="50" />
+                                className="flex justify-center">
+                                <Image className="h-12" src={item.src} alt={item.name} width="150" height="80" />
                             </div>
                         ))
                     }
