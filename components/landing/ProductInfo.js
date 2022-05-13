@@ -40,9 +40,9 @@ const ProductInfo = () => {
         }
     ]
     return (
-        <div className="p-12 bg-white" id="products">
+        <div className="p-12 bg-white" >
             <div className="flex flex-col items-center text-center max-w-xl mx-auto gap-2">
-                <span className="text-blue-700 font-semibold">Products</span>
+                <span className="text-blue-700 font-semibold" id="products">Products</span>
                 <p className="text-2xl font-semibold text-gray-900">
                     All-in-one toolbox for job applications
                 </p>

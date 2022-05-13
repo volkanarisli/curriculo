@@ -11,12 +11,13 @@ import Pricing from '../components/landing/Pricing';
 import Footer from '../components/landing/Footer';
 import Tryout from '../components/landing/Tryout';
 import { useUser } from '../context/UserInfo'
+import axios from 'axios';
 
 
 
 
 
-const Home = () => {
+const Home = ({ plans }) => {
   const { setSubscriptionIdOfUser, user } = useUser()
   const router = useRouter()
   useEffect(() => {
@@ -41,11 +42,29 @@ const Home = () => {
       <Tryout />
       <AiInfo />
       <GetMailSubs />
-      <Pricing />
+      <Pricing plans={plans} />
       <Footer />
     </div>
   )
 }
+
+export const getServerSideProps = async () => {
+  const { data: { response } } = await axios.post(`${process.env.PADDLE_API_URL}2.0/subscription/plans`,
+    {
+      vendor_id: process.env.PADDLE_VENDOR_ID,
+      vendor_auth_code: process.env.PADDLE_API_AUTH_CODE
+    }
+  );
+  const plans = response.map((option) => {
+    return { ...option, title: `${option.name} - ${option.recurring_price.USD}$` }
+  })
+  return {
+    props: {
+      plans
+    }
+  }
+}
+
 export default Home
 
 

@@ -16,7 +16,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
   const hideNav = ['/dashboard', '/design',
     '/upwork-proposal-letter', '/cover-letter',
     '/employment-summary', '/professional-summary',
-    '/educational-summary'].includes(router.pathname)
+    '/educational-summary','/account-settings'].includes(router.pathname)
   const hideLandinglinks = ['/login', '/register'].includes(router.pathname)
   useEffect(() => {
     function initDesk360Chat() {
