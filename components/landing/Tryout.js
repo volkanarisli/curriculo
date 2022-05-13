@@ -37,7 +37,7 @@ const Tryout = () => {
     const [selectedTab, setSelectedTab] = useState(1)
     return (
         <ResumeInfoProvider>
-            <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8" id="action">
                 <div className="mb-5">
                     <DisplayTabs tabs={tabs} selectedTab={selectedTab} updateTab={setSelectedTab} />
                 </div>

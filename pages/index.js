@@ -36,9 +36,9 @@ const Home = () => {
   return (
     <div className="scroll-smooth">
       <Hero />
-      <Tryout />
       <LogoCloud />
       <ProductInfo />
+      <Tryout />
       <AiInfo />
       <GetMailSubs />
       <Pricing />

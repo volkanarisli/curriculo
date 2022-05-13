@@ -1,61 +1,95 @@
 import Image from "next/image";
 import Link from "next/link";
+import Twitter from "../../assets/img/twitter.svg"
+import Instagram from "../../assets/img/instagram.svg"
+import Tiktok from "../../assets/img/tiktok.svg"
+
+
 
 
 const Footer = () => {
     return (
         <>
-
-            <div className="bg-blue-600 sm:rounded-2xl max-w-7xl mx-auto">
-                <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
-                        <span className="block">Are you ready to stay one step ahead?</span>
-                    </h2>
-                    <p className="mt-4 text-lg leading-6 text-indigo-200">Start building your Curriculo resume right now—and get one step
-                        closer to your dream job.</p>
-                    <Link href="/design">
-                        <a className="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-indigo-50 sm:w-auto">
-                            Get Started
-                        </a>
-                    </Link>
-
-
-                </div>
-            </div>
-
-
-            <footer className="bg-white">
-                <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-                    <nav className="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
-                        <div className="px-5 py-2">
+            <footer className="flex flex-col gap-20 items-center my-20">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+                    <div className="flex flex-col items-center mb-10">
+                        <Image src="/logomark.svg" alt="Logo" width="150" height="50" />
+                        <div className="flex gap-3">
+                            <Link href="https://twitter.com/curriculoresume">
+                                <a className="bg-blue-50 flex items-center justify-center w-10 h-10 rounded-lg">
+                                    <Image src={Twitter} alt="Twitter" />
+                                </a>
+                            </Link>
+                            <Link href="https://www.instagram.com/curriculoresume">
+                                <a className="bg-blue-50 flex items-center justify-center w-10 h-10 rounded-lg">
+                                    <Image src={Instagram} alt="Instagram" />
+                                </a>
+                            </Link>
+                            <Link href="https://www.tiktok.com/@curriculoresume">
+                                <a className="bg-blue-50 flex items-center justify-center w-10 h-10 rounded-lg">
+                                    <Image src={Tiktok} alt="Tiktok" />
+                                </a>
+                            </Link>
+                        </div>
+                        <div className="pl-2 text-gray-500 mt-2 text-sm">
+                            Follow us on social media.
+                        </div>
+                    </div>
+                    <div className="flex flex-col items-center mb-10">
+                        <div className="flex flex-col">
+                            <span className="font-semibold text-black mb-3">Discover</span>
+                            <Link href="/blog">
+                                <a className="text-gray-500 mb-2">
+                                    Blog
+                                </a>
+                            </Link>
                             <Link href="/terms">
-                                <a className="text-base text-gray-500 hover:text-gray-900">
+                                <a className="text-gray-500 mb-2">
+                                    Terms Of Service
+                                </a>
+                            </Link>
+                            <Link href="/terms">
+                                <a className="text-gray-500 mb-2">
                                     Privacy Policy
                                 </a>
                             </Link>
                         </div>
-
-                        <div className="px-5 py-2">
-                            <Link href="/terms#terms">
-                                <a className="text-base text-gray-500 hover:text-gray-900">
-                                    Terms and Conditions
+                    </div>
+                    <div className="flex flex-col items-center mb-10">
+                        <div className="flex flex-col">
+                            <span className="font-semibold text-black mb-3">Links</span>
+                            <Link href="https://twitter.com/curriculoresume">
+                                <a className="text-gray-500 mb-2">
+                                    Twitter
+                                </a>
+                            </Link>
+                            <Link href="https://www.instagram.com/curriculoresume">
+                                <a className="text-gray-500 mb-2">
+                                    Instagram
+                                </a>
+                            </Link>
+                            <Link href="https://www.tiktok.com/@curriculoresume">
+                                <a className="text-gray-500 mb-2">
+                                    Tiktok
+                                </a>
+                            </Link>
+                            <Link href="https://wwww.linkedin.com/in/curriculoresume">
+                                <a className="text-gray-500 mb-2">
+                                    Linkedin
                                 </a>
                             </Link>
                         </div>
-                    </nav>
-
-                    <Link href="/">
-                        <a className="text-gray-400 hover:text-gray-500">
-                            <span className="sr-only">Twitter</span>
-                            <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                            </svg>
-                        </a>
-                    </Link>
-
-
-
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <div className="flex flex-col">
+                            <span className="font-semibold text-black mb-3">Get In Touch</span>
+                            <Link href="/blog">
+                                <a className="text-gray-500 mb-2">
+                                    hi@curriculo.design
+                                </a>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
                 <p className="mt-8 text-center text-base text-gray-400 mb-10">
                     &copy; 2022 Curriculo Inc. Made with love 🚀
