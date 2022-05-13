@@ -391,3 +391,7 @@ export const sampleProfessionalSummaries = [
 ]
 
 export const sampleJobTitle = 'Salesman'
+
+export const isOddNumber = (num) => {
+    return num % 2 === 0 ? false : true
+}

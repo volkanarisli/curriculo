@@ -65,7 +65,7 @@ const Register = ({ plans }) => {
     return (
         <>
             <PaddleLoader />
-            <div className="flex flex-col justify-center sm:flex-row items-center min-h-screen">
+            <div className="flex flex-col justify-center sm:flex-row items-center min-h-screen mt-20">
                 <div className="hidden lg:flex justify-center w-1/2 bg-blue-700 min-h-inherit h-full">
                     <Image src={SignUp} alt="Sign Up" />
                 </div>
@@ -173,14 +173,14 @@ const Register = ({ plans }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="absolute bottom-0 sm:-bottom-16">
+                    {/* <div className="absolute bottom-0 sm:-bottom-16">
                         <p className="text-gray-400">
                             Do you have an account?
                             <span className="text-blue-700 ml-2 hover:underline">
                                 <Link href="/login"><a>Sign In</a></Link>
                             </span>
                         </p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

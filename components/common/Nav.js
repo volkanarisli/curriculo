@@ -18,8 +18,8 @@ const Nav = ({ hideLandinglinks }) => {
             scrollId: 'benefits',
         },
         {
-            name: 'Company',
-            scrollId: 'company',
+            name: 'Demo',
+            scrollId: 'demo',
         },
         {
             name: 'Blog',

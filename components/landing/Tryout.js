@@ -37,6 +37,10 @@ const Tryout = () => {
     const [selectedTab, setSelectedTab] = useState(1)
     return (
         <ResumeInfoProvider>
+            <div className="text-center flex flex-col items-center gap-3 mb-10">
+                <span className="text-blue-700 font-semibold" id="demo">Demo</span>
+                <span className="text-gray-900 text-3xl font-semibold">See Curriculo In Action</span>
+            </div>
             <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8" id="action">
                 <div className="mb-5">
                     <DisplayTabs tabs={tabs} selectedTab={selectedTab} updateTab={setSelectedTab} />
