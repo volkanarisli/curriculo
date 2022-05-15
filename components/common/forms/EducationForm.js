@@ -28,7 +28,7 @@ const InputGroup = ({ index,
                         type="text"
                         input="text"
                         label="School or Course etc."
-                        placeholder="Harvard University"
+                        placeholder="School"
                         name="school"
                         value={experience.school || ''}
                         onInputChange={({ target: { value, name } }) => setInputForm(
@@ -45,7 +45,7 @@ const InputGroup = ({ index,
                         input="text"
                         type="text"
                         label="Degree or Certification etc."
-                        placeholder="Science"
+                        placeholder="Degree"
                         name="degree"
                         value={experience.degree || ''}
                         onInputChange={({ target: { value, name } }) => setInputForm(

@@ -95,14 +95,17 @@ const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
                         </div>
 
                     }
+                    <span className="mb-1 text-xl text-gray-900 font-semibold">Professional Summary</span>
+                    <span className="mb-1 text-sm text-gray-500">Select adjectives that describes you best. Mention your role, experience and best skills. AI carry on the rest. Remember more is better.</span>
+
 
                     <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
                         value={isTryout ? sampleJobTitle : contact?.currentTitle}
                         name="currentTitle"
                         type="text"
                         input="text"
-                        label="Desired Job Title"
-                        placeholder="Bond... James Bond"
+                        label="Job Title"
+                        placeholder="Job Title"
                     />
                     {
                         isResumeBuilder &&
@@ -140,8 +143,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
             </div>
             <div className="flex mb-14">
                 <div className="flex flex-col w-full pr-3">
-                    <span className="mb-1 text-xl text-gray-900 font-semibold">Professional Summary</span>
-                    <span className="mb-1 text-sm text-gray-500">Select adjectives that describes you best. Mention your role, experience and best skills. AI carry on the rest. Remember more is better.</span>
+
                     <div>
                         <UserInput onInputChange={setKeywords}
                             value={keywords}

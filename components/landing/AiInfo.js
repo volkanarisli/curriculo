@@ -59,7 +59,7 @@ const AiInfo = () => {
                         <div key={index} className={classNames('flex sm:justify-between flex-col md:flex-row', isOddNumber(index) && 'md:flex-row-reverse')}>
                             <div className="flex flex-col">
                                 <div className="rounded-full bg-blue-50 h-20 w-20 mb-4 flex items-center justify-center">
-                                    <div className="rounded-full bg-blue-400 h-12 w-12 my-auto mx-auto flex items-center justify-center">
+                                    <div className="rounded-full bg-gradient h-12 w-12 my-auto mx-auto flex items-center justify-center">
                                         <span className="text-white">
                                             <Icon className="h-6 w-6" />
                                         </span>
@@ -101,13 +101,9 @@ const AiInfo = () => {
                     </span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <button
-                        className="flex items-center justify-center w-30 px-3 py-2 text-base font-medium rounded-md text-gray-500 bg-white border border-gray-500 flex-grow">
-                        Learn more
-                    </button>
                     <Link href="/register">
                         <a
-                            className="flex items-center justify-center w-30 px-3 py-2 text-base font-medium rounded-md text-white bg-gradient flex-grow">
+                            className="flex items-center justify-center w-30 px-14 py-3 text-base font-medium rounded-md text-white bg-gradient flex-grow">
                             Get Started
                         </a>
                     </Link>
