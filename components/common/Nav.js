@@ -31,7 +31,7 @@ const Nav = ({ hideLandinglinks }) => {
         <header className="w-full">
             <div className="bg-white">
                 <div className="flex relative justify-between items-center container mx-auto pt-5 pb-10 md:px-4 md:py-6 ">
-                    <div className="w-40 scale-150">
+                    <div className="w-40 sm:scale-150">
                         <Link href="/">
                             <a>
                                 <span className="sr-only">Curriculo</span>
