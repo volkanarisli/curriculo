@@ -31,7 +31,7 @@ const InputGroup = ({ index,
                         type="text"
                         input="text"
                         label="Company"
-                        placeholder="Facebook..."
+                        placeholder="Company"
                         name="company"
                         value={experience.company || ''}
                         onInputChange={({ target: { value, name } }) => setInputForm(
@@ -48,7 +48,7 @@ const InputGroup = ({ index,
                         input="text"
                         type="text"
                         label="Title"
-                        placeholder="Ceo..."
+                        placeholder="CEO"
                         name="title"
                         value={experience.title || ''}
                         onInputChange={({ target: { value, name } }) => setInputForm(

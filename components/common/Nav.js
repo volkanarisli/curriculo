@@ -28,14 +28,14 @@ const Nav = ({ hideLandinglinks }) => {
     ]
     return (
 
-        <header className="fixed top-0 z-20 w-full drop-shadow-md">
+        <header className="w-full">
             <div className="bg-white">
                 <div className="flex relative justify-between items-center container mx-auto pt-5 pb-10 md:px-4 md:py-6 ">
-                    <div className="w-40">
+                    <div className="w-40 scale-150">
                         <Link href="/">
                             <a>
                                 <span className="sr-only">Curriculo</span>
-                                <Image src="/logo.svg" alt='Logo' width="50" height="50" />
+                                <Image src="/logomark.svg" alt='Logo' width="150"  height="50"/>
                             </a>
                         </Link>
                     </div>

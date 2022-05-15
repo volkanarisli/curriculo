@@ -104,7 +104,7 @@ const CoverLetterForm = ({ isTryout }) => {
                 !isTryout &&
                 <button
                     onClick={() => exportTextAsTxtFile(proposalLetter)}
-                    className="px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-2/3 my-7">
+                    className="w-full px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 my-7">
                     Export Cover Letter as .txt
                 </button>
             }
