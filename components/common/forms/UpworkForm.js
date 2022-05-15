@@ -95,9 +95,10 @@ const UpworkForm = ({ isTryout }) => {
                     />
                 </div>
             </div>
-
-            <ImportantAlert header="Please Read Carefully Before Applying Jobs" text="Don't forget to check the generated proposal letter if it violates the Upwork community guidelines." />
-
+            {
+                !isTryout &&
+                <ImportantAlert header="Please Read Carefully Before Applying Jobs" text="Don't forget to check the generated proposal letter if it violates the Upwork community guidelines." />
+            }
             <button
                 onClick={isTryout ? getDescWithTryOut : getDesc}
                 className="px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-full my-7">
