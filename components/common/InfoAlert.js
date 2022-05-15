@@ -1,4 +1,4 @@
-const InfoArea = ({ header, text }) => {
+const InfoAlert = ({ header, text }) => {
   return (
     <div className="flex flex-col gap-1 bg-indigo-50 border rounded border-indigo-200 w-full p-3">
       <span className="text-indigo-900 text-sm">
@@ -11,4 +11,4 @@ const InfoArea = ({ header, text }) => {
   )
 }
 
-export default InfoArea
+export default InfoAlert

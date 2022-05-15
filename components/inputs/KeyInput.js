@@ -206,7 +206,7 @@ const KeyInput = ({ onInputChange, value, setHasError, hasError, index, isTryout
                                 name="customKeyword"
                                 type="text"
                                 input="text"
-                                placeholder="Time Travel"
+                                placeholder="Add Keyword"
                             >
                                 <p className="text-2xs text-gray-700 mb-1 font-semibold absolute -top-4">What do you bring to the table? Write your own keywords.</p>
 

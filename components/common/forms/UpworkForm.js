@@ -2,6 +2,7 @@ import UserInput from "../../common/UserInput"
 import { useState, useEffect } from "react"
 import { DuplicateIcon, ClipboardIcon } from "@heroicons/react/outline"
 import { copyText, sampleProposalLetters, sampleUpworkJobsDesc, getRandomValue } from "../../../utils/helpers"
+import ImportantAlert from "../ImportantAlert"
 import axios from "axios"
 const UpworkForm = ({ isTryout }) => {
     const [jobDescription, setJobDescription] = useState("")
@@ -50,7 +51,7 @@ const UpworkForm = ({ isTryout }) => {
                     Fill out the form to stand out among the crowd and get that job.
                 </span>
             </div>
-            <div>
+            <div className="mb-5">
                 <div className="flex flex-col relative">
                     <UserInput onInputChange={handleJobDescription}
                         value={isTryout ? sampleUpworkJobsDesc : jobDescription}
@@ -94,6 +95,9 @@ const UpworkForm = ({ isTryout }) => {
                     />
                 </div>
             </div>
+
+            <ImportantAlert header="Please Read Carefully Before Applying Jobs" text="Don't forget to check the generated proposal letter if it violates the Upwork community guidelines." />
+
             <button
                 onClick={isTryout ? getDescWithTryOut : getDesc}
                 className="px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-full my-7">
@@ -112,6 +116,7 @@ const UpworkForm = ({ isTryout }) => {
                     isTryout={isTryout}
                     className="border rounded h-64 w-full px-3 py-1 placeholder:text-sm placeholder:whitespace-normal"
                 />
+
                 <span className="text-xs text-gray-500 mt-3">
                     Dont forget the edit, fine-tune your proposal letter.
                 </span>
