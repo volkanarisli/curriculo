@@ -3,6 +3,7 @@ import { ViewListIcon, PaperClipIcon } from '@heroicons/react/solid'
 import { UserCircleIcon, AcademicCapIcon, CogIcon, PencilIcon, LogoutIcon } from '@heroicons/react/outline'
 import LogoIcon from '../../components/common/icons/LogoIcon';
 import UpworkIcon from '../../components/common/icons/UpworkIcon';
+import { classNames } from '../../utils/helpers';
 
 
 
@@ -21,6 +22,7 @@ const ProductInfo = () => {
         {
             header: 'Upwork Proposal Letter Generator',
             info: 'Create a Employment Summary to show what you have done and what you can bring to the team.',
+            classes: "mt-3",
             Icon: UpworkIcon
         },
         {
@@ -55,11 +57,11 @@ const ProductInfo = () => {
             <div className="mt-10 mx-auto max-w-7xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center">
                     {
-                        infoCards.map(({ header, Icon, info }, index) => (
+                        infoCards.map(({ header, Icon, info, classes }, index) => (
                             <div key={index} className="flex flex-col items-center mb-5">
                                 <div className="rounded-full bg-blue-50 h-20 w-20 mb-4 flex items-center justify-center">
-                                    <div className="rounded-full bg-blue-400 h-12 w-12 my-auto mx-auto flex items-center justify-center">
-                                        <span className="text-white">
+                                    <div className="rounded-full bg-gradient h-12 w-12 my-auto mx-auto flex items-center justify-center">
+                                        <span className={classNames("text-white", classes)}>
                                             <Icon className="h-6 w-6" />
                                         </span>
                                     </div>
