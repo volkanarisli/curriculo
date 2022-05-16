@@ -65,7 +65,7 @@ const Register = ({ plans }) => {
     return (
         <>
             <PaddleLoader />
-            <div className="flex flex-col justify-center sm:flex-row items-center min-h-screen mt-20">
+            <div className="flex flex-col justify-center sm:flex-row items-center min-h-screen">
                 <div className="hidden lg:flex justify-center w-1/2 bg-blue-700 min-h-inherit h-full">
                     <Image src={SignUp} alt="Sign Up" />
                 </div>
