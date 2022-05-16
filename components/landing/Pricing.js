@@ -7,7 +7,7 @@ const Pricing = ({ plans }) => {
         return {
             ...plan,
             points: index === 0 ? ['Unlimited resume and letters', 'Premium resume templates', 'Unlimited downloads']
-                : ['Unlimited resume and letters', 'Premium resume templates', 'Unlimited downloads', 'Unlimited downloads', '7/24 Prioritized support', ' Save up to 34%'],
+                : ['Unlimited resume and letters', 'Premium resume templates', 'Unlimited downloads', '7/24 Prioritized support', ' Save up to 34%'],
         };
     }));
     const multiplyEnum = {
