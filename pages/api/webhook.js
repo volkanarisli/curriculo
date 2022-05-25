@@ -60,6 +60,7 @@ const subscriptionUpdated = async (data, plans) => {
     await supabase
         .from("profile")
         .update({
+            is_subscribed: true,
             interval: planName,
             subscription_plan_id: data.subscription_plan_id,
             end_of_subscription: new Date(data.next_bill_date),
