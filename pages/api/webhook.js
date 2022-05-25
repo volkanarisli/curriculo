@@ -84,12 +84,10 @@ const subscriptionCancelled = async (data, plans) => {
 const subscriptionPaymentSucceeded = async (data, plans) => {
     //update users info according to new payment detail
     const planName = plans.find(item => item.id == data.subscription_plan_id).name;
-
-
-
     await supabase
         .from("profile")
         .update({
+            is_subscribed: true,
             subscription_plan_id: data.subscription_plan_id,
             interval: planName,
             end_of_subscription: new Date(data.next_bill_date),
