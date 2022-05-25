@@ -41,17 +41,17 @@ const isRequestValid = (paddleWebhookData) => {
 const subscriptionCreated = async (data, plans) => {
 
     //set update_url and cancel_url of user from supabase
-    setTimeout(async () => {
-        await supabase
-            .from("profile")
-            .update({
-                subscription_id: data.subscription_id,
-                update_url: data.update_url,
-                cancel_url: data.cancel_url,
-                end_of_subscription: new Date(data.next_bill_date),
-            })
-            .eq('paddle_user_id', data.user_id);
-    }, 5000)
+
+    await supabase
+        .from("profile")
+        .update({
+            subscription_id: data.subscription_id,
+            update_url: data.update_url,
+            cancel_url: data.cancel_url,
+            end_of_subscription: new Date(data.next_bill_date),
+        })
+        .eq('paddle_user_id', data.user_id);
+
 
 }
 const subscriptionUpdated = async (data, plans) => {
@@ -86,17 +86,17 @@ const subscriptionPaymentSucceeded = async (data, plans) => {
     const planName = plans.find(item => item.id == data.subscription_plan_id).name;
 
 
-    setTimeout(async () => {
-        await supabase
-            .from("profile")
-            .update({
-                subscription_plan_id: data.subscription_plan_id,
-                interval: planName,
-                end_of_subscription: new Date(data.next_bill_date),
-                subscription_id: data.subscription_id,
-            })
-            .eq("paddle_user_id", data.user_id);
-    }, 6000)
+
+    await supabase
+        .from("profile")
+        .update({
+            subscription_plan_id: data.subscription_plan_id,
+            interval: planName,
+            end_of_subscription: new Date(data.next_bill_date),
+            subscription_id: data.subscription_id,
+        })
+        .eq("paddle_user_id", data.user_id);
+
 
 }
 const subscriptionPaymentFailed = async (data, plans) => {
@@ -142,7 +142,12 @@ const handler = async (req, res) => {
         }
     }
     const { alert_name } = req.body;
-    await webhookActionEnum[alert_name]?.(req.body, response);
+    try {
+        await webhookActionEnum[alert_name]?.(req.body, response);
+    } catch (error) {
+        return res.status(444).send({ success: false })
+    }
+
     res.status(200).send({ success: true })
 
 }
