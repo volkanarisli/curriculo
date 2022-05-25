@@ -142,7 +142,7 @@ const handler = async (req, res) => {
         }
     }
     const { alert_name } = req.body;
-    webhookActionEnum[alert_name]?.(req.body, response);
+    await webhookActionEnum[alert_name]?.(req.body, response);
     res.status(200).send({ success: true })
 
 }
