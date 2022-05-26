@@ -15,7 +15,7 @@ const Footer = () => {
                     <div className="flex flex-col items-center mb-10">
                         <Image src="/logomark.svg" alt="Logo" width="150" height="50" />
                         <div className="flex gap-3">
-                            <Link href="https://twitter.com/curriculoresume">
+                            <Link href="https://twitter.com/CurriculoCV">
                                 <a className="bg-blue-50 flex items-center justify-center w-10 h-10 rounded-lg">
                                     <Image src={Twitter} alt="Twitter" />
                                 </a>
