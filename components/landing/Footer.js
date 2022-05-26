@@ -58,7 +58,7 @@ const Footer = () => {
                     <div className="flex flex-col items-center mb-10">
                         <div className="flex flex-col">
                             <span className="font-semibold text-black mb-3">Links</span>
-                            <Link href="https://twitter.com/curriculoresume">
+                            <Link href="https://twitter.com/CurriculoCV">
                                 <a className="text-gray-500 mb-2">
                                     Twitter
                                 </a>
