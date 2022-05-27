@@ -17,7 +17,11 @@ const UpdatePlanTable = ({ plans }) => {
         25651: 1,
         25652: 2,
         25653: 4,
-        25654: 12
+        25654: 12,
+        759869: 1,
+        759868: 2,
+        759867: 4,
+        759866: 12,
     }
     const openModal = (plan) => {
         if (plan.id === Number(user?.subscription_plan_id)) return

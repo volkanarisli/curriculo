@@ -4,6 +4,7 @@ import { useResumeInfo } from "../../../context/ResumeInfo";
 import axios from "axios";
 import UserInput from "../../common/UserInput"
 import { getRandomValue, sampleProfessionalSummaries, sampleJobTitle } from "../../../utils/helpers";
+import { event } from "../../../utils/gtag";
 const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
     const { contact, setContact } = useResumeInfo()
     const [keywords, setKeywords] = useState([])
@@ -24,6 +25,12 @@ const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
         updateData(data.response.trim(), 'desc')
     }
     const getDescWithTryOut = () => {
+        event({
+            action: 'click',
+            event_category: 'demo_events',
+            event_label: 'professional_summary_tryout',
+            value: 1,
+        })
         setIsLoading(true)
         setTimeout(() => {
             setIsLoading(false)

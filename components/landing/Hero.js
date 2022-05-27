@@ -4,6 +4,7 @@ import Link from "next/link";
 import LandingImage from "../../assets/img/landingheroes.svg"
 import Arrow from "../../assets/img/Arrow.svg";
 import TryNow from "../../assets/img/trynow.svg";
+import { event } from "../../utils/gtag";
 
 const Hero = () => {
     return (
@@ -22,7 +23,13 @@ const Hero = () => {
                         <Image src={Arrow} alt="Arrow" className="flip" />
                     </div>
                     <Link href="#action">
-                        <a className="bg-gradient px-16 py-3 text-base font-medium rounded-md text-white bg-blue-600 my-2 max-w-max transition hover:scale-110">
+                        <a className="bg-gradient px-16 py-3 text-base font-medium rounded-md text-white bg-blue-600 my-2 max-w-max transition hover:scale-110"
+                            onClick={() => event({
+                                action: 'click',
+                                event_category: 'landing_events',
+                                event_label: 'call_to_action',
+                                value: 1,
+                            })}>
                             See It in Action
                         </a>
                     </Link>
@@ -31,7 +38,7 @@ const Hero = () => {
 
                 <Image src={LandingImage} alt="Resume Heroes" />
             </div>
-        </div>
+        </div >
     )
 };
 

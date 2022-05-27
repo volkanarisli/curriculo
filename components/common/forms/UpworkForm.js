@@ -2,6 +2,7 @@ import UserInput from "../../common/UserInput"
 import { useState, useEffect } from "react"
 import { DuplicateIcon, ClipboardIcon } from "@heroicons/react/outline"
 import { copyText, sampleProposalLetters, sampleUpworkJobsDesc, getRandomValue } from "../../../utils/helpers"
+import { event } from "../../../utils/gtag";
 import ImportantAlert from "../ImportantAlert"
 import axios from "axios"
 const UpworkForm = ({ isTryout }) => {
@@ -29,6 +30,12 @@ const UpworkForm = ({ isTryout }) => {
         setProposalLetter(data.response.trim())
     }
     const getDescWithTryOut = () => {
+        event({
+            action: 'click',
+            event_category: 'demo_events',
+            event_label: 'upwork_form_tryout',
+            value: 1,
+        })
         setIsLoading(true)
         setTimeout(() => {
             setIsLoading(false)

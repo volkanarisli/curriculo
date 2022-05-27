@@ -2,6 +2,7 @@ import UserInput from "../../common/UserInput"
 import { useState, useEffect } from "react"
 import { DuplicateIcon, ClipboardIcon } from "@heroicons/react/outline"
 import { copyText, exportTextAsDocxFile, getRandomValue, sampleJobDesc, sampleCoverLetters, exportTextAsTxtFile } from "../../../utils/helpers"
+import { event } from "../../../utils/gtag"
 import axios from "axios"
 const CoverLetterForm = ({ isTryout }) => {
     const [jobDescription, setJobDescription] = useState("")
@@ -28,6 +29,12 @@ const CoverLetterForm = ({ isTryout }) => {
         setProposalLetter(data.response.trim())
     }
     const getDescWithTryOut = () => {
+        event({
+            action: 'click',
+            event_category: 'demo_events',
+            event_label: 'cover_letter_tryout',
+            value: 1,
+        })
         setIsLoading(true)
         setTimeout(() => {
             setIsLoading(false)
