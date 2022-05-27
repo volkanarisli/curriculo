@@ -43,7 +43,7 @@ const Nav = ({ hideLandinglinks }) => {
                         {
                             !hideLandinglinks &&
                             tabs.map(({ name, href, scrollId }, index) => (
-                                <Link href={scrollId ? `#${scrollId}` : `/${href}`} key={index}>
+                                <Link href={scrollId ? `#${scrollId}` : `${href}`} key={index}>
                                     <a>
                                         <span className="">{name}</span>
                                     </a>
