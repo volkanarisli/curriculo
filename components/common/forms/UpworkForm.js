@@ -32,8 +32,8 @@ const UpworkForm = ({ isTryout }) => {
     const getDescWithTryOut = () => {
         event({
             action: 'click',
-            event_category: 'demo_events',
-            event_label: 'upwork_form_tryout',
+            category: 'demo_events',
+            label: 'upwork_form_tryout',
             value: 1,
         })
         setIsLoading(true)

@@ -26,8 +26,8 @@ const Hero = () => {
                         <a className="bg-gradient px-16 py-3 text-base font-medium rounded-md text-white bg-blue-600 my-2 max-w-max transition hover:scale-110"
                             onClick={() => event({
                                 action: 'click',
-                                event_category: 'landing_events',
-                                event_label: 'call_to_action',
+                                category: 'landing_events',
+                                label: 'call_to_action',
                                 value: 1,
                             })}>
                             See It in Action

@@ -31,8 +31,8 @@ const CoverLetterForm = ({ isTryout }) => {
     const getDescWithTryOut = () => {
         event({
             action: 'click',
-            event_category: 'demo_events',
-            event_label: 'cover_letter_tryout',
+            category: 'demo_events',
+            label: 'cover_letter_tryout',
             value: 1,
         })
         setIsLoading(true)
