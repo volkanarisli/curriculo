@@ -9,10 +9,10 @@ const Hero = () => {
     return (
         <div className="p-10">
             <div className="mt-10 max-w-4xl mx-auto px-4 flex flex-col items-center gap-4">
-                <div className="text-center text-3xl md:text-6xl font-semibold">
+                <h1 className="text-center text-3xl md:text-6xl font-semibold">
                     <span className="underline decoration-blue-600 underline-offset-1">Be</span> in the Top 25%.<br />
                     75% of resumes are rejected by applicant tracking systems.
-                </div>
+                </h1>
                 <div className="text-gray-700 text-center mb-14">
                     We help you stand out from the crowd by creating a resume and cover letter with the help of our trained AI and make your application unforgettable.
                 </div>
