@@ -11,7 +11,7 @@ const Footer = () => {
     return (
         <>
             <footer className="flex flex-col gap-20 items-center my-20">
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                     <div className="flex flex-col items-center mb-10">
                         <Image src="/logomark.svg" alt="Logo" width="150" height="50" />
                         <div className="flex gap-3">
@@ -80,7 +80,7 @@ const Footer = () => {
                             </Link>
                         </div>
                     </div>
-                    <div className="flex flex-col items-center">
+                    {/* <div className="flex flex-col items-center">
                         <div className="flex flex-col">
                             <span className="font-semibold text-black mb-3">Get In Touch</span>
                             <Link href="/blog">
@@ -89,7 +89,7 @@ const Footer = () => {
                                 </a>
                             </Link>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <p className="mt-8 text-center text-base text-gray-400 mb-10">
                     &copy; 2022 Curriculo Inc. Made with love 🚀
