@@ -74,12 +74,12 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
           <meta property="og:url" content="https://www.curriculo.design/" />
           <meta property="og:title" content="Curriculo.design" />
           <meta property="og:description" content="Get the perfect resume and cover letter in seconds with our AI-powered resume copywriting and cover letter generation tool." />
-          <meta property="og:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png" />
+          <meta property="og:image" content="/favicon.svg" />
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:url" content="https://www.curriculo.design/" />
           <meta property="twitter:title" content="Curriculo.design" />
           <meta property="twitter:description" content="Get the perfect resume and cover letter in seconds with our AI-powered resume copywriting and cover letter generation tool." />
-          <meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png" />
+          <meta property="twitter:image" content="/favicon.svg" />
         </Head>
         {
           !hideNav && <Nav hideLandinglinks={hideLandinglinks} />
