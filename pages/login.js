@@ -39,6 +39,7 @@ const Login = () => {
 
     }
     useEffect(() => {
+        setHasError({})
         if (!startValidating) return
         if (isEmail(userInfo.email)) {
             setHasError({ email: '' })
