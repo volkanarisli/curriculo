@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { classNames } from "../../utils/helpers"
 const Redirectcard = ({ href, header, info, Icon, bgColor, badge, disabled }) => {
     const colors = {
         blue: 'bg-blue-500',
@@ -26,10 +27,9 @@ const Redirectcard = ({ href, header, info, Icon, bgColor, badge, disabled }) =>
 
     return (
         <Link href={(isDisabled || disabled) ? '' : href}>
-            <a className={`flex items-stretch px-3 py-4 transition rounded ${(!isDisabled || !disabled) && 'hover:shadow-xl hover:-translate-y-2'}
-            ${isDisabled && 'cursor-not-allowed'}`}>
+            <a className={classNames('flex items-stretch px-3 py-4 transition rounded', (!isDisabled || !disabled) && 'hover:shadow-xl hover:-translate-y-2', isDisabled && 'cursor-not-allowed opacity-40')}>
                 <div className="flex flex-col items-center relative mr-4">
-                    <div className={`flex items-center justify-center ${colors[bgColor]} h-16 w-16 rounded-full text-white`}>
+                    <div className={classNames(`flex items-center justify-center ${colors[bgColor]} h-16 w-16 rounded-full text-white`)}>
                         <Icon className="h-7 w-7" />
                     </div>
                     {

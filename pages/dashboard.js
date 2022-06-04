@@ -10,6 +10,7 @@ import { UserCircleIcon, AcademicCapIcon, CogIcon, PencilIcon, LogoutIcon } from
 import LogoIcon from '../components/common/icons/LogoIcon';
 import UpworkIcon from '../components/common/icons/UpworkIcon';
 import Link from 'next/link';
+import { isMobileDevice } from '../utils/helpers';
 
 
 
@@ -17,6 +18,7 @@ const Dashboard = () => {
     const { user, userNotSubscribed, logout } = useUser()
     const router = useRouter()
     const [userName, setUserName] = useState('')
+    const [isClientSide, setIsClientSide] = useState(false)
     const featureCards = [
         {
             href: "/design",
@@ -78,20 +80,22 @@ const Dashboard = () => {
             Icon: PencilIcon
         }
     ]
-    const personalCards = [
-        {
-            href: "/account-settings",
-            header: 'Account Settings',
-            info: 'Preferences, Subscriptions and other details.',
-            bgColor: 'purple',
-            Icon: CogIcon
-        }
-    ]
+    // const personalCards = [
+    //     {
+    //         href: "/account-settings",
+    //         header: 'Account Settings',
+    //         info: 'Preferences, Subscriptions and other details.',
+    //         bgColor: 'purple',
+    //         Icon: CogIcon
+    //     }
+    // ]
     useEffect(() => {
         if (!user) return router.push('/login')
         setUserName(user?.user_metadata?.name)
     }, [user, userNotSubscribed, router])
-
+    useEffect(() => {
+        setIsClientSide(true)
+    });
 
     return (
         <div className="container sm:max-w-3xl mx-auto mt-5">
@@ -101,13 +105,19 @@ const Dashboard = () => {
                         <Image src="/logomark.svg" alt='Logo' width="200" height="50" />
                     </a>
                 </Link>
-                <div onClick={logout} className="flex items-center cursor-pointer group">
-                    <div className="rounded-full bg-red-600 group-hover:bg-red-400 px-2 py-2 mr-2">
-                        <LogoutIcon className="h-5 w-5 text-white" />
-                    </div>
-                    <span className="font-semibold text-gray-900">Logout</span>
-                </div>
+                <div className="flex md:gap-2">
+                    <div onClick={() => router.push('/account-settings')} className="flex items-center cursor-pointer group">
+                        <div className="rounded-full bg-purple-600 group-hover:bg-purple-400 px-2 py-2 mr-2">
+                            <CogIcon className="h-5 w-5 text-white" />
+                        </div>
 
+                    </div>
+                    <div onClick={logout} className="flex items-center cursor-pointer group">
+                        <div className="rounded-full bg-red-600 group-hover:bg-red-400 px-2 py-2 mr-2">
+                            <LogoutIcon className="h-5 w-5 text-white" />
+                        </div>
+                    </div>
+                </div>
             </span>
 
             <div className="flex flex-col gap-1">
@@ -115,7 +125,7 @@ const Dashboard = () => {
                 <span className="text-sm text-gray-400">Hello {userName}, Let’s build your career together 🔖</span>
             </div>
             {
-                userNotSubscribed &&
+                (isClientSide && userNotSubscribed) &&
                 <div className='flex flex-col'>
                     <span className="text-base text-gray-700">
                         Huh, it looks like you canceled your subscription or there&apos;s a billing problem 🥺
@@ -133,12 +143,12 @@ const Dashboard = () => {
                             {featureCards.map((card, index) => <Redirectcard key={index} {...card} />)}
                         </div>
                     </div>
-                    <Divider className="my-3" />
+                    {/* <Divider className="my-3" />
                     <div className="">
                         <div className="flex flex-wrap max-w-3xl">
                             {personalCards.map((card, index) => <Redirectcard key={index} {...card} />)}
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
