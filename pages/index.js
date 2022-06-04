@@ -35,7 +35,7 @@ const Home = ({ plans }) => {
     }
   }, [user, router, setSubscriptionIdOfUser])
   return (
-    <div className="scroll-smooth">
+    <div>
       <Hero />
       <LogoCloud />
       <ProductInfo />
