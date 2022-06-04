@@ -31,6 +31,7 @@ const UpworkForm = ({ isTryout }) => {
     }
     const getDescWithTryOut = () => {
         event({
+            event: "demo_upwork",
             action: 'click',
             category: 'demo_events',
             label: 'upwork_form_tryout',
