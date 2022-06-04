@@ -25,6 +25,7 @@ const Hero = () => {
                     <Link href="#action">
                         <a className="bg-gradient px-16 py-3 text-base font-medium rounded-md text-white bg-blue-600 my-2 max-w-max transition hover:scale-110"
                             onClick={() => event({
+                                event: "see_it_in_action",
                                 action: 'click',
                                 category: 'landing_events',
                                 label: 'call_to_action',
