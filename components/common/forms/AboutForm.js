@@ -27,6 +27,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
     const getDescWithTryOut = () => {
         event({
             event: "demo_professional_summary",
+            action: 'click',
             category: 'demo_events',
             label: 'professional_summary_tryout',
             value: 1,
