@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import * as gtag from '../utils/gtag'
 import Nav from '../components/common/Nav'
 import TagManager from 'react-gtm-module';
-
 const isProduction = process.env.ENV === "production";
 
 
@@ -49,7 +48,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-PVS2FNZ' });
   }, []);
-
+  useEffect(() => { document.querySelector("html").classList.add('scroll-smooth') })
   return (
     <>
       <Script
