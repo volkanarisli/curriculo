@@ -63,12 +63,12 @@ const CoverLetterForm = ({ isTryout }) => {
                 <div className="flex flex-col relative">
                     {
                         (!isMobile && isTryout) &&
-                        <div className="hidden xl:flex xl:flex-col absolute -left-20 md:-left-48 ml-1 sm:-left-60 pointer-events-none">
+                        <div className="hidden lg:flex lg:flex-col absolute -left-20 md:-left-48 ml-1 sm:-left-60 pointer-events-none">
                             <span className="-mr-10">
                                 <Image src={Arrow} alt="Arrow" className="flip" />
                             </span>
-                            <span className="text-gray-500 absolute w-56 top-16 right-10 text-center font-mono">
-                                Textarea Where You Paste Your Job Description
+                            <span className="text-gray-500 text-sm absolute w-56 top-16 right-10 text-center font-mono">
+                                Textarea Where You Paste The Job Description You Want To Get A Cover Letter For
                             </span>
                         </div>
                     }
@@ -98,11 +98,11 @@ const CoverLetterForm = ({ isTryout }) => {
             <div className="relative">
                 {
                     (!isMobile && isTryout) &&
-                    <div className="hidden xl:flex xl:flex-col absolute -right-20 md:-right-48 ml-1 sm:-right-60 pointer-events-none">
+                    <div className="hidden lg:flex lg:flex-col absolute -right-20 md:-right-48 ml-1 sm:-right-60 pointer-events-none">
                         <span className="">
                             <Image src={Arrow} alt="Arrow" className="flip mirrorYAxis" />
                         </span>
-                        <span className="text-gray-500 absolute w-56 -top-7 -right-24 text-center font-mono">
+                        <span className="text-gray-500 text-sm absolute w-56 -top-7 -right-24 text-center font-mono">
                             You can try Curriculo out with pre-filled data.
                         </span>
                     </div>
