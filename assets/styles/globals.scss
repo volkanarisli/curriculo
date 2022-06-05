@@ -17,3 +17,6 @@
     top: -70px !important;
     transform: scaleY(-1);
 }
+.mirrorYAxis {
+    transform: scaleX(-1);
+}

@@ -1,15 +1,22 @@
 import UserInput from "../../common/UserInput"
 import { useState, useEffect } from "react"
 import { DuplicateIcon, ClipboardIcon } from "@heroicons/react/outline"
-import { copyText, sampleProposalLetters, sampleUpworkJobsDesc, getRandomValue } from "../../../utils/helpers"
+import { copyText, sampleProposalLetters, sampleUpworkJobsDesc, getRandomValue, isMobileDevice, classNames } from "../../../utils/helpers"
 import { event } from "../../../utils/gtag";
 import ImportantAlert from "../ImportantAlert"
+import Arrow from "../../../assets/img/Arrow.svg";
+import Image from "next/image";
+
 import axios from "axios"
 const UpworkForm = ({ isTryout }) => {
     const [jobDescription, setJobDescription] = useState("")
     const [proposalLetter, setProposalLetter] = useState("")
     const [keywords, setKeywords] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
+    useEffect(() => {
+        setIsMobile(isMobileDevice())
+    })
     const handleJobDescription = (e) => {
         setJobDescription(e.target.value)
     }
@@ -61,6 +68,17 @@ const UpworkForm = ({ isTryout }) => {
             </div>
             <div className="mb-5">
                 <div className="flex flex-col relative">
+                    {
+                        (!isMobile && isTryout) &&
+                        <div className="hidden xl:flex xl:flex-col absolute -left-20 md:-left-48 ml-1 sm:-left-60 pointer-events-none">
+                            <span className="-mr-10">
+                                <Image src={Arrow} alt="Arrow" className="flip" />
+                            </span>
+                            <span className="text-gray-500 absolute w-56 top-16 right-10 text-center font-mono">
+                                Textarea Where You Paste Your Gig Description
+                            </span>
+                        </div>
+                    }
                     <UserInput onInputChange={handleJobDescription}
                         value={isTryout ? sampleUpworkJobsDesc : jobDescription}
                         name="jobDescription"
@@ -83,14 +101,24 @@ const UpworkForm = ({ isTryout }) => {
                     }
 
                 </div>
-                <div className="mt-5">
+                <div className="mt-5 relative">
                     {
                         !isTryout &&
                         <span className="text-large text-gray-500">
                             Select/Add the keywords that requiered on the Job Description.
                         </span>
                     }
-
+                    {
+                        (!isMobile && isTryout) &&
+                        <div className="hidden xl:flex xl:flex-col absolute -right-20 md:-right-48 ml-1 sm:-right-60 pointer-events-none">
+                            <span className="">
+                                <Image src={Arrow} alt="Arrow" className="flip mirrorYAxis" />
+                            </span>
+                            <span className="text-gray-500 absolute w-56 -top-7 -right-24 text-center font-mono">
+                                Area Where You Can Add Keywords that Requiered on the Gig Description
+                            </span>
+                        </div>
+                    }
                     <UserInput onInputChange={setKeywords}
                         value={keywords}
                         name="keys"
@@ -107,11 +135,25 @@ const UpworkForm = ({ isTryout }) => {
                 !isTryout &&
                 <ImportantAlert header="Please Read Carefully Before Applying Jobs" text="Don't forget to check the generated proposal letter if it violates the Upwork community guidelines." />
             }
-            <button
-                onClick={isTryout ? getDescWithTryOut : getDesc}
-                className="px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-full my-7">
-                Generate Proposal Letter
-            </button>
+            <div className="relative">
+                {
+                    (!isMobile && isTryout) &&
+                    <div className="hidden xl:flex xl:flex-col absolute -left-20 md:-left-48 ml-1 sm:-left-60 pointer-events-none">
+                        <span className="-mr-10">
+                            <Image src={Arrow} alt="Arrow" />
+                        </span>
+                        <span className="text-gray-500 absolute w-56 top-2 right-5 text-center font-mono">
+                            You can try Curriculo out with pre-filled data.
+                        </span>
+                    </div>
+                }
+                <button
+                    onClick={isTryout ? getDescWithTryOut : getDesc}
+                    className={classNames("px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-full my-7", isTryout && 'animate-bounce hover:animate-none')}>
+                    Generate Proposal Letter
+                </button>
+            </div>
+
 
             <div className="relative">
                 <UserInput onInputChange={(e) => setProposalLetter(e.target.value)}

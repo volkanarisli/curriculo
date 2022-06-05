@@ -22,7 +22,7 @@ const Design = () => {
     }, [user, userNotSubscribed, router])
     useEffect(() => {
         setIsMobile(isMobileDevice())
-    }, [])
+    })
     const currentForms = [
         (props) => <AboutForm {...props} />,
         (props) => <WorkForm  {...props} />,
