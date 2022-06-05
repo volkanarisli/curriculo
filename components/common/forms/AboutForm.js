@@ -3,13 +3,19 @@ import { useState, useEffect } from "react";
 import { useResumeInfo } from "../../../context/ResumeInfo";
 import axios from "axios";
 import UserInput from "../../common/UserInput"
-import { getRandomValue, sampleProfessionalSummaries, sampleJobTitle } from "../../../utils/helpers";
+import { getRandomValue, sampleProfessionalSummaries, sampleJobTitle, classNames, isMobileDevice } from "../../../utils/helpers";
 import { event } from "../../../utils/gtag";
+import Arrow from "../../../assets/img/Arrow.svg";
+import Image from "next/image"
 const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
     const { contact, setContact } = useResumeInfo()
     const [keywords, setKeywords] = useState([])
     const [hasError, setHasError] = useState({ customKeyword: '' })
     const [isLoading, setIsLoading] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
+    useEffect(() => {
+        setIsMobile(isMobileDevice())
+    })
     const updateData = (e, propertyName) => {
         setContact(prevState => ({ ...prevState, [propertyName]: e }))
     }
@@ -106,15 +112,28 @@ const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
                     <span className="mb-1 text-xl text-gray-900 font-semibold">Professional Summary</span>
                     <span className="mb-1 text-sm text-gray-500">Select adjectives that describes you best. Mention your role, experience and best skills. AI carry on the rest. Remember more is better.</span>
 
+                    <div className="relative">
+                        {
+                            (!isMobile && isTryout) &&
+                            <div className="hidden xl:flex xl:flex-col absolute -top-5 -left-20 md:-left-48 ml-1 sm:-left-60 pointer-events-none">
+                                <span className="-mr-10">
+                                    <Image src={Arrow} alt="Arrow" className="flip" />
+                                </span>
+                                <span className="text-gray-500 absolute w-56 top-16 right-10 text-center font-mono">
+                                    Input Area Where You type Your Job Title
+                                </span>
+                            </div>
+                        }
+                        <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
+                            value={isTryout ? sampleJobTitle : contact?.currentTitle}
+                            name="currentTitle"
+                            type="text"
+                            input="text"
+                            label="Job Title"
+                            placeholder="Job Title"
+                        />
+                    </div>
 
-                    <UserInput onInputChange={e => updateData(e.target.value, e.target.name)}
-                        value={isTryout ? sampleJobTitle : contact?.currentTitle}
-                        name="currentTitle"
-                        type="text"
-                        input="text"
-                        label="Job Title"
-                        placeholder="Job Title"
-                    />
                     {
                         isResumeBuilder &&
                         <>
@@ -152,7 +171,18 @@ const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
             <div className="flex mb-14">
                 <div className="flex flex-col w-full pr-3">
 
-                    <div>
+                    <div className="relative">
+                        {
+                            (!isMobile && isTryout) &&
+                            <div className="hidden xl:flex xl:flex-col absolute top-10 -right-20 md:-right-48 ml-1 sm:-right-60 pointer-events-none">
+                                <span className="">
+                                    <Image src={Arrow} alt="Arrow" className="flip mirrorYAxis" />
+                                </span>
+                                <span className="text-gray-500 absolute w-56 -top-20 -right-24 text-center font-mono">
+                                    Area Where You Can Add Keywords That Best Describes your both technical and non-technical skills
+                                </span>
+                            </div>
+                        }
                         <UserInput onInputChange={setKeywords}
                             value={keywords}
                             name="keys"
@@ -166,10 +196,21 @@ const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
                     </div>
                 </div>
             </div>
-            <div className="flex items-stretch w-full mb-4">
+            <div className="flex items-stretch w-full relative mb-4">
+                {
+                    (!isMobile && isTryout) &&
+                    <div className="hidden xl:flex xl:flex-col absolute -top-10 -left-20 md:-left-48 ml-1 sm:-left-60 pointer-events-none">
+                        <span className="-mr-10">
+                            <Image src={Arrow} alt="Arrow" />
+                        </span>
+                        <span className="text-gray-500 absolute w-56 top-2 right-5 text-center font-mono">
+                            You can try Curriculo out with pre-filled data.
+                        </span>
+                    </div>
+                }
                 <button
                     onClick={isTryout ? getDescWithTryOut : getDesc}
-                    className="flex items-center justify-center w-30 px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 flex-grow">
+                    className={classNames("px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-full my-7", isTryout && 'animate-bounce hover:animate-none')}>
                     Generate Summary
                 </button>
             </div>

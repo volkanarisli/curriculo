@@ -1,14 +1,20 @@
 import UserInput from "../../common/UserInput"
 import { useState, useEffect } from "react"
 import { DuplicateIcon, ClipboardIcon } from "@heroicons/react/outline"
-import { copyText, exportTextAsDocxFile, getRandomValue, sampleJobDesc, sampleCoverLetters, exportTextAsTxtFile } from "../../../utils/helpers"
+import { copyText, classNames, getRandomValue, sampleJobDesc, sampleCoverLetters, exportTextAsTxtFile, isMobileDevice } from "../../../utils/helpers"
 import { event } from "../../../utils/gtag"
+import Arrow from "../../../assets/img/Arrow.svg";
+import Image from "next/image"
+
 import axios from "axios"
 const CoverLetterForm = ({ isTryout }) => {
     const [jobDescription, setJobDescription] = useState("")
     const [proposalLetter, setProposalLetter] = useState("")
     const [isLoading, setIsLoading] = useState(false)
-
+    const [isMobile, setIsMobile] = useState(false)
+    useEffect(() => {
+        setIsMobile(isMobileDevice())
+    })
     const handleJobDescription = (e) => {
         setJobDescription(e.target.value)
     }
@@ -55,6 +61,17 @@ const CoverLetterForm = ({ isTryout }) => {
             </div>
             <div>
                 <div className="flex flex-col relative">
+                    {
+                        (!isMobile && isTryout) &&
+                        <div className="hidden xl:flex xl:flex-col absolute -left-20 md:-left-48 ml-1 sm:-left-60 pointer-events-none">
+                            <span className="-mr-10">
+                                <Image src={Arrow} alt="Arrow" className="flip" />
+                            </span>
+                            <span className="text-gray-500 absolute w-56 top-16 right-10 text-center font-mono">
+                                Textarea Where You Paste Your Job Description
+                            </span>
+                        </div>
+                    }
                     <UserInput onInputChange={handleJobDescription}
                         value={isTryout ? sampleJobDesc : jobDescription}
                         name="jobDescription"
@@ -78,11 +95,25 @@ const CoverLetterForm = ({ isTryout }) => {
 
                 </div>
             </div>
-            <button
-                onClick={isTryout ? getDescWithTryOut : getDesc}
-                className="px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-full my-7">
-                Generate Cover Letter
-            </button>
+            <div className="relative">
+                {
+                    (!isMobile && isTryout) &&
+                    <div className="hidden xl:flex xl:flex-col absolute -right-20 md:-right-48 ml-1 sm:-right-60 pointer-events-none">
+                        <span className="">
+                            <Image src={Arrow} alt="Arrow" className="flip mirrorYAxis" />
+                        </span>
+                        <span className="text-gray-500 absolute w-56 -top-7 -right-24 text-center font-mono">
+                            You can try Curriculo out with pre-filled data.
+                        </span>
+                    </div>
+                }
+                <button
+                    onClick={isTryout ? getDescWithTryOut : getDesc}
+                    className={classNames("px-3 py-2 text-base font-medium rounded-md text-white bg-blue-600 w-full my-7", isTryout && 'animate-bounce hover:animate-none')}>
+                    Generate Cover Letter
+                </button>
+            </div>
+
 
             <div className="relative">
                 <UserInput onInputChange={(e) => setProposalLetter(e.target.value)}
