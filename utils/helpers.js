@@ -382,12 +382,57 @@ export const sampleProposalLetters = [
     Thank you for your time,
 
     [Your name]`,
+    `Hello,
+
+    I am interested in your freelance job requiered to create UX/UI design for home page and one inner page of the website. I am confident that I have the skills and experience necessary to produce high-quality designs that meet your requirements.
+    
+    Below I have attached some recent examples of my design work. I am happy to provide additional information or answer any questions you may have.
+    
+    Thank you for your time, 
+    
+    Sincerely,`,
+    `Hello, 
+
+    Thank you for considering me for the UX / UI designer position. I am confident that I have the skills and experience required for this position. My portfolio includes recent examples of design work that demonstrate my ability to create designs that are both creative and user-friendly. I am confident that I can bring your vision for the website to life. 
+    
+    In addition to my skills in web design and graphic design, I am also skilled in responsive design and user interface design. I am familiar with how to create design files that can be easily converted into a wordpress website. I am confident that I have the skills and experience required for this position and I am eager to start working on your project.
+    
+    If you would like to discuss this position further or see additional examples of my work, please do not hesitate to contact me. I look forward to hearing from you. 
+    
+    Thank you, 
+    
+    [Your name]`,
+    `Hello!
+
+    I am a UX/UI designer with over 5 years of experience designing web and mobile interfaces. I have a strong understanding of responsive design, and can create designs that are both user-friendly and visually appealing.
+    
+    I would be interested in helping you design the home page and inner page of your website. I am confident that I have the skills and experience necessary to create designs that meet your needs and exceed your expectations.
+    
+    I would be happy to provide you with a proposal, which will include a detailed outline of my proposed services, as well as a portfolio of recent work.
+    
+    Thank you for your time, and I look forward to hearing from you soon.`,
+    `Hello,
+
+    I am a UX / UI designer with experience in designing websites and creating wireframes and mockups. I am interested in this project and would like to submit my proposal.
+    
+    I have attached some recent examples of my work to this email for you to review. I believe my skills and experience match what you are looking for in this project.
+    
+    I am available to start work on this project immediately and would be happy to answer any questions you have.
+    
+    Thank you,
+    
+    [Your name]`
 ]
 
 export const sampleProfessionalSummaries = [
     `I have the ability to listen, networking ability, resiliency, enthusiasm, multitasking skills, and communications skills. I am able to work well with others and am a team player. I am also able to work independently and am self-motivated. I am looking for a position where I can use my skills and abilities to help the company reach its goals.`,
     `I have the ability to listen, networking ability, resiliency, enthusiasm, multitasking skills, and communications skills. I am able to work with different types of people and am very flexible. I work well under pressure and can always maintain a positive attitude.`,
-    `I am a Salesman with a technical skillset. I have the ability to listen and network with others, as well as the resilience to stay positive and enthusiastic in the face of rejection. I am also able to multitask and communicate effectively with others.`
+    `I am a Salesman with a technical skillset. I have the ability to listen and network with others, as well as the resilience to stay positive and enthusiastic in the face of rejection. I am also able to multitask and communicate effectively with others.`,
+    `I am a salesman who is independent and has a technical skillset. I am able to listen and network with others, as well as be resilient and enthusiastic. I also have multitasking skills and communications skills. I am able to work well independently and am a hard worker.`,
+    `I am a Salesman who is Independent and has a technical skillset that includes the ability to listen, networking ability, resiliency, enthusiasm, multitasking skills, and communications skills. My goal is to help my clients achieve their desired outcomes by providing them with superior customer service. I am a hard worker who is always looking for new opportunities to grow my business. I am also a team player who is always willing to lend a helping hand.`,
+    `I am a Salesman who is Independent and has a technical skillset that includes the ability to listen, networking ability, resiliency, enthusiasm, multitasking skills, and communications skills. I have a proven track record of success in sales and thrive in a fast-paced environment. I am known for my ability to build relationships and am highly adaptable.`,
+    `I am a salesman who is independent and has a technical skillset of being able to listen, networking ability, resilience, and enthusiasm. I also have multitasking skills and communications skills. I am looking for a new opportunity where I can use my skills and abilities to help a company grow.`,
+    `I am a salesman who is independent and has a technical skillset. I have the ability to listen and networking ability. I am also resilient and enthusiastic. I have multitasking skills and communications skills.`
 ]
 
 export const sampleJobTitle = 'Salesman'

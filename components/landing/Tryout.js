@@ -37,10 +37,10 @@ const Tryout = () => {
     const [selectedTab, setSelectedTab] = useState(1)
     return (
         <ResumeInfoProvider>
-            <div className="text-center flex flex-col items-center gap-3 mb-10 max-w-xl mx-auto">
+            <div className="text-center flex flex-col items-center gap-3 mb-1 max-w-xl mx-auto">
                 <span className="text-blue-700 font-semibold " id="demo">Demo</span>
                 <span className="text-gray-900 text-3xl font-semibold">See Curriculo In Action</span>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 p-3">
                     This demo is a great way to see how Curriculo can help you create killer cover letters and resume texts! You can&apos;t change the inputs, but that just means you can focus on the awesome results. Plus, you can&apos;t include or exclude anything personal, so this demo is the perfect way to understand how the process works.
                 </p>
             </div>
