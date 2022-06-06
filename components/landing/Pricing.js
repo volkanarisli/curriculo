@@ -32,7 +32,7 @@ const Pricing = ({ plans }) => {
                 </span>
                 <Link href="/register" >
                     <a className="text-3xl text-blue-600 underline cursor-pointer animate-pulse">
-                        Don't miss on 50% Launch Discounts
+                        Don&apos;t miss on 50% Launch Discounts
                     </a>
                 </Link>
 
