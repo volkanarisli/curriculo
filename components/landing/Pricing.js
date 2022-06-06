@@ -2,27 +2,40 @@
 import { useState } from "react";
 import Link from "next/link";
 import { CheckIcon } from "@heroicons/react/outline";
+
 const Pricing = ({ plans }) => {
+    const saveEnum = {
+        25651: 37,
+        25652: 34,
+        25653: 28,
+        25654: 0,
+        759869: 37,
+        759868: 34,
+        759867: 28,
+        759866: 0,
+    }
     const [pricingPlans, setPricingPlans] = useState(plans.map((plan, index) => {
         return {
             ...plan,
             points: index === 0 ? ['Unlimited resume and letters', 'Premium resume templates', 'Unlimited downloads']
-                : ['Unlimited resume and letters', 'Premium resume templates', 'Unlimited downloads', '7/24 Prioritized support', ' Save up to 34%'],
+                : ['Unlimited resume and letters', 'Premium resume templates', 'Unlimited downloads', '7/24 Prioritized support',
+                    , `Save ${saveEnum[plan.id]}%`],
         };
     }));
-    const multiplyEnum = {
-        25651: 1,
-        25652: 2,
-        25653: 4,
-        25654: 12
-    }
+
     return (
         <div className="flex flex-col items-center">
-            <div className="flex flex-col items-center text-center px-1 mb-20">
+            <div className="flex flex-col items-center text-center px-1 mb-16">
                 <span className="text-blue-700 mb-2">Pricing Plans</span>
-                <span className="text-blue-900 text-4xl font-semibold">
+                <span className="text-blue-900 text-4xl mb-4 font-semibold">
                     Save time while paying less
                 </span>
+                <Link href="/register" >
+                    <a className="text-3xl text-blue-600 underline cursor-pointer animate-pulse">
+                        Don't miss on 50% Launch Discounts
+                    </a>
+                </Link>
+
             </div>
             <div className="flex justify-center flex-wrap gap-6" suppressHydrationWarning={true}>
                 {
@@ -30,6 +43,9 @@ const Pricing = ({ plans }) => {
                         <div key={index} className="flex flex-col items-center border-2 border-gray-100 rounded-lg px-8 pt-10 pb-44 relative">
                             <div className="flex flex-col items-center w-36 mb-5">
                                 <span className="text-lg text-blue-600">{plan.name}</span>
+                                <span className="line-through text-gray-500">
+                                    ${(plan.recurring_price.USD * 2).toFixed(2)}
+                                </span>
                                 <span className="text-4xl font-semibold">
                                     ${plan.recurring_price.USD}
                                 </span>
