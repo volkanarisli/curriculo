@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useUser } from "../../context/UserInfo";
 import ChoseTemplate from "./ChoseTemplate";
 import { useReactToPrint } from 'react-to-print'
+import { event } from "../../utils/gtag";
 
 
 
@@ -35,6 +36,13 @@ const Preview = () => {
         onAfterPrint: () => { setDownloading(false) }
     })
     const download = async () => {
+        event({
+            event: "CreateaResume",
+            action: 'click',
+            category: 'Create_a_Resume_Generate_Summary',
+            label: 'professional_summary_tryout',
+            value: 1,
+        })
         setDownloading(true)
         setTimeout(async () => {
             await exportDivAsPdf()
