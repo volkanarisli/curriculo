@@ -440,3 +440,21 @@ export const sampleJobTitle = 'Salesman'
 export const isOddNumber = (num) => {
     return num % 2 === 0 ? false : true
 }
+
+export const pageToPostTransformer = (page) => {
+    const imageEnum = {
+        'file': page.cover.file,
+        'external': page.cover.external.url,
+    }
+    let cover = imageEnum[page.cover.type] || ''
+    return {
+        id: page.id,
+        cover: cover,
+        title: page.properties.Name.title[0].plain_text,
+        tags: page.properties.Tags.multi_select,
+        description: page.properties.Description.rich_text[0]?.plain_text || null,
+        date: page.properties.Updated.last_edited_time,
+        slug: page.properties.Slug.formula.string
+    }
+
+}

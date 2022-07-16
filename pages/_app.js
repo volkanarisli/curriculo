@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import * as gtag from '../utils/gtag'
 import Nav from '../components/common/Nav'
 import TagManager from 'react-gtm-module';
+import Footer from '../components/common/Footer'
 const isProduction = process.env.ENV === "production";
 
 
@@ -22,7 +23,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
     '/account-settings'
   ]
   const router = useRouter()
-  const hideNav = hiddenNavRoutes.includes(router.pathname)
+  const hideLayout = hiddenNavRoutes.includes(router.pathname)
   const hideLandinglinks = ['/login', '/register'].includes(router.pathname)
   useEffect(() => {
     function initDesk360Chat() {
@@ -76,26 +77,17 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
       />
       <UserProvider>
         <Head>
-        <title>Curriculo</title>
+          <title>Curriculo</title>
           <link rel="icon" href="/favicon.svg" />
           <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-          <meta name="title" content="Curriculo.design" />
-          <meta name="description" content="Get the perfect resume and cover letter in seconds with our AI-powered resume copywriting and cover letter generation tool." />
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://www.curriculo.design/" />
-          <meta property="og:title" content="Curriculo.design" />
-          <meta property="og:description" content="Get the perfect resume and cover letter in seconds with our AI-powered resume copywriting and cover letter generation tool." />
-          <meta property="og:image" content="https://www.curriculo.design/meta.png" />
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:url" content="https://www.curriculo.design/" />
-          <meta property="twitter:title" content="Curriculo.design" />
-          <meta property="twitter:description" content="Get the perfect resume and cover letter in seconds with our AI-powered resume copywriting and cover letter generation tool." />
-          <meta property="twitter:image" content="https://www.curriculo.design/meta.png" />
         </Head>
         {
-          !hideNav && <Nav hideLandinglinks={hideLandinglinks} />
+          !hideLayout && <Nav hideLandinglinks={hideLandinglinks} />
         }
         <Component {...pageProps} />
+        {
+          !hideLayout && <Footer />
+        }
       </UserProvider>
     </>
   )

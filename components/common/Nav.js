@@ -3,23 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useUser } from '../../context/UserInfo'
-import { isMobileDevice } from "../../utils/helpers";
-
 const Nav = ({ hideLandinglinks }) => {
     const { user, logout } = useUser()
 
     const tabs = [
         {
             name: 'Products',
-            scrollId: 'products',
+            href: '/#products',
         },
         {
             name: 'Benefits',
-            scrollId: 'benefits',
+            href: '/#benefits',
         },
         {
             name: 'Demo',
-            scrollId: 'demo',
+            href: '/#demo',
         },
         {
             name: 'Blog',
@@ -35,7 +33,7 @@ const Nav = ({ hideLandinglinks }) => {
                         <Link href="/">
                             <a>
                                 <span className="sr-only">Curriculo</span>
-                                <Image src="/logomark.svg" alt='Logo' width="150"  height="50"/>
+                                <Image src="/logomark.svg" alt='Logo' width="150" height="50" />
                             </a>
                         </Link>
                     </div>

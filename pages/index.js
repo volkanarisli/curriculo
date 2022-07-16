@@ -1,17 +1,16 @@
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router'
 import Hero from '../components/landing/Hero';
-import Nav from '../components/common/Nav';
 import LogoCloud from '../components/landing/LogoCloud';
 import ProductInfo from '../components/landing/ProductInfo';
 import AiInfo from '../components/landing/AiInfo';
 import GetMailSubs from '../components/landing/GetMailSubs';
 import Pricing from '../components/landing/Pricing';
-import Footer from '../components/landing/Footer';
 import Tryout from '../components/landing/Tryout';
 import { useUser } from '../context/UserInfo'
 import axios from 'axios';
+import Head from 'next/head';
 
 
 
@@ -35,16 +34,32 @@ const Home = ({ plans }) => {
     }
   }, [user, router, setSubscriptionIdOfUser])
   return (
-    <div>
-      <Hero />
-      <LogoCloud />
-      <ProductInfo />
-      <Tryout />
-      <AiInfo />
-      <GetMailSubs />
-      <Pricing plans={plans} />
-      <Footer />
-    </div>
+    <>
+      <Head>
+        <title>Curriculo</title>
+        <meta name="title" content="Curriculo.design" />
+        <meta name="description" content="Get the perfect resume and cover letter in seconds with our AI-powered resume copywriting and cover letter generation tool." />
+        <meta property="og:url" content="https://www.curriculo.design/" />
+        <meta property="og:title" content="Curriculo.design" />
+        <meta property="og:description" content="Get the perfect resume and cover letter in seconds with our AI-powered resume copywriting and cover letter generation tool." />
+        <meta property="og:image" content="https://www.curriculo.design/meta.png" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.curriculo.design/" />
+        <meta property="twitter:title" content="Curriculo.design" />
+        <meta property="twitter:description" content="Get the perfect resume and cover letter in seconds with our AI-powered resume copywriting and cover letter generation tool." />
+        <meta property="twitter:image" content="https://www.curriculo.design/meta.png" />
+      </Head>
+      <div>
+
+        <Hero />
+        <LogoCloud />
+        <ProductInfo />
+        <Tryout />
+        <AiInfo />
+        <GetMailSubs />
+        <Pricing plans={plans} />
+      </div>
+    </>
   )
 }
 
