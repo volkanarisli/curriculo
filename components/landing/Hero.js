@@ -11,6 +11,8 @@ const Hero = () => {
     const heroWords = [
         'Cover Letter',
         2500,
+        'Freelance Job Proposal Letter',
+        2500,
         'Educational Summary',
         2500,
         'Resume',
