@@ -63,7 +63,7 @@ const CoverLetterForm = ({ isTryout }) => {
                 <div className="flex flex-col relative">
                     {
                         (!isMobile && isTryout) &&
-                        <div className="hidden lg:flex lg:flex-col absolute -left-20 md:-left-48 ml-1 sm:-left-60 pointer-events-none">
+                        <div className="hidden lg:flex lg:flex-col absolute -left-20 md:-left-44 ml-1 sm:-left-60 pointer-events-none">
                             <span className="-mr-10">
                                 <Image src={Arrow} alt="Arrow" className="flip" />
                             </span>
@@ -98,7 +98,7 @@ const CoverLetterForm = ({ isTryout }) => {
             <div className="relative">
                 {
                     (!isMobile && isTryout) &&
-                    <div className="hidden lg:flex lg:flex-col absolute -right-20 md:-right-48 ml-1 sm:-right-60 pointer-events-none">
+                    <div className="hidden lg:flex lg:flex-col absolute -right-20 md:-right-44 ml-1 sm:-right-60 pointer-events-none">
                         <span className="">
                             <Image src={Arrow} alt="Arrow" className="flip mirrorYAxis" />
                         </span>

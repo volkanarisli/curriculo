@@ -115,7 +115,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
                     <div className="relative">
                         {
                             (!isMobile && isTryout) &&
-                            <div className="hidden lg:flex lg:flex-col absolute -top-5 -left-20 md:-left-48 ml-1 sm:-left-60 pointer-events-none">
+                            <div className="hidden lg:flex lg:flex-col absolute -top-5 -left-20 md:-left-44 ml-1 sm:-left-60 pointer-events-none">
                                 <span className="-mr-10">
                                     <Image src={Arrow} alt="Arrow" className="flip" />
                                 </span>
@@ -174,7 +174,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
                     <div className="relative">
                         {
                             (!isMobile && isTryout) &&
-                            <div className="hidden lg:flex lg:flex-col absolute top-10 -right-20 md:-right-48 ml-1 sm:-right-60 pointer-events-none">
+                            <div className="hidden lg:flex lg:flex-col absolute top-10 -right-20 md:-right-44 ml-1 sm:-right-60 pointer-events-none">
                                 <span className="">
                                     <Image src={Arrow} alt="Arrow" className="flip mirrorYAxis" />
                                 </span>
@@ -199,7 +199,7 @@ const AboutForm = ({ name, surname, email, isResumeBuilder, isTryout }) => {
             <div className="flex items-stretch w-full relative mb-4">
                 {
                     (!isMobile && isTryout) &&
-                    <div className="hidden lg:flex lg:flex-col absolute -top-10 -left-20 md:-left-48 ml-1 sm:-left-60 pointer-events-none">
+                    <div className="hidden lg:flex lg:flex-col absolute -top-10 -left-20 md:-left-44 ml-1 sm:-left-60 pointer-events-none">
                         <span className="-mr-10">
                             <Image src={Arrow} alt="Arrow" />
                         </span>
