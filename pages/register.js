@@ -9,6 +9,7 @@ import UserInput from "../components/common/UserInput"
 import ErrorAlert from "../components/common/ErrorAlert"
 import PaddleLoader from "../components/common/PaddleLoader"
 import axios from "axios"
+
 const Register = ({ plans }) => {
     const { checkIfAccountAlreadyExistAndOpenCheckout, user } = useUser()
     const router = useRouter()
