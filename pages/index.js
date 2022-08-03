@@ -57,28 +57,28 @@ const Home = ({ plans }) => {
         <Tryout />
         <AiInfo />
         <GetMailSubs />
-        <Pricing plans={plans} />
+        {/* <Pricing plans={plans} /> */}
       </div>
     </>
   )
 }
 
-export const getServerSideProps = async () => {
-  const { data: { response } } = await axios.post(`${process.env.PADDLE_API_URL}2.0/subscription/plans`,
-    {
-      vendor_id: process.env.PADDLE_VENDOR_ID,
-      vendor_auth_code: process.env.PADDLE_API_AUTH_CODE
-    }
-  );
-  const plans = response.map((option) => {
-    return { ...option, title: `${option.name} - ${option.recurring_price.USD}$` }
-  })
-  return {
-    props: {
-      plans
-    }
-  }
-}
+// export const getServerSideProps = async () => {
+//   const { data: { response } } = await axios.post(`${process.env.PADDLE_API_URL}2.0/subscription/plans`,
+//     {
+//       vendor_id: process.env.PADDLE_VENDOR_ID,
+//       vendor_auth_code: process.env.PADDLE_API_AUTH_CODE
+//     }
+//   );
+//   const plans = response.map((option) => {
+//     return { ...option, title: `${option.name} - ${option.recurring_price.USD}$` }
+//   })
+//   return {
+//     props: {
+//       plans
+//     }
+//   }
+// }
 
 export default Home
 
