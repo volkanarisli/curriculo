@@ -14,9 +14,50 @@ import Head from 'next/head';
 
 
 
+const plans = [
+  {
+    id: 25651,
+    name: 'Annual',
+    billing_type: 'year',
+    billing_period: 1,
+    initial_price: { USD: '0.00' },
+    recurring_price: { USD: '72.00' },
+    trial_days: 0,
+    title: 'Annual - 72.00$'
+  },
+  {
+    id: 25652,
+    name: '6 Monts',
+    billing_type: 'month',
+    billing_period: 6,
+    initial_price: { USD: '0.00' },
+    recurring_price: { USD: '42.00' },
+    trial_days: 0,
+    title: '6 Monts - 42.00$'
+  },
+  {
+    id: 25653,
+    name: '3 Months',
+    billing_type: 'month',
+    billing_period: 3,
+    initial_price: { USD: '0.00' },
+    recurring_price: { USD: '24.00' },
+    trial_days: 0,
+    title: '3 Months - 24.00$'
+  },
+  {
+    id: 25654,
+    name: '1 Months',
+    billing_type: 'month',
+    billing_period: 1,
+    initial_price: { USD: '0.00' },
+    recurring_price: { USD: '9.00' },
+    trial_days: 0,
+    title: '1 Months - 9.00$'
+  }
+]
 
-
-const Home = ({ plans }) => {
+const Home = () => {
   const { setSubscriptionIdOfUser, user } = useUser()
   const router = useRouter()
   useEffect(() => {
@@ -57,7 +98,7 @@ const Home = ({ plans }) => {
         <Tryout />
         <AiInfo />
         <GetMailSubs />
-        {/* <Pricing plans={plans} /> */}
+        <Pricing plans={plans} />
       </div>
     </>
   )
@@ -73,6 +114,7 @@ const Home = ({ plans }) => {
 //   const plans = response.map((option) => {
 //     return { ...option, title: `${option.name} - ${option.recurring_price.USD}$` }
 //   })
+//   console.log(plans)
 //   return {
 //     props: {
 //       plans
