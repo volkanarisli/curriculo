@@ -38,7 +38,7 @@ const plans = [
   {
     id: 25653,
     name: '3 Months',
-    billing_type: 'month',
+    billing_type: 'mont',
     billing_period: 3,
     initial_price: { USD: '0.00' },
     recurring_price: { USD: '24.00' },
